@@ -1,0 +1,60 @@
+{
+    "name": "Airbnb",
+    "description": "Unforgettable trips start with Airbnb. Find adventures nearby or in faraway places and access unique homes, experiences, and places around the world.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28275-airbnb.jpg",
+    "tags": [
+        "api provider",
+        "have api",
+        "hotels",
+        "lodging",
+        "marketplaces",
+        "no api definition"
+    ],
+    "created": "2019-12-18",
+    "modified": "2019-12-18",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/airbnb\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Airbnb",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28275-airbnb.jpg",
+            "humanURL": "http:\/\/airbnb.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/airbnb-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/airbnb-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/airbnb"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/www.airbnb.com\/partner"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/Airbnb"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/www.airbnb.com"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/airbnb.com"
+        }
+    ]
+}
