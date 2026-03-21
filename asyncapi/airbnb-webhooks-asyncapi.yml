@@ -1,0 +1,727 @@
+asyncapi: 2.6.0
+info:
+  title: Airbnb Webhooks API
+  description: >-
+    The Airbnb Webhooks API enables connectivity partners to receive
+    real-time notifications when events occur on the Airbnb platform. It
+    supports webhook subscriptions for reservation changes, message creation,
+    review submissions, listing calendar updates, and other key events.
+    Partners can subscribe to events such as reservation confirmations,
+    cancellations, guest messages, new reviews, and availability or pricing
+    changes, allowing their systems to react immediately without needing to
+    poll the API for updates.
+  version: '2025.03.31'
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  externalDocs:
+    description: Airbnb Developer Documentation
+    url: https://developer.withairbnb.com/
+servers:
+  partnerWebhookEndpoint:
+    url: '{webhookUrl}'
+    protocol: https
+    description: >-
+      The partner-configured HTTPS endpoint that receives webhook
+      notifications from Airbnb. Partners register their webhook URL
+      through the Airbnb developer portal.
+    variables:
+      webhookUrl:
+        description: >-
+          The partner HTTPS URL configured to receive webhook events.
+    security:
+      - signatureVerification: []
+channels:
+  /webhook:
+    description: >-
+      The webhook endpoint that receives all Airbnb event notifications.
+      Events are delivered as HTTP POST requests with a JSON payload.
+      Each event includes a type field to identify the event category
+      and a signature header for verification.
+    publish:
+      operationId: receiveWebhookEvent
+      summary: Receive an Airbnb webhook event
+      description: >-
+        Airbnb sends event notifications to the partner webhook endpoint
+        when relevant changes occur on the platform. Partners should
+        respond with a 200 status code to acknowledge receipt. Events
+        that are not acknowledged may be retried.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ReservationCreated'
+          - $ref: '#/components/messages/ReservationConfirmed'
+          - $ref: '#/components/messages/ReservationCancelled'
+          - $ref: '#/components/messages/ReservationUpdated'
+          - $ref: '#/components/messages/ReservationCheckedIn'
+          - $ref: '#/components/messages/ReservationCheckedOut'
+          - $ref: '#/components/messages/MessageCreated'
+          - $ref: '#/components/messages/ReviewSubmitted'
+          - $ref: '#/components/messages/CalendarUpdated'
+          - $ref: '#/components/messages/ListingUpdated'
+          - $ref: '#/components/messages/PricingUpdated'
+          - $ref: '#/components/messages/BookingCreated'
+          - $ref: '#/components/messages/BookingConfirmed'
+          - $ref: '#/components/messages/BookingCancelled'
+components:
+  securitySchemes:
+    signatureVerification:
+      type: httpApiKey
+      name: X-Airbnb-Signature
+      in: header
+      description: >-
+        Airbnb signs each webhook payload using HMAC-SHA256 with the
+        partner webhook secret. Partners must verify the signature in
+        the X-Airbnb-Signature header to ensure the request originated
+        from Airbnb and has not been tampered with.
+  messages:
+    ReservationCreated:
+      name: reservation.created
+      title: Reservation Created
+      summary: >-
+        Sent when a new reservation request is created by a guest.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.created
+            description: >-
+              The type of webhook event.
+    ReservationConfirmed:
+      name: reservation.confirmed
+      title: Reservation Confirmed
+      summary: >-
+        Sent when a reservation is confirmed by the host or automatically
+        through instant booking.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.confirmed
+            description: >-
+              The type of webhook event.
+    ReservationCancelled:
+      name: reservation.cancelled
+      title: Reservation Cancelled
+      summary: >-
+        Sent when a reservation is cancelled by either the host or guest.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationCancellationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.cancelled
+            description: >-
+              The type of webhook event.
+    ReservationUpdated:
+      name: reservation.updated
+      title: Reservation Updated
+      summary: >-
+        Sent when a reservation is modified, such as date changes or
+        guest count updates.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.updated
+            description: >-
+              The type of webhook event.
+    ReservationCheckedIn:
+      name: reservation.checked_in
+      title: Reservation Checked In
+      summary: >-
+        Sent when a guest checks in to the property.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.checked_in
+            description: >-
+              The type of webhook event.
+    ReservationCheckedOut:
+      name: reservation.checked_out
+      title: Reservation Checked Out
+      summary: >-
+        Sent when a guest checks out of the property.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReservationEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: reservation.checked_out
+            description: >-
+              The type of webhook event.
+    MessageCreated:
+      name: message.created
+      title: Message Created
+      summary: >-
+        Sent when a new message is created in a reservation thread by
+        either the host or guest.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/MessageEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: message.created
+            description: >-
+              The type of webhook event.
+    ReviewSubmitted:
+      name: review.submitted
+      title: Review Submitted
+      summary: >-
+        Sent when a new review is submitted by a guest for a completed
+        reservation.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ReviewEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: review.submitted
+            description: >-
+              The type of webhook event.
+    CalendarUpdated:
+      name: calendar.updated
+      title: Calendar Updated
+      summary: >-
+        Sent when the availability calendar for a listing is updated,
+        including blocked dates and availability changes.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CalendarEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: calendar.updated
+            description: >-
+              The type of webhook event.
+    ListingUpdated:
+      name: listing.updated
+      title: Listing Updated
+      summary: >-
+        Sent when a listing is updated, including changes to description,
+        amenities, photos, or status.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ListingEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: listing.updated
+            description: >-
+              The type of webhook event.
+    PricingUpdated:
+      name: pricing.updated
+      title: Pricing Updated
+      summary: >-
+        Sent when the pricing for a listing is changed, including nightly
+        rates, cleaning fees, and discount rules.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PricingEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: pricing.updated
+            description: >-
+              The type of webhook event.
+    BookingCreated:
+      name: booking.created
+      title: Experience Booking Created
+      summary: >-
+        Sent when a new experience booking is created by a guest.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/BookingEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: booking.created
+            description: >-
+              The type of webhook event.
+    BookingConfirmed:
+      name: booking.confirmed
+      title: Experience Booking Confirmed
+      summary: >-
+        Sent when an experience booking is confirmed by the host.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/BookingEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: booking.confirmed
+            description: >-
+              The type of webhook event.
+    BookingCancelled:
+      name: booking.cancelled
+      title: Experience Booking Cancelled
+      summary: >-
+        Sent when an experience booking is cancelled.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/BookingEvent'
+      headers:
+        type: object
+        properties:
+          X-Airbnb-Signature:
+            type: string
+            description: >-
+              HMAC-SHA256 signature of the request body.
+          X-Airbnb-Event-Type:
+            type: string
+            const: booking.cancelled
+            description: >-
+              The type of webhook event.
+  schemas:
+    WebhookEventBase:
+      type: object
+      required:
+        - event_id
+        - event_type
+        - timestamp
+      properties:
+        event_id:
+          type: string
+          description: >-
+            A unique identifier for this webhook event, used for
+            idempotency and deduplication.
+        event_type:
+          type: string
+          description: >-
+            The type of event that triggered the webhook notification.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The ISO 8601 timestamp when the event occurred.
+        api_version:
+          type: string
+          description: >-
+            The API version used for the webhook payload format.
+    ReservationEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - reservation_id
+                - listing_id
+                - status
+              properties:
+                reservation_id:
+                  type: string
+                  description: >-
+                    The unique identifier of the reservation.
+                confirmation_code:
+                  type: string
+                  description: >-
+                    The human-readable confirmation code.
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the associated listing.
+                status:
+                  type: string
+                  description: >-
+                    The current status of the reservation.
+                  enum:
+                    - pending
+                    - accepted
+                    - denied
+                    - cancelled
+                    - checked_in
+                    - checked_out
+                guest_id:
+                  type: string
+                  description: >-
+                    The identifier of the guest.
+                check_in:
+                  type: string
+                  format: date
+                  description: >-
+                    The guest check-in date.
+                check_out:
+                  type: string
+                  format: date
+                  description: >-
+                    The guest check-out date.
+                guests_count:
+                  type: integer
+                  description: >-
+                    The number of guests in the reservation.
+                total_price:
+                  type: number
+                  format: double
+                  description: >-
+                    The total price of the reservation.
+                currency:
+                  type: string
+                  description: >-
+                    The ISO 4217 currency code.
+                  pattern: '^[A-Z]{3}$'
+    ReservationCancellationEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - reservation_id
+                - listing_id
+                - status
+              properties:
+                reservation_id:
+                  type: string
+                  description: >-
+                    The unique identifier of the cancelled reservation.
+                confirmation_code:
+                  type: string
+                  description: >-
+                    The human-readable confirmation code.
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the associated listing.
+                status:
+                  type: string
+                  const: cancelled
+                  description: >-
+                    The cancelled status of the reservation.
+                cancelled_by:
+                  type: string
+                  description: >-
+                    Who initiated the cancellation.
+                  enum:
+                    - host
+                    - guest
+                    - airbnb
+                cancellation_reason:
+                  type: string
+                  description: >-
+                    The reason provided for the cancellation.
+                refund_amount:
+                  type: number
+                  format: double
+                  description: >-
+                    The amount refunded to the guest.
+                currency:
+                  type: string
+                  description: >-
+                    The ISO 4217 currency code.
+                  pattern: '^[A-Z]{3}$'
+    MessageEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - message_id
+                - reservation_id
+                - sender_type
+              properties:
+                message_id:
+                  type: string
+                  description: >-
+                    The unique identifier of the message.
+                reservation_id:
+                  type: string
+                  description: >-
+                    The identifier of the associated reservation.
+                sender_type:
+                  type: string
+                  description: >-
+                    Whether the message was sent by the host or guest.
+                  enum:
+                    - host
+                    - guest
+                message_preview:
+                  type: string
+                  description: >-
+                    A truncated preview of the message content.
+                  maxLength: 200
+    ReviewEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - review_id
+                - reservation_id
+                - reviewer_type
+              properties:
+                review_id:
+                  type: string
+                  description: >-
+                    The unique identifier of the review.
+                reservation_id:
+                  type: string
+                  description: >-
+                    The identifier of the associated reservation.
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the reviewed listing.
+                reviewer_type:
+                  type: string
+                  description: >-
+                    Whether the review was submitted by a guest or host.
+                  enum:
+                    - guest
+                    - host
+                rating:
+                  type: integer
+                  description: >-
+                    The overall star rating from 1 to 5.
+                  minimum: 1
+                  maximum: 5
+    CalendarEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - listing_id
+                - start_date
+                - end_date
+              properties:
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the listing whose calendar changed.
+                start_date:
+                  type: string
+                  format: date
+                  description: >-
+                    The start of the date range that was updated.
+                end_date:
+                  type: string
+                  format: date
+                  description: >-
+                    The end of the date range that was updated.
+                change_type:
+                  type: string
+                  description: >-
+                    The type of calendar change that occurred.
+                  enum:
+                    - availability
+                    - blocked
+                    - reservation
+    ListingEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - listing_id
+              properties:
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the listing that was updated.
+                changed_fields:
+                  type: array
+                  description: >-
+                    The fields that were modified on the listing.
+                  items:
+                    type: string
+                status:
+                  type: string
+                  description: >-
+                    The current status of the listing.
+                  enum:
+                    - active
+                    - inactive
+                    - pending
+                    - unlisted
+    PricingEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - listing_id
+              properties:
+                listing_id:
+                  type: string
+                  description: >-
+                    The identifier of the listing whose pricing changed.
+                changed_fields:
+                  type: array
+                  description: >-
+                    The pricing fields that were modified.
+                  items:
+                    type: string
+                    enum:
+                      - nightly_price
+                      - cleaning_fee
+                      - weekly_discount
+                      - monthly_discount
+                      - extra_guest_fee
+                effective_date:
+                  type: string
+                  format: date
+                  description: >-
+                    The date from which the pricing changes take effect.
+    BookingEvent:
+      allOf:
+        - $ref: '#/components/schemas/WebhookEventBase'
+        - type: object
+          required:
+            - data
+          properties:
+            data:
+              type: object
+              required:
+                - booking_id
+                - experience_id
+                - status
+              properties:
+                booking_id:
+                  type: string
+                  description: >-
+                    The unique identifier of the experience booking.
+                confirmation_code:
+                  type: string
+                  description: >-
+                    The human-readable confirmation code.
+                experience_id:
+                  type: string
+                  description: >-
+                    The identifier of the associated experience.
+                schedule_id:
+                  type: string
+                  description: >-
+                    The identifier of the booked schedule slot.
+                status:
+                  type: string
+                  description: >-
+                    The current status of the booking.
+                  enum:
+                    - pending
+                    - confirmed
+                    - cancelled
+                    - completed
+                guest_id:
+                  type: string
+                  description: >-
+                    The identifier of the guest.
+                guests_count:
+                  type: integer
+                  description: >-
+                    The number of guests in the booking.

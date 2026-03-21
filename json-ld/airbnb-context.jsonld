@@ -1,0 +1,217 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "airbnb": "https://api.airbnb.com/vocab/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Listing": {
+      "@id": "schema:LodgingBusiness",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "propertyType": "airbnb:propertyType",
+        "roomType": "airbnb:roomType",
+        "status": "airbnb:status",
+        "address": "schema:address",
+        "bedrooms": "schema:numberOfBedrooms",
+        "bathrooms": "schema:numberOfBathroomsTotal",
+        "beds": "airbnb:numberOfBeds",
+        "maxGuests": "schema:occupancy",
+        "amenities": {
+          "@id": "schema:amenityFeature",
+          "@container": "@set"
+        },
+        "houseRules": "airbnb:houseRules",
+        "checkInTime": "schema:checkinTime",
+        "checkOutTime": "schema:checkoutTime",
+        "photos": {
+          "@id": "schema:photo",
+          "@container": "@set"
+        },
+        "cancellationPolicy": "airbnb:cancellationPolicy",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "street": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "zipCode": "schema:postalCode",
+        "country": "schema:addressCountry",
+        "latitude": "schema:latitude",
+        "longitude": "schema:longitude"
+      }
+    },
+
+    "Pricing": {
+      "@id": "schema:PriceSpecification",
+      "@context": {
+        "nightlyPrice": "schema:price",
+        "currency": "schema:priceCurrency",
+        "cleaningFee": "airbnb:cleaningFee",
+        "weeklyDiscount": "airbnb:weeklyDiscount",
+        "monthlyDiscount": "airbnb:monthlyDiscount",
+        "extraGuestFee": "airbnb:extraGuestFee"
+      }
+    },
+
+    "Reservation": {
+      "@id": "schema:LodgingReservation",
+      "@context": {
+        "confirmationCode": "schema:reservationId",
+        "status": "schema:reservationStatus",
+        "listing": {
+          "@id": "schema:reservationFor",
+          "@type": "@id"
+        },
+        "guest": "schema:underName",
+        "checkIn": {
+          "@id": "schema:checkinTime",
+          "@type": "xsd:date"
+        },
+        "checkOut": {
+          "@id": "schema:checkoutTime",
+          "@type": "xsd:date"
+        },
+        "nights": "airbnb:numberOfNights",
+        "guestsCount": "schema:partySize",
+        "totalPrice": "schema:totalPrice",
+        "currency": "schema:priceCurrency",
+        "hostPayout": "airbnb:hostPayout",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Guest": {
+      "@id": "schema:Person",
+      "@context": {
+        "firstName": "schema:givenName",
+        "lastName": "schema:familyName",
+        "phone": "schema:telephone",
+        "profilePictureUrl": {
+          "@id": "schema:image",
+          "@type": "@id"
+        },
+        "verified": "airbnb:identityVerified"
+      }
+    },
+
+    "Photo": {
+      "@id": "schema:ImageObject",
+      "@context": {
+        "url": {
+          "@id": "schema:contentUrl",
+          "@type": "@id"
+        },
+        "caption": "schema:caption",
+        "sortOrder": "schema:position",
+        "width": "schema:width",
+        "height": "schema:height"
+      }
+    },
+
+    "Review": {
+      "@id": "schema:Review",
+      "@context": {
+        "rating": "schema:reviewRating",
+        "comments": "schema:reviewBody",
+        "reviewerType": "airbnb:reviewerType",
+        "hostResponse": "airbnb:hostResponse",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Experience": {
+      "@id": "schema:TouristAttraction",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "category": "schema:touristType",
+        "status": "airbnb:status",
+        "location": "schema:location",
+        "durationMinutes": "schema:duration",
+        "maxGuests": "schema:maximumAttendeeCapacity",
+        "pricing": "schema:offers",
+        "languages": {
+          "@id": "schema:availableLanguage",
+          "@container": "@set"
+        },
+        "host": "schema:organizer",
+        "photos": {
+          "@id": "schema:photo",
+          "@container": "@set"
+        },
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Booking": {
+      "@id": "schema:EventReservation",
+      "@context": {
+        "confirmationCode": "schema:reservationId",
+        "status": "schema:reservationStatus",
+        "experience": {
+          "@id": "schema:reservationFor",
+          "@type": "@id"
+        },
+        "guest": "schema:underName",
+        "guestsCount": "schema:partySize",
+        "totalPrice": "schema:totalPrice",
+        "currency": "schema:priceCurrency",
+        "createdAt": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "updatedAt": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Message": {
+      "@id": "schema:Message",
+      "@context": {
+        "senderType": "airbnb:senderType",
+        "message": "schema:text",
+        "createdAt": {
+          "@id": "dcterms:dateCreated",
+          "@type": "xsd:dateTime"
+        }
+      }
+    }
+  }
+}

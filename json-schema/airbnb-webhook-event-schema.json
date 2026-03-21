@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.airbnb.com/schemas/airbnb/webhook-event.json",
+  "title": "Airbnb Webhook Event",
+  "description": "The envelope schema for all webhook event notifications sent by the Airbnb platform to partner endpoints, including event metadata and typed payloads.",
+  "type": "object",
+  "required": ["event_id", "event_type", "timestamp", "data"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "A unique identifier for this webhook event, used for idempotency and deduplication."
+    },
+    "event_type": {
+      "type": "string",
+      "description": "The type of event that triggered the webhook notification.",
+      "enum": [
+        "reservation.created",
+        "reservation.confirmed",
+        "reservation.cancelled",
+        "reservation.updated",
+        "reservation.checked_in",
+        "reservation.checked_out",
+        "message.created",
+        "review.submitted",
+        "calendar.updated",
+        "listing.updated",
+        "pricing.updated",
+        "booking.created",
+        "booking.confirmed",
+        "booking.cancelled"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO 8601 timestamp when the event occurred."
+    },
+    "api_version": {
+      "type": "string",
+      "description": "The API version used for the webhook payload format."
+    },
+    "data": {
+      "type": "object",
+      "description": "The event-specific payload data. Structure varies by event_type."
+    }
+  }
+}
