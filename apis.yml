@@ -78,6 +78,10 @@ apis:
       changes, allowing their systems to react immediately without needing to
       poll the API for updates.
 common:
+  - type: Website
+    url: https://www.airbnb.com/
+  - type: Portal
+    url: https://developer.withairbnb.com/
   - type: JSON-LD
     url: json-ld/airbnb-context.jsonld
   - type: JSONSchema
@@ -86,4 +90,4 @@ common:
     url: json-schema/airbnb-reservation-schema.json
   - type: JSONSchema
     url: json-schema/airbnb-webhook-event-schema.json
-modified: '2026-03-20'
+modified: '2026-04-01'
