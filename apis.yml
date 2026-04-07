@@ -1,18 +1,16 @@
 aid: airbnb
-url: 
-  https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
 apis:
   - aid: airbnb:homes-api
     name: Airbnb Homes API
     tags:
-      - Travel
-      - Lodging
-      - Vacation Rentals
       - Listings
-      - Reservations
+      - Lodging
       - Property Management
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Reservations
+      - Travel
+      - Vacation Rentals
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:
@@ -29,13 +27,12 @@ apis:
   - aid: airbnb:activities-api
     name: Airbnb Activities API
     tags:
-      - Travel
-      - Experiences
       - Activities
-      - Tourism
       - Bookings
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Experiences
+      - Tourism
+      - Travel
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:
@@ -51,13 +48,12 @@ apis:
   - aid: airbnb:webhooks-api
     name: Airbnb Webhooks API
     tags:
-      - Webhooks
       - Events
       - Notifications
       - Real-Time
       - Reservations
-    image: 
-      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+      - Webhooks
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:

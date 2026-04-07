@@ -22,14 +22,6 @@ servers:
   - url: https://api.airbnb.com/v2
     description: Airbnb Production API Server
 tags:
-  - name: Experiences
-    description: >-
-      Operations for creating, reading, updating, and managing experience
-      and activity listings on Airbnb.
-  - name: Schedules
-    description: >-
-      Operations for managing experience schedules, time slots, and
-      availability for hosted activities.
   - name: Bookings
     description: >-
       Operations for managing guest bookings for experiences, including
@@ -38,6 +30,14 @@ tags:
     description: >-
       Operations for sending and retrieving messages between experience
       hosts and booked guests.
+  - name: Experiences
+    description: >-
+      Operations for creating, reading, updating, and managing experience
+      and activity listings on Airbnb.
+  - name: Schedules
+    description: >-
+      Operations for managing experience schedules, time slots, and
+      availability for hosted activities.
 security:
   - oauth2: []
 paths:

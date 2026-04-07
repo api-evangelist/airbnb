@@ -23,28 +23,28 @@ servers:
   - url: https://api.airbnb.com/v2
     description: Airbnb Production API Server
 tags:
-  - name: Listings
-    description: >-
-      Operations for creating, reading, updating, and managing property
-      listings on Airbnb, including descriptions, amenities, and photos.
-  - name: Reservations
-    description: >-
-      Operations for managing reservations, including accepting, declining,
-      and retrieving booking details.
   - name: Calendar
     description: >-
       Operations for managing listing availability, pricing, and calendar
       synchronization across platforms.
+  - name: Listings
+    description: >-
+      Operations for creating, reading, updating, and managing property
+      listings on Airbnb, including descriptions, amenities, and photos.
   - name: Messages
     description: >-
       Operations for sending and retrieving guest and host messages within
       reservation threads.
-  - name: Reviews
-    description: >-
-      Operations for retrieving and responding to guest and host reviews.
   - name: Photos
     description: >-
       Operations for uploading, updating, and managing listing photos.
+  - name: Reservations
+    description: >-
+      Operations for managing reservations, including accepting, declining,
+      and retrieving booking details.
+  - name: Reviews
+    description: >-
+      Operations for retrieving and responding to guest and host reviews.
 security:
   - oauth2: []
 paths:
