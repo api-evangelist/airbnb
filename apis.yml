@@ -1,5 +1,6 @@
 aid: airbnb
-url: https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
 apis:
   - aid: airbnb:homes-api
     name: Airbnb Homes API
@@ -10,7 +11,8 @@ apis:
       - Listings
       - Reservations
       - Property Management
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:
@@ -19,14 +21,11 @@ apis:
       - type: OpenAPI
         url: openapi/airbnb-homes-api-openapi.yml
     description: >-
-      The Airbnb Homes API provides partner developers with programmatic access
-      to manage vacation rental listings on the Airbnb platform. It supports
-      creating and updating property listings, managing descriptions, amenities,
-      photos, pricing, and availability rules. The API also enables reservation
-      management, calendar synchronization, guest messaging, and review
-      handling. Access is restricted to approved connectivity partners such as
-      property management systems and channel managers who integrate with
-      Airbnb to help hosts manage their properties at scale.
+      The Airbnb Homes API provides partner developers with programmatic access to
+      manage vacation rental listings on the Airbnb platform. It supports creating
+      and updating property listings, managing descriptions, amenities, photos, pricing,
+      and availability rules. The API also enables reservation management, calendar
+      synchronization, guest messaging, and review handling.
   - aid: airbnb:activities-api
     name: Airbnb Activities API
     tags:
@@ -35,7 +34,8 @@ apis:
       - Activities
       - Tourism
       - Bookings
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:
@@ -44,14 +44,10 @@ apis:
       - type: OpenAPI
         url: openapi/airbnb-activities-api-openapi.yml
     description: >-
-      The Airbnb Activities API allows approved partners to integrate with
-      Airbnb Experiences, the platform's marketplace for hosted activities and
-      tours. It provides endpoints for managing experience listings, handling
-      bookings, and synchronizing availability for activities offered by local
-      hosts. Partners can use the API to build integrations that help experience
-      hosts manage their offerings alongside other tour and activity platforms,
-      enabling centralized management of schedules, pricing, and guest
-      communications.
+      The Airbnb Activities API allows approved partners to integrate with Airbnb
+      Experiences, the platform's marketplace for hosted activities and tours. It
+      provides endpoints for managing experience listings, handling bookings, and
+      synchronizing availability for activities offered by local hosts.
   - aid: airbnb:webhooks-api
     name: Airbnb Webhooks API
     tags:
@@ -60,7 +56,8 @@ apis:
       - Notifications
       - Real-Time
       - Reservations
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: 
+      https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
     baseURL: https://api.airbnb.com
     humanURL: https://developer.withairbnb.com/
     properties:
@@ -69,14 +66,10 @@ apis:
       - type: AsyncAPI
         url: asyncapi/airbnb-webhooks-asyncapi.yml
     description: >-
-      The Airbnb Webhooks API enables connectivity partners to receive
-      real-time notifications when events occur on the Airbnb platform. It
-      supports webhook subscriptions for reservation changes, message creation,
-      review submissions, listing calendar updates, and other key events.
-      Partners can subscribe to events such as reservation confirmations,
-      cancellations, guest messages, new reviews, and availability or pricing
-      changes, allowing their systems to react immediately without needing to
-      poll the API for updates.
+      The Airbnb Webhooks API enables connectivity partners to receive real-time notifications
+      when events occur on the Airbnb platform. It supports webhook subscriptions
+      for reservation changes, message creation, review submissions, listing calendar
+      updates, and other key events.
 common:
   - type: Website
     url: https://www.airbnb.com/
@@ -91,3 +84,8 @@ common:
   - type: JSONSchema
     url: json-schema/airbnb-webhook-event-schema.json
 modified: '2026-04-01'
+description: >-
+  Airbnb's developer documentation offers everything you need to know to seamlessly
+  integrate your applications with our Homes and Activities APIs, empowering you to
+  manage listings, bookings, reviews and messages, and enhance user experiences for
+  Hosts.
