@@ -1,0 +1,9 @@
+{
+  "id": "rev_001",
+  "reservation_id": "res_xyz789",
+  "reviewer_id": "guest_001",
+  "reviewer_type": "guest",
+  "rating": 5,
+  "body": "Amazing place, super clean and great location!",
+  "created_at": "2026-06-07T09:00:00Z"
+}

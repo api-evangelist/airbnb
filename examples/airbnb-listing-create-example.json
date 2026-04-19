@@ -1,0 +1,16 @@
+{
+  "name": "example-name",
+  "description": "example-description",
+  "property_type": "example-property_type",
+  "room_type": "example-room_type",
+  "address": "example-address",
+  "bedrooms": 1,
+  "bathrooms": 1,
+  "beds": 1,
+  "max_guests": 1,
+  "amenities": [],
+  "house_rules": "example-house_rules",
+  "check_in_time": "example-check_in_time",
+  "check_out_time": "example-check_out_time",
+  "cancellation_policy": "example-cancellation_policy"
+}

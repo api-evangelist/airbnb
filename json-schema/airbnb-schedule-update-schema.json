@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-schedule-update-schema.json",
+  "title": "ScheduleUpdate",
+  "type": "object",
+  "properties": {
+    "start_time": {
+      "type": "string",
+      "description": "The updated start time in HH:MM format.",
+      "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+    },
+    "max_guests": {
+      "type": "integer",
+      "description": "The updated maximum number of guests for this session.",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "description": "The updated status of the schedule entry.",
+      "enum": [
+        "open",
+        "cancelled"
+      ]
+    }
+  }
+}

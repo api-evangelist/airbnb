@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-review-schema.json",
+  "title": "Review",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the review."
+    },
+    "reservation_id": {
+      "type": "string",
+      "description": "The identifier of the associated reservation."
+    },
+    "reviewer_type": {
+      "type": "string",
+      "description": "Whether the review was written by a guest or host.",
+      "enum": [
+        "guest",
+        "host"
+      ]
+    },
+    "rating": {
+      "type": "integer",
+      "description": "The overall star rating from 1 to 5.",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "comments": {
+      "type": "string",
+      "description": "The text content of the review."
+    },
+    "category_ratings": {
+      "type": "object",
+      "description": "Individual category ratings provided by the reviewer.",
+      "properties": {
+        "cleanliness": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for cleanliness."
+        },
+        "communication": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for communication."
+        },
+        "check_in": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for check-in experience."
+        },
+        "accuracy": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for listing accuracy."
+        },
+        "location": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for location."
+        },
+        "value": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Rating for value."
+        }
+      }
+    },
+    "host_response": {
+      "type": "string",
+      "description": "The host response to the review, if provided."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the review was submitted."
+    }
+  }
+}

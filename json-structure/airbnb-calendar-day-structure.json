@@ -1,0 +1,35 @@
+{
+  "name": "CalendarDay",
+  "fields": [
+    {
+      "name": "date",
+      "type": "date",
+      "description": "The date for this calendar entry."
+    },
+    {
+      "name": "available",
+      "type": "boolean",
+      "description": "Whether the listing is available for booking on this date."
+    },
+    {
+      "name": "price",
+      "type": "double",
+      "description": "The nightly price for this date in the listing currency."
+    },
+    {
+      "name": "minimum_nights",
+      "type": "int32",
+      "description": "The minimum number of nights required for a stay starting on this date."
+    },
+    {
+      "name": "maximum_nights",
+      "type": "int32",
+      "description": "The maximum number of nights allowed for a stay starting on this date."
+    },
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "description": "The reservation identifier if this date is booked."
+    }
+  ]
+}

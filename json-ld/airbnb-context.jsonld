@@ -1,217 +1,137 @@
 {
   "@context": {
     "@version": 1.1,
-    "airbnb": "https://api.airbnb.com/vocab/",
-    "schema": "https://schema.org/",
     "xsd": "http://www.w3.org/2001/XMLSchema#",
-    "dcterms": "http://purl.org/dc/terms/",
-
+    "schema": "https://schema.org/",
+    "airbnb": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/",
     "Listing": {
-      "@id": "schema:LodgingBusiness",
-      "@context": {
-        "name": "schema:name",
-        "description": "schema:description",
-        "propertyType": "airbnb:propertyType",
-        "roomType": "airbnb:roomType",
-        "status": "airbnb:status",
-        "address": "schema:address",
-        "bedrooms": "schema:numberOfBedrooms",
-        "bathrooms": "schema:numberOfBathroomsTotal",
-        "beds": "airbnb:numberOfBeds",
-        "maxGuests": "schema:occupancy",
-        "amenities": {
-          "@id": "schema:amenityFeature",
-          "@container": "@set"
-        },
-        "houseRules": "airbnb:houseRules",
-        "checkInTime": "schema:checkinTime",
-        "checkOutTime": "schema:checkoutTime",
-        "photos": {
-          "@id": "schema:photo",
-          "@container": "@set"
-        },
-        "cancellationPolicy": "airbnb:cancellationPolicy",
-        "url": {
-          "@id": "schema:url",
-          "@type": "@id"
-        },
-        "createdAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "updatedAt": {
-          "@id": "dcterms:modified",
-          "@type": "xsd:dateTime"
-        }
-      }
+      "@id": "schema:LodgingBusiness"
     },
-
-    "Address": {
-      "@id": "schema:PostalAddress",
-      "@context": {
-        "street": "schema:streetAddress",
-        "city": "schema:addressLocality",
-        "state": "schema:addressRegion",
-        "zipCode": "schema:postalCode",
-        "country": "schema:addressCountry",
-        "latitude": "schema:latitude",
-        "longitude": "schema:longitude"
-      }
+    "id": {
+      "@id": "@id"
     },
-
-    "Pricing": {
-      "@id": "schema:PriceSpecification",
-      "@context": {
-        "nightlyPrice": "schema:price",
-        "currency": "schema:priceCurrency",
-        "cleaningFee": "airbnb:cleaningFee",
-        "weeklyDiscount": "airbnb:weeklyDiscount",
-        "monthlyDiscount": "airbnb:monthlyDiscount",
-        "extraGuestFee": "airbnb:extraGuestFee"
-      }
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
     },
-
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "property_type": {
+      "@id": "schema:additionalType",
+      "@type": "xsd:string"
+    },
+    "bedrooms": {
+      "@id": "schema:numberOfRooms",
+      "@type": "xsd:integer"
+    },
+    "max_guests": {
+      "@id": "schema:maximumAttendeeCapacity",
+      "@type": "xsd:integer"
+    },
+    "base_price": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "schema:priceCurrency",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "schema:itemCondition",
+      "@type": "xsd:string"
+    },
     "Reservation": {
-      "@id": "schema:LodgingReservation",
-      "@context": {
-        "confirmationCode": "schema:reservationId",
-        "status": "schema:reservationStatus",
-        "listing": {
-          "@id": "schema:reservationFor",
-          "@type": "@id"
-        },
-        "guest": "schema:underName",
-        "checkIn": {
-          "@id": "schema:checkinTime",
-          "@type": "xsd:date"
-        },
-        "checkOut": {
-          "@id": "schema:checkoutTime",
-          "@type": "xsd:date"
-        },
-        "nights": "airbnb:numberOfNights",
-        "guestsCount": "schema:partySize",
-        "totalPrice": "schema:totalPrice",
-        "currency": "schema:priceCurrency",
-        "hostPayout": "airbnb:hostPayout",
-        "createdAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "updatedAt": {
-          "@id": "dcterms:modified",
-          "@type": "xsd:dateTime"
-        }
-      }
+      "@id": "schema:LodgingReservation"
     },
-
-    "Guest": {
-      "@id": "schema:Person",
-      "@context": {
-        "firstName": "schema:givenName",
-        "lastName": "schema:familyName",
-        "phone": "schema:telephone",
-        "profilePictureUrl": {
-          "@id": "schema:image",
-          "@type": "@id"
-        },
-        "verified": "airbnb:identityVerified"
-      }
+    "check_in": {
+      "@id": "schema:checkinTime",
+      "@type": "xsd:date"
     },
-
-    "Photo": {
-      "@id": "schema:ImageObject",
-      "@context": {
-        "url": {
-          "@id": "schema:contentUrl",
-          "@type": "@id"
-        },
-        "caption": "schema:caption",
-        "sortOrder": "schema:position",
-        "width": "schema:width",
-        "height": "schema:height"
-      }
+    "check_out": {
+      "@id": "schema:checkoutTime",
+      "@type": "xsd:date"
     },
-
-    "Review": {
-      "@id": "schema:Review",
-      "@context": {
-        "rating": "schema:reviewRating",
-        "comments": "schema:reviewBody",
-        "reviewerType": "airbnb:reviewerType",
-        "hostResponse": "airbnb:hostResponse",
-        "createdAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        }
-      }
+    "guests": {
+      "@id": "schema:partySize",
+      "@type": "xsd:integer"
     },
-
+    "total_price": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
     "Experience": {
-      "@id": "schema:TouristAttraction",
-      "@context": {
-        "name": "schema:name",
-        "description": "schema:description",
-        "category": "schema:touristType",
-        "status": "airbnb:status",
-        "location": "schema:location",
-        "durationMinutes": "schema:duration",
-        "maxGuests": "schema:maximumAttendeeCapacity",
-        "pricing": "schema:offers",
-        "languages": {
-          "@id": "schema:availableLanguage",
-          "@container": "@set"
-        },
-        "host": "schema:organizer",
-        "photos": {
-          "@id": "schema:photo",
-          "@container": "@set"
-        },
-        "createdAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "updatedAt": {
-          "@id": "dcterms:modified",
-          "@type": "xsd:dateTime"
-        }
-      }
+      "@id": "schema:Event"
     },
-
-    "Booking": {
-      "@id": "schema:EventReservation",
-      "@context": {
-        "confirmationCode": "schema:reservationId",
-        "status": "schema:reservationStatus",
-        "experience": {
-          "@id": "schema:reservationFor",
-          "@type": "@id"
-        },
-        "guest": "schema:underName",
-        "guestsCount": "schema:partySize",
-        "totalPrice": "schema:totalPrice",
-        "currency": "schema:priceCurrency",
-        "createdAt": {
-          "@id": "dcterms:created",
-          "@type": "xsd:dateTime"
-        },
-        "updatedAt": {
-          "@id": "dcterms:modified",
-          "@type": "xsd:dateTime"
-        }
-      }
+    "duration_hours": {
+      "@id": "schema:duration",
+      "@type": "xsd:decimal"
     },
-
-    "Message": {
-      "@id": "schema:Message",
-      "@context": {
-        "senderType": "airbnb:senderType",
-        "message": "schema:text",
-        "createdAt": {
-          "@id": "dcterms:dateCreated",
-          "@type": "xsd:dateTime"
-        }
-      }
+    "price_per_person": {
+      "@id": "schema:price",
+      "@type": "xsd:decimal"
+    },
+    "Guest": {
+      "@id": "schema:Person"
+    },
+    "first_name": {
+      "@id": "schema:givenName",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "schema:familyName",
+      "@type": "xsd:string"
+    },
+    "email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "Review": {
+      "@id": "schema:Review"
+    },
+    "rating": {
+      "@id": "schema:ratingValue",
+      "@type": "xsd:integer"
+    },
+    "body": {
+      "@id": "schema:reviewBody",
+      "@type": "xsd:string"
+    },
+    "Address": {
+      "@id": "schema:PostalAddress"
+    },
+    "street": {
+      "@id": "schema:streetAddress",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "schema:addressLocality",
+      "@type": "xsd:string"
+    },
+    "state": {
+      "@id": "schema:addressRegion",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "latitude": {
+      "@id": "schema:latitude",
+      "@type": "xsd:decimal"
+    },
+    "longitude": {
+      "@id": "schema:longitude",
+      "@type": "xsd:decimal"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
     }
   }
 }

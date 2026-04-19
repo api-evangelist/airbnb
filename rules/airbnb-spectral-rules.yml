@@ -1,0 +1,131 @@
+rules:
+  airbnb-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    message: Summary "{{value}}" is not in Title Case
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: ^[A-Z]
+  airbnb-operation-id-camel-case:
+    description: Operation IDs must use camelCase
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: operationId
+      function: pattern
+      functionOptions:
+        match: ^[a-z][a-zA-Z0-9]*$
+  airbnb-require-operation-tags:
+    description: All operations must have at least one tag
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: tags
+      function: truthy
+  airbnb-require-response-200:
+    description: GET operations must define a 200 response
+    severity: error
+    given: $.paths[*].get
+    then:
+      field: responses.200
+      function: truthy
+  airbnb-schema-title-required:
+    description: All component schemas must have a title
+    severity: warn
+    given: $.components.schemas[*]
+    then:
+      field: title
+      function: truthy
+  airbnb-require-oauth2-security:
+    description: All operations must require OAuth2 security
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            security:
+              type: array
+              minItems: 1
+  airbnb-listing-status-enum:
+    description: Listing status must use defined enum values
+    severity: warn
+    given: $.components.schemas.Listing.properties.status
+    then:
+      field: enum
+      function: truthy
+  airbnb-require-pagination-params:
+    description: List operations should support pagination parameters
+    severity: warn
+    given: $.paths[*].get
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          properties:
+            parameters:
+              type: array
+  airbnb-reservation-required-dates:
+    description: Reservation schema must include check_in and check_out
+    severity: error
+    given: $.components.schemas.Reservation.properties
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          required:
+          - check_in
+          - check_out
+  airbnb-require-server-url:
+    description: API must define at least one server URL
+    severity: error
+    given: $
+    then:
+      field: servers
+      function: truthy
+  airbnb-require-contact-info:
+    description: API info must include contact information
+    severity: warn
+    given: $.info
+    then:
+      field: contact
+      function: truthy
+  airbnb-no-inline-schemas-in-paths:
+    description: Path responses should reference component schemas, not inline
+    severity: warn
+    given: $.paths[*][*].responses[*].content[*].schema
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          oneOf:
+          - required:
+            - $ref
+          - required:
+            - properties
+  airbnb-currency-field-present:
+    description: Schemas with price fields should include currency
+    severity: warn
+    given: $.components.schemas[*].properties
+    then:
+      function: schema
+      functionOptions:
+        schema: {}
+  airbnb-require-description-on-paths:
+    description: All operations must have a description
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete]
+    then:
+      field: description
+      function: truthy
+  airbnb-require-external-docs:
+    description: API should include externalDocs pointing to developer portal
+    severity: warn
+    given: $
+    then:
+      field: externalDocs
+      function: truthy

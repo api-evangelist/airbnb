@@ -1,0 +1,44 @@
+name: Airbnb API Vocabulary
+description: Vocabulary of resources and actions for the Airbnb partner APIs
+resources:
+- name: Listing
+  description: A property listing on Airbnb
+  schema: json-schema/airbnb-listing-schema.json
+- name: Reservation
+  description: A guest booking for a listing
+  schema: json-schema/airbnb-reservation-schema.json
+- name: Experience
+  description: A hosted activity or tour on Airbnb
+  schema: json-schema/airbnb-experience-schema.json
+- name: Booking
+  description: A guest booking for an experience
+  schema: json-schema/airbnb-booking-schema.json
+- name: CalendarDay
+  description: A single day in a listing's availability calendar
+  schema: json-schema/airbnb-calendar-day-schema.json
+- name: Message
+  description: A message within a reservation conversation thread
+  schema: json-schema/airbnb-message-schema.json
+- name: Review
+  description: A review left by a guest or host after a stay
+  schema: json-schema/airbnb-review-schema.json
+- name: Guest
+  description: A traveler who books a listing or experience
+  schema: json-schema/airbnb-guest-schema.json
+actions:
+- name: CreateListing
+  description: Create a new property listing
+- name: UpdateListing
+  description: Update an existing listing
+- name: ManageCalendar
+  description: Update availability and pricing on the calendar
+- name: AcceptReservation
+  description: Approve a guest reservation request
+- name: DeclineReservation
+  description: Decline a guest reservation request
+- name: SendMessage
+  description: Send a message to a guest
+- name: RespondToReview
+  description: Post a host response to a guest review
+- name: CreateExperience
+  description: Create a new Airbnb Experience listing

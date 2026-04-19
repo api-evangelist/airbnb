@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-calendar-operation-schema.json",
+  "title": "CalendarOperation",
+  "type": "object",
+  "properties": {
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The start date of the range to update."
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The end date of the range to update."
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether the dates should be available or blocked."
+    },
+    "price": {
+      "type": "number",
+      "format": "double",
+      "description": "The nightly price to set for this date range.",
+      "minimum": 0
+    },
+    "minimum_nights": {
+      "type": "integer",
+      "description": "The minimum number of nights required for stays in this range.",
+      "minimum": 1
+    },
+    "maximum_nights": {
+      "type": "integer",
+      "description": "The maximum number of nights allowed for stays in this range."
+    }
+  },
+  "required": [
+    "start_date",
+    "end_date"
+  ]
+}

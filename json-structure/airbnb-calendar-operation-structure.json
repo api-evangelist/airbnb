@@ -1,0 +1,35 @@
+{
+  "name": "CalendarOperation",
+  "fields": [
+    {
+      "name": "start_date",
+      "type": "date",
+      "description": "The start date of the range to update."
+    },
+    {
+      "name": "end_date",
+      "type": "date",
+      "description": "The end date of the range to update."
+    },
+    {
+      "name": "available",
+      "type": "boolean",
+      "description": "Whether the dates should be available or blocked."
+    },
+    {
+      "name": "price",
+      "type": "double",
+      "description": "The nightly price to set for this date range."
+    },
+    {
+      "name": "minimum_nights",
+      "type": "int32",
+      "description": "The minimum number of nights required for stays in this range."
+    },
+    {
+      "name": "maximum_nights",
+      "type": "int32",
+      "description": "The maximum number of nights allowed for stays in this range."
+    }
+  ]
+}

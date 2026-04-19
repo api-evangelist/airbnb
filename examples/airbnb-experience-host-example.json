@@ -1,0 +1,7 @@
+{
+  "id": "example-id",
+  "name": "example-name",
+  "bio": "example-bio",
+  "profile_picture_url": "example-profile_picture_url",
+  "superhost": true
+}

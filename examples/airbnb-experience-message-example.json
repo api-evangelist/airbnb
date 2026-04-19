@@ -1,0 +1,7 @@
+{
+  "id": "example-id",
+  "booking_id": "example-booking_id",
+  "sender_type": "example-sender_type",
+  "message": "example-message",
+  "created_at": "example-created_at"
+}

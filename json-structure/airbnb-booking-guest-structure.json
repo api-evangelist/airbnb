@@ -1,0 +1,30 @@
+{
+  "name": "BookingGuest",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the guest."
+    },
+    {
+      "name": "first_name",
+      "type": "string",
+      "description": "The first name of the guest."
+    },
+    {
+      "name": "last_name",
+      "type": "string",
+      "description": "The last name of the guest."
+    },
+    {
+      "name": "phone",
+      "type": "string",
+      "description": "The phone number of the guest."
+    },
+    {
+      "name": "verified",
+      "type": "boolean",
+      "description": "Whether the guest has completed identity verification."
+    }
+  ]
+}

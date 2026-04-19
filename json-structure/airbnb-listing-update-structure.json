@@ -1,0 +1,70 @@
+{
+  "name": "ListingUpdate",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The display name of the listing."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "The full description of the property."
+    },
+    {
+      "name": "property_type",
+      "type": "string",
+      "description": "The type of property being listed."
+    },
+    {
+      "name": "room_type",
+      "type": "string",
+      "description": "The type of room or space being offered."
+    },
+    {
+      "name": "bedrooms",
+      "type": "int32",
+      "description": "The number of bedrooms in the property."
+    },
+    {
+      "name": "bathrooms",
+      "type": "double",
+      "description": "The number of bathrooms in the property."
+    },
+    {
+      "name": "beds",
+      "type": "int32",
+      "description": "The total number of beds in the property."
+    },
+    {
+      "name": "max_guests",
+      "type": "int32",
+      "description": "The maximum number of guests allowed."
+    },
+    {
+      "name": "amenities",
+      "type": "array<string>",
+      "description": "The list of amenity identifiers available at the property."
+    },
+    {
+      "name": "house_rules",
+      "type": "string",
+      "description": "The house rules and guidelines for guests."
+    },
+    {
+      "name": "check_in_time",
+      "type": "string",
+      "description": "The earliest check-in time in HH:MM format."
+    },
+    {
+      "name": "check_out_time",
+      "type": "string",
+      "description": "The latest check-out time in HH:MM format."
+    },
+    {
+      "name": "cancellation_policy",
+      "type": "string",
+      "description": "The cancellation policy applied to the listing."
+    }
+  ]
+}

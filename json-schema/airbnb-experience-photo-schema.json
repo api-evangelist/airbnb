@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-experience-photo-schema.json",
+  "title": "ExperiencePhoto",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the photo."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where the photo is hosted."
+    },
+    "caption": {
+      "type": "string",
+      "description": "A caption describing the photo."
+    },
+    "sort_order": {
+      "type": "integer",
+      "description": "The display position of the photo."
+    }
+  }
+}

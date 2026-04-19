@@ -1,0 +1,8 @@
+{
+  "id": "msg_001",
+  "reservation_id": "res_xyz789",
+  "sender_id": "guest_001",
+  "sender_type": "guest",
+  "body": "Hi, looking forward to staying at your place!",
+  "created_at": "2026-04-15T11:00:00Z"
+}

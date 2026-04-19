@@ -1,20 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-listing-schema.json",
-  "title": "Listing",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-listing-create-schema.json",
+  "title": "ListingCreate",
   "type": "object",
   "properties": {
-    "id": {
-      "type": "string",
-      "description": "The unique identifier of the listing."
-    },
     "name": {
       "type": "string",
-      "description": "The display name of the listing."
+      "description": "The display name of the listing.",
+      "maxLength": 50
     },
     "description": {
       "type": "string",
-      "description": "The full description of the property."
+      "description": "The full description of the property.",
+      "maxLength": 5000
     },
     "property_type": {
       "type": "string",
@@ -35,16 +33,6 @@
         "entire_home",
         "private_room",
         "shared_room"
-      ]
-    },
-    "status": {
-      "type": "string",
-      "description": "The current status of the listing on the platform.",
-      "enum": [
-        "active",
-        "inactive",
-        "pending",
-        "unlisted"
       ]
     },
     "address": {
@@ -91,16 +79,6 @@
       "description": "The latest check-out time in HH:MM format.",
       "pattern": "^[0-2][0-9]:[0-5][0-9]$"
     },
-    "pricing": {
-      "$ref": "#/components/schemas/Pricing"
-    },
-    "photos": {
-      "type": "array",
-      "description": "The photos associated with the listing.",
-      "items": {
-        "$ref": "#/components/schemas/Photo"
-      }
-    },
     "cancellation_policy": {
       "type": "string",
       "description": "The cancellation policy applied to the listing.",
@@ -112,16 +90,13 @@
         "super_strict_30",
         "super_strict_60"
       ]
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "The timestamp when the listing was created."
-    },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "The timestamp when the listing was last updated."
     }
-  }
+  },
+  "required": [
+    "name",
+    "property_type",
+    "room_type",
+    "address",
+    "max_guests"
+  ]
 }

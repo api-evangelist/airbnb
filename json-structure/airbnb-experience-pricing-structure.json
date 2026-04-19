@@ -1,0 +1,20 @@
+{
+  "name": "ExperiencePricing",
+  "fields": [
+    {
+      "name": "price_per_person",
+      "type": "double",
+      "description": "The price per guest in the specified currency."
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "description": "The ISO 4217 currency code for pricing."
+    },
+    {
+      "name": "group_discount",
+      "type": "object",
+      "description": "Optional group discount configuration."
+    }
+  ]
+}

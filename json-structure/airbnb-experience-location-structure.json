@@ -1,0 +1,35 @@
+{
+  "name": "ExperienceLocation",
+  "fields": [
+    {
+      "name": "meeting_point",
+      "type": "string",
+      "description": "Description of where guests should meet for the experience."
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "description": "The city where the experience takes place."
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": "The state or province where the experience takes place."
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "description": "The ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "description": "The latitude coordinate of the meeting point."
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "description": "The longitude coordinate of the meeting point."
+    }
+  ]
+}

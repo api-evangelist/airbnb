@@ -1,0 +1,9 @@
+{
+  "id": "guest_001",
+  "first_name": "Jane",
+  "last_name": "Smith",
+  "email": "jane.smith@example.com",
+  "phone": "+1-415-555-0100",
+  "verified": true,
+  "joined_at": "2024-03-01T00:00:00Z"
+}

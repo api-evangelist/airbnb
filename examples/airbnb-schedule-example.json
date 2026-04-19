@@ -1,0 +1,11 @@
+{
+  "id": "example-id",
+  "experience_id": "example-experience_id",
+  "date": "example-date",
+  "start_time": "example-start_time",
+  "end_time": "example-end_time",
+  "max_guests": 1,
+  "booked_guests": 1,
+  "available_spots": 1,
+  "status": "example-status"
+}

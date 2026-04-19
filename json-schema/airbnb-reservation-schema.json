@@ -1,10 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://api.airbnb.com/schemas/airbnb/reservation.json",
-  "title": "Airbnb Reservation",
-  "description": "A reservation for an Airbnb listing, including guest information, booking dates, pricing breakdown, and current status.",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-reservation-schema.json",
+  "title": "Reservation",
   "type": "object",
-  "required": ["id", "listing_id", "status", "check_in", "check_out", "guests_count"],
   "properties": {
     "id": {
       "type": "string",
@@ -17,14 +15,21 @@
     "status": {
       "type": "string",
       "description": "The current status of the reservation.",
-      "enum": ["pending", "accepted", "denied", "cancelled", "checked_in", "checked_out"]
+      "enum": [
+        "pending",
+        "accepted",
+        "denied",
+        "cancelled",
+        "checked_in",
+        "checked_out"
+      ]
     },
     "listing_id": {
       "type": "string",
       "description": "The identifier of the listing that was booked."
     },
     "guest": {
-      "$ref": "#/$defs/Guest"
+      "$ref": "#/components/schemas/Guest"
     },
     "check_in": {
       "type": "string",
@@ -48,8 +53,8 @@
     },
     "total_price": {
       "type": "number",
-      "description": "The total price of the reservation in the listing currency.",
-      "minimum": 0
+      "format": "double",
+      "description": "The total price of the reservation in the listing currency."
     },
     "currency": {
       "type": "string",
@@ -58,16 +63,8 @@
     },
     "host_payout": {
       "type": "number",
-      "description": "The amount to be paid out to the host after fees.",
-      "minimum": 0
-    },
-    "pricing_breakdown": {
-      "$ref": "#/$defs/PricingBreakdown"
-    },
-    "cancellation_policy": {
-      "type": "string",
-      "description": "The cancellation policy that applies to this reservation.",
-      "enum": ["flexible", "moderate", "strict", "strict_14_with_grace_period", "super_strict_30", "super_strict_60"]
+      "format": "double",
+      "description": "The amount to be paid out to the host after fees."
     },
     "created_at": {
       "type": "string",
@@ -78,80 +75,6 @@
       "type": "string",
       "format": "date-time",
       "description": "The timestamp when the reservation was last updated."
-    }
-  },
-  "$defs": {
-    "Guest": {
-      "type": "object",
-      "description": "The guest who made the reservation.",
-      "properties": {
-        "id": {
-          "type": "string",
-          "description": "The unique identifier of the guest."
-        },
-        "first_name": {
-          "type": "string",
-          "description": "The first name of the guest."
-        },
-        "last_name": {
-          "type": "string",
-          "description": "The last name of the guest."
-        },
-        "phone": {
-          "type": "string",
-          "description": "The phone number of the guest, available after booking is confirmed."
-        },
-        "profile_picture_url": {
-          "type": "string",
-          "format": "uri",
-          "description": "The URL of the guest profile picture."
-        },
-        "verified": {
-          "type": "boolean",
-          "description": "Whether the guest has completed identity verification."
-        }
-      }
-    },
-    "PricingBreakdown": {
-      "type": "object",
-      "description": "A detailed breakdown of the reservation pricing.",
-      "properties": {
-        "nightly_total": {
-          "type": "number",
-          "description": "The total for all nights at the nightly rate.",
-          "minimum": 0
-        },
-        "cleaning_fee": {
-          "type": "number",
-          "description": "The cleaning fee charged for the reservation.",
-          "minimum": 0
-        },
-        "service_fee": {
-          "type": "number",
-          "description": "The Airbnb service fee charged to the guest.",
-          "minimum": 0
-        },
-        "extra_guest_fee": {
-          "type": "number",
-          "description": "Additional fees for extra guests.",
-          "minimum": 0
-        },
-        "discount": {
-          "type": "number",
-          "description": "Any discount applied to the reservation.",
-          "minimum": 0
-        },
-        "taxes": {
-          "type": "number",
-          "description": "The total taxes collected for the reservation.",
-          "minimum": 0
-        },
-        "currency": {
-          "type": "string",
-          "description": "The ISO 4217 currency code.",
-          "pattern": "^[A-Z]{3}$"
-        }
-      }
     }
   }
 }

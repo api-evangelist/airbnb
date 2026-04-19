@@ -1,0 +1,25 @@
+{
+  "name": "ExperiencePhoto",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the photo."
+    },
+    {
+      "name": "url",
+      "type": "uri",
+      "description": "The URL where the photo is hosted."
+    },
+    {
+      "name": "caption",
+      "type": "string",
+      "description": "A caption describing the photo."
+    },
+    {
+      "name": "sort_order",
+      "type": "int32",
+      "description": "The display position of the photo."
+    }
+  ]
+}

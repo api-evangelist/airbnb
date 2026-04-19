@@ -1,0 +1,45 @@
+{
+  "name": "Review",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the review."
+    },
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "description": "The identifier of the associated reservation."
+    },
+    {
+      "name": "reviewer_type",
+      "type": "string",
+      "description": "Whether the review was written by a guest or host."
+    },
+    {
+      "name": "rating",
+      "type": "int32",
+      "description": "The overall star rating from 1 to 5."
+    },
+    {
+      "name": "comments",
+      "type": "string",
+      "description": "The text content of the review."
+    },
+    {
+      "name": "category_ratings",
+      "type": "object",
+      "description": "Individual category ratings provided by the reviewer."
+    },
+    {
+      "name": "host_response",
+      "type": "string",
+      "description": "The host response to the review, if provided."
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "description": "The timestamp when the review was submitted."
+    }
+  ]
+}

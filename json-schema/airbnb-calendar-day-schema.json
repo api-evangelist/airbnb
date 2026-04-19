@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-calendar-day-schema.json",
+  "title": "CalendarDay",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date for this calendar entry."
+    },
+    "available": {
+      "type": "boolean",
+      "description": "Whether the listing is available for booking on this date."
+    },
+    "price": {
+      "type": "number",
+      "format": "double",
+      "description": "The nightly price for this date in the listing currency."
+    },
+    "minimum_nights": {
+      "type": "integer",
+      "description": "The minimum number of nights required for a stay starting on this date.",
+      "minimum": 1
+    },
+    "maximum_nights": {
+      "type": "integer",
+      "description": "The maximum number of nights allowed for a stay starting on this date."
+    },
+    "reservation_id": {
+      "type": "string",
+      "description": "The reservation identifier if this date is booked."
+    }
+  }
+}

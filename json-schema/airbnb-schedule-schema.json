@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-schedule-schema.json",
+  "title": "Schedule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the schedule entry."
+    },
+    "experience_id": {
+      "type": "string",
+      "description": "The identifier of the associated experience."
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the scheduled session."
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The start time in HH:MM format.",
+      "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+    },
+    "end_time": {
+      "type": "string",
+      "description": "The end time in HH:MM format.",
+      "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+    },
+    "max_guests": {
+      "type": "integer",
+      "description": "The maximum number of guests for this session.",
+      "minimum": 1
+    },
+    "booked_guests": {
+      "type": "integer",
+      "description": "The current number of booked guests.",
+      "minimum": 0
+    },
+    "available_spots": {
+      "type": "integer",
+      "description": "The number of remaining available spots.",
+      "minimum": 0
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of the schedule entry.",
+      "enum": [
+        "open",
+        "full",
+        "cancelled"
+      ]
+    }
+  }
+}

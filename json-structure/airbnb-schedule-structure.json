@@ -1,0 +1,50 @@
+{
+  "name": "Schedule",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the schedule entry."
+    },
+    {
+      "name": "experience_id",
+      "type": "string",
+      "description": "The identifier of the associated experience."
+    },
+    {
+      "name": "date",
+      "type": "date",
+      "description": "The date of the scheduled session."
+    },
+    {
+      "name": "start_time",
+      "type": "string",
+      "description": "The start time in HH:MM format."
+    },
+    {
+      "name": "end_time",
+      "type": "string",
+      "description": "The end time in HH:MM format."
+    },
+    {
+      "name": "max_guests",
+      "type": "int32",
+      "description": "The maximum number of guests for this session."
+    },
+    {
+      "name": "booked_guests",
+      "type": "int32",
+      "description": "The current number of booked guests."
+    },
+    {
+      "name": "available_spots",
+      "type": "int32",
+      "description": "The number of remaining available spots."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "The status of the schedule entry."
+    }
+  ]
+}

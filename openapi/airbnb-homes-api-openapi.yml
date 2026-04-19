@@ -20,58 +20,58 @@ externalDocs:
   description: Airbnb Developer Documentation
   url: https://developer.withairbnb.com/
 servers:
-  - url: https://api.airbnb.com/v2
-    description: Airbnb Production API Server
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
 tags:
-  - name: Calendar
-    description: >-
-      Operations for managing listing availability, pricing, and calendar
-      synchronization across platforms.
-  - name: Listings
-    description: >-
-      Operations for creating, reading, updating, and managing property
-      listings on Airbnb, including descriptions, amenities, and photos.
-  - name: Messages
-    description: >-
-      Operations for sending and retrieving guest and host messages within
-      reservation threads.
-  - name: Photos
-    description: >-
-      Operations for uploading, updating, and managing listing photos.
-  - name: Reservations
-    description: >-
-      Operations for managing reservations, including accepting, declining,
-      and retrieving booking details.
-  - name: Reviews
-    description: >-
-      Operations for retrieving and responding to guest and host reviews.
+- name: Calendar
+  description: >-
+    Operations for managing listing availability, pricing, and calendar
+    synchronization across platforms.
+- name: Listings
+  description: >-
+    Operations for creating, reading, updating, and managing property
+    listings on Airbnb, including descriptions, amenities, and photos.
+- name: Messages
+  description: >-
+    Operations for sending and retrieving guest and host messages within
+    reservation threads.
+- name: Photos
+  description: >-
+    Operations for uploading, updating, and managing listing photos.
+- name: Reservations
+  description: >-
+    Operations for managing reservations, including accepting, declining,
+    and retrieving booking details.
+- name: Reviews
+  description: >-
+    Operations for retrieving and responding to guest and host reviews.
 security:
-  - oauth2: []
+- oauth2: []
 paths:
   /listings:
     get:
       operationId: listListings
-      summary: List all listings
+      summary: List All Listings
       description: >-
         Retrieves a paginated list of all property listings managed by the
         authenticated partner. Supports filtering by status and other
         listing attributes.
       tags:
-        - Listings
+      - Listings
       parameters:
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
-        - name: status
-          in: query
-          description: >-
-            Filter listings by their current status on the platform.
-          schema:
-            type: string
-            enum:
-              - active
-              - inactive
-              - pending
-              - unlisted
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: >-
+          Filter listings by their current status on the platform.
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          - unlisted
       responses:
         '200':
           description: A paginated list of listings.
@@ -92,14 +92,14 @@ paths:
           description: The partner does not have permission to access listings.
     post:
       operationId: createListing
-      summary: Create a new listing
+      summary: Create a New Listing
       description: >-
         Creates a new property listing on Airbnb with the provided details
         including property type, location, description, amenities, and
         house rules. The listing will be in a pending state until all
         required fields are completed and the listing is published.
       tags:
-        - Listings
+      - Listings
       requestBody:
         required: true
         content:
@@ -120,15 +120,15 @@ paths:
   /listings/{listing_id}:
     get:
       operationId: getListing
-      summary: Get a listing
+      summary: Get a Listing
       description: >-
         Retrieves the full details of a specific property listing by its
         unique identifier, including description, amenities, photos,
         pricing, and availability configuration.
       tags:
-        - Listings
+      - Listings
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       responses:
         '200':
           description: The listing details.
@@ -142,16 +142,16 @@ paths:
           description: The listing was not found.
     put:
       operationId: updateListing
-      summary: Update a listing
+      summary: Update a Listing
       description: >-
         Updates an existing property listing with the provided fields.
         Only the fields included in the request body will be modified.
         This can be used to update descriptions, amenities, house rules,
         and other listing attributes.
       tags:
-        - Listings
+      - Listings
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       requestBody:
         required: true
         content:
@@ -173,15 +173,15 @@ paths:
           description: The listing was not found.
     delete:
       operationId: deleteListing
-      summary: Delete a listing
+      summary: Delete a Listing
       description: >-
         Removes a property listing from the Airbnb platform. This action
         cannot be undone. Active reservations must be resolved before
         a listing can be deleted.
       tags:
-        - Listings
+      - Listings
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       responses:
         '204':
           description: The listing was successfully deleted.
@@ -194,14 +194,14 @@ paths:
   /listings/{listing_id}/photos:
     get:
       operationId: listListingPhotos
-      summary: List listing photos
+      summary: List Listing Photos
       description: >-
         Retrieves all photos associated with a specific listing, including
         their captions, sort order, and dimensions.
       tags:
-        - Photos
+      - Photos
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       responses:
         '200':
           description: A list of photos for the listing.
@@ -220,14 +220,14 @@ paths:
           description: The listing was not found.
     post:
       operationId: uploadListingPhoto
-      summary: Upload a listing photo
+      summary: Upload a Listing Photo
       description: >-
         Uploads a new photo to a listing. Photos can include captions and
         a sort order to control display position in the listing gallery.
       tags:
-        - Photos
+      - Photos
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       requestBody:
         required: true
         content:
@@ -235,7 +235,7 @@ paths:
             schema:
               type: object
               required:
-                - photo
+              - photo
               properties:
                 photo:
                   type: string
@@ -266,14 +266,14 @@ paths:
   /listings/{listing_id}/photos/{photo_id}:
     delete:
       operationId: deleteListingPhoto
-      summary: Delete a listing photo
+      summary: Delete a Listing Photo
       description: >-
         Removes a specific photo from a listing by its identifier.
       tags:
-        - Photos
+      - Photos
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
-        - $ref: '#/components/parameters/photoIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/photoIdParam'
       responses:
         '204':
           description: The photo was successfully deleted.
@@ -284,31 +284,31 @@ paths:
   /listings/{listing_id}/calendar:
     get:
       operationId: getListingCalendar
-      summary: Get listing calendar
+      summary: Get Listing Calendar
       description: >-
         Retrieves the availability calendar for a specific listing over a
         date range. Returns day-by-day availability status, nightly pricing,
         minimum stay requirements, and any blocked dates.
       tags:
-        - Calendar
+      - Calendar
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
-        - name: start_date
-          in: query
-          required: true
-          description: >-
-            The start date for the calendar range in ISO 8601 format.
-          schema:
-            type: string
-            format: date
-        - name: end_date
-          in: query
-          required: true
-          description: >-
-            The end date for the calendar range in ISO 8601 format.
-          schema:
-            type: string
-            format: date
+      - $ref: '#/components/parameters/listingIdParam'
+      - name: start_date
+        in: query
+        required: true
+        description: >-
+          The start date for the calendar range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: true
+        description: >-
+          The end date for the calendar range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: The calendar data for the specified date range.
@@ -329,16 +329,16 @@ paths:
           description: The listing was not found.
     put:
       operationId: updateListingCalendar
-      summary: Update listing calendar
+      summary: Update Listing Calendar
       description: >-
         Updates the availability, pricing, and minimum stay settings for
         specific dates on a listing calendar. Use this endpoint to block
         or unblock dates, adjust nightly pricing, and set minimum stay
         requirements.
       tags:
-        - Calendar
+      - Calendar
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/listingIdParam'
       requestBody:
         required: true
         content:
@@ -346,7 +346,7 @@ paths:
             schema:
               type: object
               required:
-                - calendar_operations
+              - calendar_operations
               properties:
                 calendar_operations:
                   type: array
@@ -364,49 +364,49 @@ paths:
   /reservations:
     get:
       operationId: listReservations
-      summary: List reservations
+      summary: List Reservations
       description: >-
         Retrieves a paginated list of reservations for listings managed by
         the authenticated partner. Supports filtering by status, listing,
         and date range.
       tags:
-        - Reservations
+      - Reservations
       parameters:
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
-        - name: status
-          in: query
-          description: >-
-            Filter reservations by their current status.
-          schema:
-            type: string
-            enum:
-              - pending
-              - accepted
-              - denied
-              - cancelled
-              - checked_in
-              - checked_out
-        - name: listing_id
-          in: query
-          description: >-
-            Filter reservations by listing identifier.
-          schema:
-            type: string
-        - name: start_date
-          in: query
-          description: >-
-            Filter reservations with check-in dates on or after this date.
-          schema:
-            type: string
-            format: date
-        - name: end_date
-          in: query
-          description: >-
-            Filter reservations with check-in dates on or before this date.
-          schema:
-            type: string
-            format: date
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: >-
+          Filter reservations by their current status.
+        schema:
+          type: string
+          enum:
+          - pending
+          - accepted
+          - denied
+          - cancelled
+          - checked_in
+          - checked_out
+      - name: listing_id
+        in: query
+        description: >-
+          Filter reservations by listing identifier.
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: >-
+          Filter reservations with check-in dates on or after this date.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        description: >-
+          Filter reservations with check-in dates on or before this date.
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: A paginated list of reservations.
@@ -426,14 +426,14 @@ paths:
   /reservations/{reservation_id}:
     get:
       operationId: getReservation
-      summary: Get a reservation
+      summary: Get a Reservation
       description: >-
         Retrieves the full details of a specific reservation including
         guest information, dates, pricing breakdown, and current status.
       tags:
-        - Reservations
+      - Reservations
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       responses:
         '200':
           description: The reservation details.
@@ -448,14 +448,14 @@ paths:
   /reservations/{reservation_id}/accept:
     post:
       operationId: acceptReservation
-      summary: Accept a reservation
+      summary: Accept a Reservation
       description: >-
         Accepts a pending reservation request. Once accepted, the
         reservation is confirmed and the calendar dates are blocked.
       tags:
-        - Reservations
+      - Reservations
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       responses:
         '200':
           description: The reservation was successfully accepted.
@@ -472,14 +472,14 @@ paths:
   /reservations/{reservation_id}/deny:
     post:
       operationId: denyReservation
-      summary: Deny a reservation
+      summary: Deny a Reservation
       description: >-
         Denies a pending reservation request. A reason for denial may
         be provided to inform the guest.
       tags:
-        - Reservations
+      - Reservations
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       requestBody:
         content:
           application/json:
@@ -506,14 +506,14 @@ paths:
   /reservations/{reservation_id}/cancel:
     post:
       operationId: cancelReservation
-      summary: Cancel a reservation
+      summary: Cancel a Reservation
       description: >-
         Cancels an accepted reservation. Cancellation policies and fees
         may apply depending on the listing configuration and timing.
       tags:
-        - Reservations
+      - Reservations
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       requestBody:
         content:
           application/json:
@@ -540,16 +540,16 @@ paths:
   /reservations/{reservation_id}/messages:
     get:
       operationId: listReservationMessages
-      summary: List reservation messages
+      summary: List Reservation Messages
       description: >-
         Retrieves the message thread for a specific reservation, including
         all messages exchanged between the host and guest.
       tags:
-        - Messages
+      - Messages
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
       responses:
         '200':
           description: A paginated list of messages in the reservation thread.
@@ -570,15 +570,15 @@ paths:
           description: The reservation was not found.
     post:
       operationId: sendReservationMessage
-      summary: Send a reservation message
+      summary: Send a Reservation Message
       description: >-
         Sends a new message in the reservation thread from the host to
         the guest. Messages are delivered through the Airbnb messaging
         system.
       tags:
-        - Messages
+      - Messages
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       requestBody:
         required: true
         content:
@@ -586,7 +586,7 @@ paths:
             schema:
               type: object
               required:
-                - message
+              - message
               properties:
                 message:
                   type: string
@@ -609,14 +609,14 @@ paths:
   /reservations/{reservation_id}/reviews:
     get:
       operationId: listReservationReviews
-      summary: List reservation reviews
+      summary: List Reservation Reviews
       description: >-
         Retrieves the reviews associated with a specific reservation,
         including both the guest review and host response if available.
       tags:
-        - Reviews
+      - Reviews
       parameters:
-        - $ref: '#/components/parameters/reservationIdParam'
+      - $ref: '#/components/parameters/reservationIdParam'
       responses:
         '200':
           description: The reviews for the reservation.
@@ -636,16 +636,16 @@ paths:
   /listings/{listing_id}/reviews:
     get:
       operationId: listListingReviews
-      summary: List listing reviews
+      summary: List Listing Reviews
       description: >-
         Retrieves a paginated list of all reviews for a specific listing,
         including guest ratings and comments.
       tags:
-        - Reviews
+      - Reviews
       parameters:
-        - $ref: '#/components/parameters/listingIdParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
       responses:
         '200':
           description: A paginated list of reviews for the listing.
@@ -752,29 +752,29 @@ components:
           description: >-
             The type of property being listed.
           enum:
-            - apartment
-            - house
-            - secondary_unit
-            - unique_space
-            - bed_and_breakfast
-            - boutique_hotel
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
         room_type:
           type: string
           description: >-
             The type of room or space being offered.
           enum:
-            - entire_home
-            - private_room
-            - shared_room
+          - entire_home
+          - private_room
+          - shared_room
         status:
           type: string
           description: >-
             The current status of the listing on the platform.
           enum:
-            - active
-            - inactive
-            - pending
-            - unlisted
+          - active
+          - inactive
+          - pending
+          - unlisted
         address:
           $ref: '#/components/schemas/Address'
         bedrooms:
@@ -830,12 +830,12 @@ components:
           description: >-
             The cancellation policy applied to the listing.
           enum:
-            - flexible
-            - moderate
-            - strict
-            - strict_14_with_grace_period
-            - super_strict_30
-            - super_strict_60
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
         created_at:
           type: string
           format: date-time
@@ -849,11 +849,11 @@ components:
     ListingCreate:
       type: object
       required:
-        - name
-        - property_type
-        - room_type
-        - address
-        - max_guests
+      - name
+      - property_type
+      - room_type
+      - address
+      - max_guests
       properties:
         name:
           type: string
@@ -870,20 +870,20 @@ components:
           description: >-
             The type of property being listed.
           enum:
-            - apartment
-            - house
-            - secondary_unit
-            - unique_space
-            - bed_and_breakfast
-            - boutique_hotel
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
         room_type:
           type: string
           description: >-
             The type of room or space being offered.
           enum:
-            - entire_home
-            - private_room
-            - shared_room
+          - entire_home
+          - private_room
+          - shared_room
         address:
           $ref: '#/components/schemas/Address'
         bedrooms:
@@ -931,12 +931,12 @@ components:
           description: >-
             The cancellation policy applied to the listing.
           enum:
-            - flexible
-            - moderate
-            - strict
-            - strict_14_with_grace_period
-            - super_strict_30
-            - super_strict_60
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
     ListingUpdate:
       type: object
       properties:
@@ -955,20 +955,20 @@ components:
           description: >-
             The type of property being listed.
           enum:
-            - apartment
-            - house
-            - secondary_unit
-            - unique_space
-            - bed_and_breakfast
-            - boutique_hotel
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
         room_type:
           type: string
           description: >-
             The type of room or space being offered.
           enum:
-            - entire_home
-            - private_room
-            - shared_room
+          - entire_home
+          - private_room
+          - shared_room
         bedrooms:
           type: integer
           description: >-
@@ -1014,18 +1014,18 @@ components:
           description: >-
             The cancellation policy applied to the listing.
           enum:
-            - flexible
-            - moderate
-            - strict
-            - strict_14_with_grace_period
-            - super_strict_30
-            - super_strict_60
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
     Address:
       type: object
       required:
-        - street
-        - city
-        - country
+      - street
+      - city
+      - country
       properties:
         street:
           type: string
@@ -1163,8 +1163,8 @@ components:
     CalendarOperation:
       type: object
       required:
-        - start_date
-        - end_date
+      - start_date
+      - end_date
       properties:
         start_date:
           type: string
@@ -1211,12 +1211,12 @@ components:
           description: >-
             The current status of the reservation.
           enum:
-            - pending
-            - accepted
-            - denied
-            - cancelled
-            - checked_in
-            - checked_out
+          - pending
+          - accepted
+          - denied
+          - cancelled
+          - checked_in
+          - checked_out
         listing_id:
           type: string
           description: >-
@@ -1312,8 +1312,8 @@ components:
           description: >-
             Whether the message was sent by the host or guest.
           enum:
-            - host
-            - guest
+          - host
+          - guest
         message:
           type: string
           description: >-
@@ -1339,8 +1339,8 @@ components:
           description: >-
             Whether the review was written by a guest or host.
           enum:
-            - guest
-            - host
+          - guest
+          - host
         rating:
           type: integer
           description: >-

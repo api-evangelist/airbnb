@@ -1,0 +1,7 @@
+{
+  "event_id": "example-event_id",
+  "event_type": "example-event_type",
+  "timestamp": "example-timestamp",
+  "api_version": "example-api_version",
+  "data": {}
+}

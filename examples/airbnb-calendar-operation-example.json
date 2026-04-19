@@ -1,0 +1,8 @@
+{
+  "start_date": "example-start_date",
+  "end_date": "example-end_date",
+  "available": true,
+  "price": 1,
+  "minimum_nights": 1,
+  "maximum_nights": 1
+}

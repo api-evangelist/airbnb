@@ -1,0 +1,11 @@
+{
+  "id": "exp_abc123",
+  "title": "Golden Gate Bridge Sunrise Hike",
+  "description": "Join us for a spectacular sunrise hike across the Golden Gate Bridge.",
+  "category": "nature",
+  "duration_hours": 3.0,
+  "price_per_person": 45.0,
+  "currency": "USD",
+  "max_guests": 8,
+  "status": "active"
+}

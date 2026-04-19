@@ -1,0 +1,35 @@
+{
+  "name": "Pricing",
+  "fields": [
+    {
+      "name": "nightly_price",
+      "type": "double",
+      "description": "The base nightly price in the listing currency."
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "description": "The ISO 4217 currency code for pricing."
+    },
+    {
+      "name": "cleaning_fee",
+      "type": "double",
+      "description": "The one-time cleaning fee charged per reservation."
+    },
+    {
+      "name": "weekly_discount",
+      "type": "double",
+      "description": "The percentage discount for stays of 7 or more nights."
+    },
+    {
+      "name": "monthly_discount",
+      "type": "double",
+      "description": "The percentage discount for stays of 28 or more nights."
+    },
+    {
+      "name": "extra_guest_fee",
+      "type": "double",
+      "description": "The additional fee per extra guest beyond the base occupancy."
+    }
+  ]
+}

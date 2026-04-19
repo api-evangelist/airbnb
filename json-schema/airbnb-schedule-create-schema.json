@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-schedule-create-schema.json",
+  "title": "ScheduleCreate",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the scheduled session."
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The start time in HH:MM format.",
+      "pattern": "^[0-2][0-9]:[0-5][0-9]$"
+    },
+    "max_guests": {
+      "type": "integer",
+      "description": "Override the maximum number of guests for this specific session.",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "date",
+    "start_time"
+  ]
+}

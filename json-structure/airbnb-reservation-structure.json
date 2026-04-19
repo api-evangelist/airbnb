@@ -1,0 +1,74 @@
+{
+  "name": "Reservation",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the reservation."
+    },
+    {
+      "name": "confirmation_code",
+      "type": "string",
+      "description": "The human-readable confirmation code for the reservation."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "The current status of the reservation."
+    },
+    {
+      "name": "listing_id",
+      "type": "string",
+      "description": "The identifier of the listing that was booked."
+    },
+    {
+      "name": "guest",
+      "type": "Guest"
+    },
+    {
+      "name": "check_in",
+      "type": "date",
+      "description": "The guest check-in date."
+    },
+    {
+      "name": "check_out",
+      "type": "date",
+      "description": "The guest check-out date."
+    },
+    {
+      "name": "nights",
+      "type": "int32",
+      "description": "The total number of nights in the reservation."
+    },
+    {
+      "name": "guests_count",
+      "type": "int32",
+      "description": "The number of guests included in the reservation."
+    },
+    {
+      "name": "total_price",
+      "type": "double",
+      "description": "The total price of the reservation in the listing currency."
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "description": "The ISO 4217 currency code for the reservation pricing."
+    },
+    {
+      "name": "host_payout",
+      "type": "double",
+      "description": "The amount to be paid out to the host after fees."
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "description": "The timestamp when the reservation was created."
+    },
+    {
+      "name": "updated_at",
+      "type": "datetime",
+      "description": "The timestamp when the reservation was last updated."
+    }
+  ]
+}

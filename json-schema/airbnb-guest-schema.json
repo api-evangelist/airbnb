@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-guest-schema.json",
+  "title": "Guest",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the guest."
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The first name of the guest."
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The last name of the guest."
+    },
+    "phone": {
+      "type": "string",
+      "description": "The phone number of the guest, available after booking is confirmed."
+    },
+    "profile_picture_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the guest profile picture."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the guest has completed identity verification."
+    }
+  }
+}

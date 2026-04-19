@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-experience-host-schema.json",
+  "title": "ExperienceHost",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the experience host."
+    },
+    "name": {
+      "type": "string",
+      "description": "The display name of the host."
+    },
+    "bio": {
+      "type": "string",
+      "description": "A short biography of the host."
+    },
+    "profile_picture_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the host profile picture."
+    },
+    "superhost": {
+      "type": "boolean",
+      "description": "Whether the host has Superhost status."
+    }
+  }
+}

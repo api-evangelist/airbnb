@@ -1,0 +1,30 @@
+{
+  "name": "Message",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the message."
+    },
+    {
+      "name": "reservation_id",
+      "type": "string",
+      "description": "The identifier of the associated reservation."
+    },
+    {
+      "name": "sender_type",
+      "type": "string",
+      "description": "Whether the message was sent by the host or guest."
+    },
+    {
+      "name": "message",
+      "type": "string",
+      "description": "The text content of the message."
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "description": "The timestamp when the message was sent."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Airbnb Webhook Event",
+  "description": "The envelope schema for all webhook event notifications sent by the Airbnb platform to partner endpoints, including event metadata and typed payloads.",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "description": "A unique identifier for this webhook event, used for idempotency and deduplication."
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "description": "The type of event that triggered the webhook notification."
+    },
+    {
+      "name": "timestamp",
+      "type": "datetime",
+      "description": "The ISO 8601 timestamp when the event occurred."
+    },
+    {
+      "name": "api_version",
+      "type": "string",
+      "description": "The API version used for the webhook payload format."
+    },
+    {
+      "name": "data",
+      "type": "object",
+      "description": "The event-specific payload data. Structure varies by event_type."
+    }
+  ]
+}

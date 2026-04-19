@@ -19,58 +19,58 @@ externalDocs:
   description: Airbnb Developer Documentation
   url: https://developer.withairbnb.com/
 servers:
-  - url: https://api.airbnb.com/v2
-    description: Airbnb Production API Server
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
 tags:
-  - name: Bookings
-    description: >-
-      Operations for managing guest bookings for experiences, including
-      confirmations, cancellations, and attendee details.
-  - name: Experience Messages
-    description: >-
-      Operations for sending and retrieving messages between experience
-      hosts and booked guests.
-  - name: Experiences
-    description: >-
-      Operations for creating, reading, updating, and managing experience
-      and activity listings on Airbnb.
-  - name: Schedules
-    description: >-
-      Operations for managing experience schedules, time slots, and
-      availability for hosted activities.
+- name: Bookings
+  description: >-
+    Operations for managing guest bookings for experiences, including
+    confirmations, cancellations, and attendee details.
+- name: Experience Messages
+  description: >-
+    Operations for sending and retrieving messages between experience
+    hosts and booked guests.
+- name: Experiences
+  description: >-
+    Operations for creating, reading, updating, and managing experience
+    and activity listings on Airbnb.
+- name: Schedules
+  description: >-
+    Operations for managing experience schedules, time slots, and
+    availability for hosted activities.
 security:
-  - oauth2: []
+- oauth2: []
 paths:
   /experiences:
     get:
       operationId: listExperiences
-      summary: List all experiences
+      summary: List All Experiences
       description: >-
         Retrieves a paginated list of all experience listings managed by
         the authenticated partner. Supports filtering by status and
         activity category.
       tags:
-        - Experiences
+      - Experiences
       parameters:
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
-        - name: status
-          in: query
-          description: >-
-            Filter experiences by their current status on the platform.
-          schema:
-            type: string
-            enum:
-              - active
-              - inactive
-              - pending
-              - suspended
-        - name: category
-          in: query
-          description: >-
-            Filter experiences by activity category.
-          schema:
-            type: string
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: >-
+          Filter experiences by their current status on the platform.
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          - suspended
+      - name: category
+        in: query
+        description: >-
+          Filter experiences by activity category.
+        schema:
+          type: string
       responses:
         '200':
           description: A paginated list of experiences.
@@ -89,14 +89,14 @@ paths:
           description: Authentication credentials are missing or invalid.
     post:
       operationId: createExperience
-      summary: Create a new experience
+      summary: Create a New Experience
       description: >-
         Creates a new experience listing on Airbnb with the provided
         details including activity type, location, description, pricing,
         and scheduling information. The experience will be in a pending
         state until reviewed and approved by Airbnb.
       tags:
-        - Experiences
+      - Experiences
       requestBody:
         required: true
         content:
@@ -117,15 +117,15 @@ paths:
   /experiences/{experience_id}:
     get:
       operationId: getExperience
-      summary: Get an experience
+      summary: Get an Experience
       description: >-
         Retrieves the full details of a specific experience listing by
         its unique identifier, including description, schedule, pricing,
         and host information.
       tags:
-        - Experiences
+      - Experiences
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
       responses:
         '200':
           description: The experience details.
@@ -139,14 +139,14 @@ paths:
           description: The experience was not found.
     put:
       operationId: updateExperience
-      summary: Update an experience
+      summary: Update an Experience
       description: >-
         Updates an existing experience listing with the provided fields.
         Only the fields included in the request body will be modified.
       tags:
-        - Experiences
+      - Experiences
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
       requestBody:
         required: true
         content:
@@ -168,14 +168,14 @@ paths:
           description: The experience was not found.
     delete:
       operationId: deleteExperience
-      summary: Delete an experience
+      summary: Delete an Experience
       description: >-
         Removes an experience listing from the Airbnb platform. Active
         bookings must be resolved before an experience can be deleted.
       tags:
-        - Experiences
+      - Experiences
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
       responses:
         '204':
           description: The experience was successfully deleted.
@@ -188,30 +188,30 @@ paths:
   /experiences/{experience_id}/schedules:
     get:
       operationId: listExperienceSchedules
-      summary: List experience schedules
+      summary: List Experience Schedules
       description: >-
         Retrieves the available time slots and schedule entries for a
         specific experience over a date range.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
-        - name: start_date
-          in: query
-          required: true
-          description: >-
-            The start date for the schedule range in ISO 8601 format.
-          schema:
-            type: string
-            format: date
-        - name: end_date
-          in: query
-          required: true
-          description: >-
-            The end date for the schedule range in ISO 8601 format.
-          schema:
-            type: string
-            format: date
+      - $ref: '#/components/parameters/experienceIdParam'
+      - name: start_date
+        in: query
+        required: true
+        description: >-
+          The start date for the schedule range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: true
+        description: >-
+          The end date for the schedule range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: The schedule entries for the specified date range.
@@ -232,14 +232,14 @@ paths:
           description: The experience was not found.
     post:
       operationId: createExperienceSchedule
-      summary: Create an experience schedule
+      summary: Create an Experience Schedule
       description: >-
         Creates a new scheduled time slot for an experience, specifying
         the date, start time, and maximum number of attendees.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
       requestBody:
         required: true
         content:
@@ -262,15 +262,15 @@ paths:
   /experiences/{experience_id}/schedules/{schedule_id}:
     put:
       operationId: updateExperienceSchedule
-      summary: Update an experience schedule
+      summary: Update an Experience Schedule
       description: >-
         Updates an existing schedule entry for an experience, allowing
         changes to time, capacity, or cancellation of the time slot.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
-        - $ref: '#/components/parameters/scheduleIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/scheduleIdParam'
       requestBody:
         required: true
         content:
@@ -292,15 +292,15 @@ paths:
           description: The experience or schedule was not found.
     delete:
       operationId: deleteExperienceSchedule
-      summary: Delete an experience schedule
+      summary: Delete an Experience Schedule
       description: >-
         Removes a scheduled time slot from an experience. Existing
         bookings for the time slot must be handled before deletion.
       tags:
-        - Schedules
+      - Schedules
       parameters:
-        - $ref: '#/components/parameters/experienceIdParam'
-        - $ref: '#/components/parameters/scheduleIdParam'
+      - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/scheduleIdParam'
       responses:
         '204':
           description: The schedule was successfully deleted.
@@ -313,47 +313,47 @@ paths:
   /bookings:
     get:
       operationId: listBookings
-      summary: List experience bookings
+      summary: List Experience Bookings
       description: >-
         Retrieves a paginated list of bookings for experiences managed
         by the authenticated partner. Supports filtering by status,
         experience, and date range.
       tags:
-        - Bookings
+      - Bookings
       parameters:
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
-        - name: status
-          in: query
-          description: >-
-            Filter bookings by their current status.
-          schema:
-            type: string
-            enum:
-              - pending
-              - confirmed
-              - cancelled
-              - completed
-        - name: experience_id
-          in: query
-          description: >-
-            Filter bookings by experience identifier.
-          schema:
-            type: string
-        - name: start_date
-          in: query
-          description: >-
-            Filter bookings with activity dates on or after this date.
-          schema:
-            type: string
-            format: date
-        - name: end_date
-          in: query
-          description: >-
-            Filter bookings with activity dates on or before this date.
-          schema:
-            type: string
-            format: date
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: >-
+          Filter bookings by their current status.
+        schema:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - cancelled
+          - completed
+      - name: experience_id
+        in: query
+        description: >-
+          Filter bookings by experience identifier.
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: >-
+          Filter bookings with activity dates on or after this date.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        description: >-
+          Filter bookings with activity dates on or before this date.
+        schema:
+          type: string
+          format: date
       responses:
         '200':
           description: A paginated list of bookings.
@@ -373,14 +373,14 @@ paths:
   /bookings/{booking_id}:
     get:
       operationId: getBooking
-      summary: Get a booking
+      summary: Get a Booking
       description: >-
         Retrieves the full details of a specific experience booking
         including attendee information, schedule, and pricing.
       tags:
-        - Bookings
+      - Bookings
       parameters:
-        - $ref: '#/components/parameters/bookingIdParam'
+      - $ref: '#/components/parameters/bookingIdParam'
       responses:
         '200':
           description: The booking details.
@@ -395,14 +395,14 @@ paths:
   /bookings/{booking_id}/confirm:
     post:
       operationId: confirmBooking
-      summary: Confirm a booking
+      summary: Confirm a Booking
       description: >-
         Confirms a pending booking request for an experience. Once
         confirmed, the attendee count is updated on the schedule.
       tags:
-        - Bookings
+      - Bookings
       parameters:
-        - $ref: '#/components/parameters/bookingIdParam'
+      - $ref: '#/components/parameters/bookingIdParam'
       responses:
         '200':
           description: The booking was successfully confirmed.
@@ -419,14 +419,14 @@ paths:
   /bookings/{booking_id}/cancel:
     post:
       operationId: cancelBooking
-      summary: Cancel a booking
+      summary: Cancel a Booking
       description: >-
         Cancels an existing booking. Cancellation policies and refund
         rules may apply depending on timing and experience configuration.
       tags:
-        - Bookings
+      - Bookings
       parameters:
-        - $ref: '#/components/parameters/bookingIdParam'
+      - $ref: '#/components/parameters/bookingIdParam'
       requestBody:
         content:
           application/json:
@@ -453,16 +453,16 @@ paths:
   /bookings/{booking_id}/messages:
     get:
       operationId: listBookingMessages
-      summary: List booking messages
+      summary: List Booking Messages
       description: >-
         Retrieves the message thread for a specific booking, including
         all messages exchanged between the host and guest.
       tags:
-        - Experience Messages
+      - Experience Messages
       parameters:
-        - $ref: '#/components/parameters/bookingIdParam'
-        - $ref: '#/components/parameters/limitParam'
-        - $ref: '#/components/parameters/offsetParam'
+      - $ref: '#/components/parameters/bookingIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
       responses:
         '200':
           description: A paginated list of messages in the booking thread.
@@ -483,14 +483,14 @@ paths:
           description: The booking was not found.
     post:
       operationId: sendBookingMessage
-      summary: Send a booking message
+      summary: Send a Booking Message
       description: >-
         Sends a new message in the booking thread from the host to
         the guest regarding the experience booking.
       tags:
-        - Experience Messages
+      - Experience Messages
       parameters:
-        - $ref: '#/components/parameters/bookingIdParam'
+      - $ref: '#/components/parameters/bookingIdParam'
       requestBody:
         required: true
         content:
@@ -498,7 +498,7 @@ paths:
             schema:
               type: object
               required:
-                - message
+              - message
               properties:
                 message:
                   type: string
@@ -602,22 +602,22 @@ components:
           description: >-
             The activity category of the experience.
           enum:
-            - arts_and_culture
-            - entertainment
-            - food_and_drink
-            - nature_and_outdoors
-            - sports
-            - tours
-            - wellness
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
         status:
           type: string
           description: >-
             The current status of the experience on the platform.
           enum:
-            - active
-            - inactive
-            - pending
-            - suspended
+          - active
+          - inactive
+          - pending
+          - suspended
         location:
           $ref: '#/components/schemas/ExperienceLocation'
         duration_minutes:
@@ -669,13 +669,13 @@ components:
     ExperienceCreate:
       type: object
       required:
-        - name
-        - description
-        - category
-        - location
-        - duration_minutes
-        - max_guests
-        - pricing
+      - name
+      - description
+      - category
+      - location
+      - duration_minutes
+      - max_guests
+      - pricing
       properties:
         name:
           type: string
@@ -692,13 +692,13 @@ components:
           description: >-
             The activity category of the experience.
           enum:
-            - arts_and_culture
-            - entertainment
-            - food_and_drink
-            - nature_and_outdoors
-            - sports
-            - tours
-            - wellness
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
         location:
           $ref: '#/components/schemas/ExperienceLocation'
         duration_minutes:
@@ -747,13 +747,13 @@ components:
           description: >-
             The activity category of the experience.
           enum:
-            - arts_and_culture
-            - entertainment
-            - food_and_drink
-            - nature_and_outdoors
-            - sports
-            - tours
-            - wellness
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
         location:
           $ref: '#/components/schemas/ExperienceLocation'
         duration_minutes:
@@ -787,8 +787,8 @@ components:
     ExperienceLocation:
       type: object
       required:
-        - city
-        - country
+      - city
+      - country
       properties:
         meeting_point:
           type: string
@@ -824,8 +824,8 @@ components:
     ExperiencePricing:
       type: object
       required:
-        - price_per_person
-        - currency
+      - price_per_person
+      - currency
       properties:
         price_per_person:
           type: number
@@ -944,14 +944,14 @@ components:
           description: >-
             The status of the schedule entry.
           enum:
-            - open
-            - full
-            - cancelled
+          - open
+          - full
+          - cancelled
     ScheduleCreate:
       type: object
       required:
-        - date
-        - start_time
+      - date
+      - start_time
       properties:
         date:
           type: string
@@ -986,8 +986,8 @@ components:
           description: >-
             The updated status of the schedule entry.
           enum:
-            - open
-            - cancelled
+          - open
+          - cancelled
     Booking:
       type: object
       properties:
@@ -1004,10 +1004,10 @@ components:
           description: >-
             The current status of the booking.
           enum:
-            - pending
-            - confirmed
-            - cancelled
-            - completed
+          - pending
+          - confirmed
+          - cancelled
+          - completed
         experience_id:
           type: string
           description: >-
@@ -1087,8 +1087,8 @@ components:
           description: >-
             Whether the message was sent by the host or guest.
           enum:
-            - host
-            - guest
+          - host
+          - guest
         message:
           type: string
           description: >-

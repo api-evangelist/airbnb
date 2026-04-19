@@ -1,0 +1,7 @@
+{
+  "base_price": 120.0,
+  "weekend_price": 150.0,
+  "currency": "USD",
+  "cleaning_fee": 50.0,
+  "security_deposit": 200.0
+}

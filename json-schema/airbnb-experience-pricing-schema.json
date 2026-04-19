@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-experience-pricing-schema.json",
+  "title": "ExperiencePricing",
+  "type": "object",
+  "properties": {
+    "price_per_person": {
+      "type": "number",
+      "format": "double",
+      "description": "The price per guest in the specified currency.",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "description": "The ISO 4217 currency code for pricing.",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "group_discount": {
+      "type": "object",
+      "description": "Optional group discount configuration.",
+      "properties": {
+        "min_guests": {
+          "type": "integer",
+          "description": "Minimum number of guests to qualify for the group discount.",
+          "minimum": 2
+        },
+        "discount_percent": {
+          "type": "number",
+          "description": "Percentage discount applied for group bookings.",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  },
+  "required": [
+    "price_per_person",
+    "currency"
+  ]
+}

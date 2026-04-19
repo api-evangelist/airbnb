@@ -1,0 +1,30 @@
+{
+  "name": "ExperienceHost",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the experience host."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The display name of the host."
+    },
+    {
+      "name": "bio",
+      "type": "string",
+      "description": "A short biography of the host."
+    },
+    {
+      "name": "profile_picture_url",
+      "type": "uri",
+      "description": "The URL of the host profile picture."
+    },
+    {
+      "name": "superhost",
+      "type": "boolean",
+      "description": "Whether the host has Superhost status."
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "ExperienceUpdate",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "The display name of the experience."
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "description": "The full description of the experience and what guests will do."
+    },
+    {
+      "name": "category",
+      "type": "string",
+      "description": "The activity category of the experience."
+    },
+    {
+      "name": "location",
+      "type": "ExperienceLocation"
+    },
+    {
+      "name": "duration_minutes",
+      "type": "int32",
+      "description": "The duration of the experience in minutes."
+    },
+    {
+      "name": "max_guests",
+      "type": "int32",
+      "description": "The maximum number of guests per session."
+    },
+    {
+      "name": "pricing",
+      "type": "ExperiencePricing"
+    },
+    {
+      "name": "languages",
+      "type": "array<string>",
+      "description": "The languages in which the experience is offered."
+    },
+    {
+      "name": "what_to_bring",
+      "type": "array<string>",
+      "description": "Items guests should bring to the experience."
+    },
+    {
+      "name": "accessibility",
+      "type": "string",
+      "description": "Accessibility information for the experience."
+    }
+  ]
+}

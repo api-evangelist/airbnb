@@ -1,0 +1,19 @@
+{
+  "id": "abc123def456",
+  "name": "Cozy Downtown Loft",
+  "description": "A stylish loft in the heart of downtown with all amenities.",
+  "property_type": "apartment",
+  "room_type": "entire_home",
+  "bedrooms": 1,
+  "bathrooms": 1.0,
+  "max_guests": 3,
+  "status": "active",
+  "address": {
+    "street": "123 Main St",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "US"
+  },
+  "base_price": 120.0,
+  "currency": "USD"
+}

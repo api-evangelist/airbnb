@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-pricing-schema.json",
+  "title": "Pricing",
+  "type": "object",
+  "properties": {
+    "nightly_price": {
+      "type": "number",
+      "format": "double",
+      "description": "The base nightly price in the listing currency.",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "description": "The ISO 4217 currency code for pricing.",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "cleaning_fee": {
+      "type": "number",
+      "format": "double",
+      "description": "The one-time cleaning fee charged per reservation.",
+      "minimum": 0
+    },
+    "weekly_discount": {
+      "type": "number",
+      "description": "The percentage discount for stays of 7 or more nights.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "monthly_discount": {
+      "type": "number",
+      "description": "The percentage discount for stays of 28 or more nights.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "extra_guest_fee": {
+      "type": "number",
+      "format": "double",
+      "description": "The additional fee per extra guest beyond the base occupancy.",
+      "minimum": 0
+    }
+  }
+}

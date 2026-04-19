@@ -1,0 +1,40 @@
+{
+  "name": "Address",
+  "fields": [
+    {
+      "name": "street",
+      "type": "string",
+      "description": "The street address of the property."
+    },
+    {
+      "name": "city",
+      "type": "string",
+      "description": "The city where the property is located."
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": "The state or province where the property is located."
+    },
+    {
+      "name": "zip_code",
+      "type": "string",
+      "description": "The postal or ZIP code."
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "description": "The ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "latitude",
+      "type": "double",
+      "description": "The latitude coordinate of the property."
+    },
+    {
+      "name": "longitude",
+      "type": "double",
+      "description": "The longitude coordinate of the property."
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "name": "Booking",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The unique identifier of the booking."
+    },
+    {
+      "name": "confirmation_code",
+      "type": "string",
+      "description": "The human-readable confirmation code for the booking."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "The current status of the booking."
+    },
+    {
+      "name": "experience_id",
+      "type": "string",
+      "description": "The identifier of the booked experience."
+    },
+    {
+      "name": "schedule_id",
+      "type": "string",
+      "description": "The identifier of the booked schedule entry."
+    },
+    {
+      "name": "guest",
+      "type": "BookingGuest"
+    },
+    {
+      "name": "guests_count",
+      "type": "int32",
+      "description": "The number of guests included in the booking."
+    },
+    {
+      "name": "total_price",
+      "type": "double",
+      "description": "The total price of the booking."
+    },
+    {
+      "name": "currency",
+      "type": "string",
+      "description": "The ISO 4217 currency code for the booking pricing."
+    },
+    {
+      "name": "host_payout",
+      "type": "double",
+      "description": "The amount to be paid out to the host after fees."
+    },
+    {
+      "name": "created_at",
+      "type": "datetime",
+      "description": "The timestamp when the booking was created."
+    },
+    {
+      "name": "updated_at",
+      "type": "datetime",
+      "description": "The timestamp when the booking was last updated."
+    }
+  ]
+}

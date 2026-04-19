@@ -1,0 +1,12 @@
+{
+  "name": "example-name",
+  "description": "example-description",
+  "category": "example-category",
+  "location": "example-location",
+  "duration_minutes": 1,
+  "max_guests": 1,
+  "pricing": "example-pricing",
+  "languages": [],
+  "what_to_bring": [],
+  "accessibility": "example-accessibility"
+}

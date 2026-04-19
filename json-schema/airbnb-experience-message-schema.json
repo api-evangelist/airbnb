@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/json-schema/airbnb-experience-message-schema.json",
+  "title": "ExperienceMessage",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique identifier of the message."
+    },
+    "booking_id": {
+      "type": "string",
+      "description": "The identifier of the associated booking."
+    },
+    "sender_type": {
+      "type": "string",
+      "description": "Whether the message was sent by the host or guest.",
+      "enum": [
+        "host",
+        "guest"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "The text content of the message."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The timestamp when the message was sent."
+    }
+  }
+}
