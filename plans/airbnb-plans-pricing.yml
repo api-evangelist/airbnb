@@ -1,147 +1,181 @@
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: airbnb
+provider: Airbnb
 providerId: airbnb
 created: '2026-05-04'
-modified: '2026-05-04'
-tags: []
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Hospitality
+  - Travel
+  - Short-Term Rental
+  - Marketplace
+  - Take Rate
+description: Airbnb does not sell API access on a per-call rate card; APIs are exposed to approved
+  Software Partners (channel managers, property-management systems) and partners earn revenue inside
+  the marketplace's host/guest service-fee model. Airbnb monetizes the booking transaction itself —
+  most hosts pay a 3% Host-only split fee or a single Host-only fee around 14-16% (15.5% typical),
+  with guests paying 14.1%-16.5%. Experiences and Services have separate take rates.
+notes: API access is partner-program-gated; commercial terms are bilateral. Plans below capture the
+  marketplace take-rate Airbnb actually charges, since that is the cost surface partners and hosts care
+  about. Software Partner program does not expose published per-call API pricing.
+sources:
+  - https://www.airbnb.com/help/article/1857
+  - https://partners.airbnb.com/
 plans:
-  - id: airbnb-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the airbnb API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.airbnb.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.airbnb.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Airbnb Homes API
-      - name: Airbnb Activities API
-      - name: Airbnb Webhooks API
-  - id: airbnb-pro
-    name: Professional
-    type: paid
-    description: Production tier for airbnb. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.airbnb.com
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://api.airbnb.com
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
-        limit: -1
-        timeFrame: month
-        geo: global
-        domains:
-          - https://api.airbnb.com
-        unit: 1000
-        price: TBD
-        userMultiplied: false
-    elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Airbnb Homes API
-      - name: Airbnb Activities API
-      - name: Airbnb Webhooks API
-  - id: airbnb-enterprise
-    name: Enterprise
+  - id: airbnb-software-partner
+    name: Software Partner Program
     type: enterprise
-    description: Custom-negotiated tier for airbnb. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: API access for approved channel managers and property-management software. Onboarding
+      requires Airbnb Software Partner approval; commercial terms are bilateral and not publicly listed.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Software Partner agreement
+        name: software_partner_contract
+        type: subscription
+        metric: contract
         limit: -1
         timeFrame: month
-        geo: configurable
-        domains:
-          - https://api.airbnb.com
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://api.airbnb.com
-        unit: 1
-        price: custom
+        price: contact Airbnb partner team
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Airbnb Homes API
-      - name: Airbnb Activities API
-      - name: Airbnb Webhooks API
-maintainers: []
+      - name: Listings, Calendar, Pricing, Reservations, Messaging APIs
+      - name: Webhooks for reservation / availability events
+      - name: Approved Software Partner badge
+  - id: airbnb-host-fee-split
+    name: Host Fee — Split (Homes)
+    type: usage-based
+    description: Default Homes service-fee structure — a smaller percentage on the host plus a guest
+      service fee on top. Brazil and Mexico use higher host rates.
+    entries:
+      - label: Host service fee — most hosts
+        name: host_fee_split_global
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '3%'
+        userMultiplied: false
+      - label: Host service fee — Brazil
+        name: host_fee_split_br
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: '4%'
+        userMultiplied: false
+      - label: Host service fee — Mexico (effective June 2026)
+        name: host_fee_split_mx
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: '4%'
+        userMultiplied: false
+      - label: Guest service fee
+        name: guest_fee
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 14.1% – 16.5% (varies by booking and currency)
+        userMultiplied: false
+    elements:
+      - name: Default for most Homes hosts
+      - name: Guest pays separate service fee
+  - id: airbnb-host-fee-host-only
+    name: Host Fee — Host-Only (Homes)
+    type: usage-based
+    description: Single Host-only fee structure — Airbnb deducts one larger percentage from the host
+      and the guest pays no service fee on top. Being phased in for certain hosts.
+    entries:
+      - label: Host-only fee — most hosts
+        name: host_only_fee_global
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '15.5%'
+        userMultiplied: false
+      - label: Host-only fee — typical range
+        name: host_only_fee_range
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 14% – 16% (varies)
+        userMultiplied: false
+      - label: Host-only fee — Brazil
+        name: host_only_fee_br
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: BR
+        unit: 1
+        price: '16%'
+        userMultiplied: false
+      - label: Host-only fee — Mexico (effective June 2026)
+        name: host_only_fee_mx
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: MX
+        unit: 1
+        price: '16%'
+        userMultiplied: false
+    elements:
+      - name: No guest service fee
+      - name: Single take-rate on host
+  - id: airbnb-services-fee
+    name: Services Fee
+    type: usage-based
+    description: Service fee on Airbnb Services bookings.
+    entries:
+      - label: Services service fee
+        name: services_fee
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: 15% (minimum $6 USD)
+        userMultiplied: false
+    elements:
+      - name: Applies to Airbnb Services bookings
+  - id: airbnb-experiences-fee
+    name: Experiences Fee
+    type: usage-based
+    description: Service fee on Airbnb Experiences bookings.
+    entries:
+      - label: Experiences service fee
+        name: experiences_fee
+        type: metered
+        metric: booking_subtotal
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '20%'
+        userMultiplied: false
+    elements:
+      - name: Applies to Airbnb Experiences bookings
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

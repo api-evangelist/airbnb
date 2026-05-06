@@ -1,160 +1,102 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Airbnb
+providerId: airbnb
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: airbnb
-providerId: airbnb
-publisherName: airbnb
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
+publisherName: Airbnb, Inc.
+serviceCategory: Hospitality Marketplace
 tags:
+  - Hospitality
+  - Travel
+  - Short-Term Rental
+  - Marketplace
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the airbnb API surface. Provides a FOCUS-aligned mapping
-  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: FOCUS-aligned shape for Airbnb. Take-rate marketplace — Airbnb is paid as a percentage of
+  the booking subtotal. FinOps for hosts and partners centers on host service fees (3% split or
+  ~14-16% host-only), guest fees, and product-line take rates (Services 15%, Experiences 20%).
+sources:
+  - https://www.airbnb.com/help/article/1857
+  - https://partners.airbnb.com/
 billingModel:
-  pricingCategory: Usage-Based
-  billingFrequency: Monthly
-  billingCurrency: USD
+  pricingCategory: Take Rate (Marketplace)
+  billingFrequency: Per-Booking / Continuous Settlement
+  billingCurrency: USD (settlement varies)
   chargeCategories:
     - Usage
-    - Purchase
-    - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Refund
+    - Tax
 focusColumns:
-  ServiceName: airbnb
-  ServiceCategory: Developer Tools / API
-  ProviderName: airbnb
-  PublisherName: airbnb
-  InvoiceIssuerName: airbnb
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceName: Airbnb Marketplace
+  ServiceCategory: Hospitality Marketplace
+  ProviderName: Airbnb
+  PublisherName: Airbnb, Inc.
+  InvoiceIssuerName: Airbnb, Inc.
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: host_service_fee
+    description: Host-side take rate on Homes bookings (split or host-only structure)
+    unit: USD
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
+      - fee_structure
+      - country
+      - listing
+  - name: guest_service_fee
+    description: Guest-side take rate on Homes bookings (split structure only)
+    unit: USD
     aggregation: sum
     dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+      - currency
+      - country
+  - name: services_fee
+    description: 15% take rate on Airbnb Services bookings ($6 USD minimum)
+    unit: USD
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Airbnb Homes API
-    baseURL: https://api.airbnb.com
-    tags:
-      - Airbnb
-      - Calendar
-      - Channel Manager
-      - Hospitality
-      - Host
-      - Listings
-      - Lodging
-      - Photos
-      - Property Management
-      - Reservations
-      - Short-Term Rental
-      - Travel
-      - Vacation Rentals
-    serviceName: Airbnb Homes API
-    serviceCategory: API
-  - name: Airbnb Activities API
-    baseURL: https://api.airbnb.com
-    tags:
-      - Activities
-      - Airbnb
-      - Bookings
-      - Experiences
-      - Hospitality
-      - Tourism
-      - Travel
-    serviceName: Airbnb Activities API
-    serviceCategory: API
-  - name: Airbnb Webhooks API
-    baseURL: https://api.airbnb.com
-    tags:
-      - Airbnb
-      - Events
-      - Hospitality
-      - Notifications
-      - Real-Time
-      - Reservations
-      - Travel
-      - Webhooks
-    serviceName: Airbnb Webhooks API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
-maintainers: []
+      - service_type
+      - country
+  - name: experiences_fee
+    description: 20% take rate on Airbnb Experiences bookings
+    unit: USD
+    aggregation: sum
+    dimensions:
+      - experience_type
+      - country
+  - name: bookings_count
+    description: Booking volume across the marketplace
+    unit: booking
+    aggregation: count
+    dimensions:
+      - product_line
+      - country
+      - listing
+principles:
+  - name: Visibility
+    description: Hosts track payouts and fees in the Airbnb host dashboard transaction history;
+      Software Partners reconcile via Reservations API and webhook events.
+  - name: Allocation
+    description: Allocate fees by listing, market (country / city), and product line (Homes / Services
+      / Experiences). For multi-property hosts, listing ID is the canonical allocation key.
+  - name: Optimization
+    description: Optimize take-rate exposure by tuning pricing strategy, choosing between split and
+      host-only fee structures where eligible, minimizing cancellations and refunds, and using Smart
+      Pricing or pricing tools to maintain occupancy.
+  - name: Accountability
+    description: Hosts and property managers own marketplace fees against revenue; Software Partners
+      pass-through to their hosts. Review monthly against booking subtotals and adjust pricing
+      strategy quarterly.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
