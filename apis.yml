@@ -118,7 +118,7 @@ common:
   url: https://www.airbnb.com/
 - type: Portal
   url: https://developer.withairbnb.com/
-- type: JSON-LD
+- type: JSONLD
   url: json-ld/airbnb-context.jsonld
 - type: JSONSchema
   url: json-schema/airbnb-listing-schema.json
@@ -138,7 +138,7 @@ common:
   url: https://www.airbnb.com/terms
 - type: PrivacyPolicy
   url: https://www.airbnb.com/privacy
-- type: Status
+- type: StatusPage
   url: https://airbnb.statuspage.io/
 - type: JSONSchema
   url: json-schema/airbnb-address-schema.json
