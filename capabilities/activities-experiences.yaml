@@ -1,0 +1,212 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Airbnb Activities API — Experiences
+  description: 'Airbnb Activities API — Experiences. 5 operations. Lead operation: List All Experiences. Self-contained Naftiko
+    capability covering one Airbnb business surface.'
+  tags:
+  - Airbnb
+  - Experiences
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIRBNB_API_KEY: AIRBNB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: activities-experiences
+    baseUri: https://api.airbnb.com/v2
+    description: Airbnb Activities API — Experiences business capability. Self-contained, no shared references.
+    resources:
+    - name: experiences
+      path: /experiences
+      operations:
+      - name: listexperiences
+        method: GET
+        description: List All Experiences
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter experiences by their current status on the platform.
+        - name: category
+          in: query
+          type: string
+          description: Filter experiences by activity category.
+      - name: createexperience
+        method: POST
+        description: Create a New Experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: experiences-experience_id
+      path: /experiences/{experience_id}
+      operations:
+      - name: getexperience
+        method: GET
+        description: Get an Experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateexperience
+        method: PUT
+        description: Update an Experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteexperience
+        method: DELETE
+        description: Delete an Experience
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AIRBNB_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: activities-experiences-rest
+    port: 8080
+    description: REST adapter for Airbnb Activities API — Experiences. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/experiences
+      name: experiences
+      description: REST surface for experiences.
+      operations:
+      - method: GET
+        name: listexperiences
+        description: List All Experiences
+        call: activities-experiences.listexperiences
+        with:
+          status: rest.status
+          category: rest.category
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexperience
+        description: Create a New Experience
+        call: activities-experiences.createexperience
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/experiences/{experience-id}
+      name: experiences-experience-id
+      description: REST surface for experiences-experience_id.
+      operations:
+      - method: GET
+        name: getexperience
+        description: Get an Experience
+        call: activities-experiences.getexperience
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateexperience
+        description: Update an Experience
+        call: activities-experiences.updateexperience
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteexperience
+        description: Delete an Experience
+        call: activities-experiences.deleteexperience
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: activities-experiences-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Airbnb Activities API — Experiences. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-all-experiences
+      description: List All Experiences
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activities-experiences.listexperiences
+      with:
+        status: tools.status
+        category: tools.category
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-experience
+      description: Create a New Experience
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: activities-experiences.createexperience
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-experience
+      description: Get an Experience
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activities-experiences.getexperience
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-experience
+      description: Update an Experience
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: activities-experiences.updateexperience
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-experience
+      description: Delete an Experience
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: activities-experiences.deleteexperience
+      outputParameters:
+      - type: object
+        mapping: $.

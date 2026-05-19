@@ -1,0 +1,203 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Airbnb Activities API — Bookings
+  description: 'Airbnb Activities API — Bookings. 4 operations. Lead operation: List Experience Bookings. Self-contained Naftiko
+    capability covering one Airbnb business surface.'
+  tags:
+  - Airbnb
+  - Bookings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIRBNB_API_KEY: AIRBNB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: activities-bookings
+    baseUri: https://api.airbnb.com/v2
+    description: Airbnb Activities API — Bookings business capability. Self-contained, no shared references.
+    resources:
+    - name: bookings
+      path: /bookings
+      operations:
+      - name: listbookings
+        method: GET
+        description: List Experience Bookings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter bookings by their current status.
+        - name: experience_id
+          in: query
+          type: string
+          description: Filter bookings by experience identifier.
+        - name: start_date
+          in: query
+          type: string
+          description: Filter bookings with activity dates on or after this date.
+        - name: end_date
+          in: query
+          type: string
+          description: Filter bookings with activity dates on or before this date.
+    - name: bookings-booking_id
+      path: /bookings/{booking_id}
+      operations:
+      - name: getbooking
+        method: GET
+        description: Get a Booking
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: bookings-booking_id-cancel
+      path: /bookings/{booking_id}/cancel
+      operations:
+      - name: cancelbooking
+        method: POST
+        description: Cancel a Booking
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: bookings-booking_id-confirm
+      path: /bookings/{booking_id}/confirm
+      operations:
+      - name: confirmbooking
+        method: POST
+        description: Confirm a Booking
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AIRBNB_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: activities-bookings-rest
+    port: 8080
+    description: REST adapter for Airbnb Activities API — Bookings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/bookings
+      name: bookings
+      description: REST surface for bookings.
+      operations:
+      - method: GET
+        name: listbookings
+        description: List Experience Bookings
+        call: activities-bookings.listbookings
+        with:
+          status: rest.status
+          experience_id: rest.experience_id
+          start_date: rest.start_date
+          end_date: rest.end_date
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bookings/{booking-id}
+      name: bookings-booking-id
+      description: REST surface for bookings-booking_id.
+      operations:
+      - method: GET
+        name: getbooking
+        description: Get a Booking
+        call: activities-bookings.getbooking
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bookings/{booking-id}/cancel
+      name: bookings-booking-id-cancel
+      description: REST surface for bookings-booking_id-cancel.
+      operations:
+      - method: POST
+        name: cancelbooking
+        description: Cancel a Booking
+        call: activities-bookings.cancelbooking
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bookings/{booking-id}/confirm
+      name: bookings-booking-id-confirm
+      description: REST surface for bookings-booking_id-confirm.
+      operations:
+      - method: POST
+        name: confirmbooking
+        description: Confirm a Booking
+        call: activities-bookings.confirmbooking
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: activities-bookings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Airbnb Activities API — Bookings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-experience-bookings
+      description: List Experience Bookings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activities-bookings.listbookings
+      with:
+        status: tools.status
+        experience_id: tools.experience_id
+        start_date: tools.start_date
+        end_date: tools.end_date
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-booking
+      description: Get a Booking
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: activities-bookings.getbooking
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-booking
+      description: Cancel a Booking
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: activities-bookings.cancelbooking
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: confirm-booking
+      description: Confirm a Booking
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: activities-bookings.confirmbooking
+      outputParameters:
+      - type: object
+        mapping: $.

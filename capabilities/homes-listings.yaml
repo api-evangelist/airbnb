@@ -1,0 +1,206 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Airbnb Homes API — Listings
+  description: 'Airbnb Homes API — Listings. 5 operations. Lead operation: List All Listings. Self-contained Naftiko capability
+    covering one Airbnb business surface.'
+  tags:
+  - Airbnb
+  - Listings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIRBNB_API_KEY: AIRBNB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: homes-listings
+    baseUri: https://api.airbnb.com/v2
+    description: Airbnb Homes API — Listings business capability. Self-contained, no shared references.
+    resources:
+    - name: listings
+      path: /listings
+      operations:
+      - name: listlistings
+        method: GET
+        description: List All Listings
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter listings by their current status on the platform.
+      - name: createlisting
+        method: POST
+        description: Create a New Listing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: listings-listing_id
+      path: /listings/{listing_id}
+      operations:
+      - name: getlisting
+        method: GET
+        description: Get a Listing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatelisting
+        method: PUT
+        description: Update a Listing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletelisting
+        method: DELETE
+        description: Delete a Listing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AIRBNB_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: homes-listings-rest
+    port: 8080
+    description: REST adapter for Airbnb Homes API — Listings. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/listings
+      name: listings
+      description: REST surface for listings.
+      operations:
+      - method: GET
+        name: listlistings
+        description: List All Listings
+        call: homes-listings.listlistings
+        with:
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlisting
+        description: Create a New Listing
+        call: homes-listings.createlisting
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/listings/{listing-id}
+      name: listings-listing-id
+      description: REST surface for listings-listing_id.
+      operations:
+      - method: GET
+        name: getlisting
+        description: Get a Listing
+        call: homes-listings.getlisting
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatelisting
+        description: Update a Listing
+        call: homes-listings.updatelisting
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletelisting
+        description: Delete a Listing
+        call: homes-listings.deletelisting
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: homes-listings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Airbnb Homes API — Listings. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-all-listings
+      description: List All Listings
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: homes-listings.listlistings
+      with:
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-listing
+      description: Create a New Listing
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: homes-listings.createlisting
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-listing
+      description: Get a Listing
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: homes-listings.getlisting
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-listing
+      description: Update a Listing
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: homes-listings.updatelisting
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-listing
+      description: Delete a Listing
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: homes-listings.deletelisting
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -25,12 +25,22 @@ apis:
     type: Documentation
   - type: OpenAPI
     url: openapi/airbnb-homes-api-openapi.yml
-  description: >-
-    The Airbnb Homes API provides partner developers with programmatic access to
-    manage vacation rental listings on the Airbnb platform. It supports creating
-    and updating property listings, managing descriptions, amenities, photos, pricing,
-    and availability rules. The API also enables reservation management, calendar
-    synchronization, guest messaging, and review handling.
+  - type: NaftikoCapability
+    url: capabilities/homes-calendar.yaml
+  - type: NaftikoCapability
+    url: capabilities/homes-listings.yaml
+  - type: NaftikoCapability
+    url: capabilities/homes-messages.yaml
+  - type: NaftikoCapability
+    url: capabilities/homes-photos.yaml
+  - type: NaftikoCapability
+    url: capabilities/homes-reservations.yaml
+  - type: NaftikoCapability
+    url: capabilities/homes-reviews.yaml
+  description: The Airbnb Homes API provides partner developers with programmatic access to manage vacation rental listings
+    on the Airbnb platform. It supports creating and updating property listings, managing descriptions, amenities, photos,
+    pricing, and availability rules. The API also enables reservation management, calendar synchronization, guest messaging,
+    and review handling.
   features:
   - Listing creation and management with full property details
   - Photo upload and management for listings
@@ -63,11 +73,17 @@ apis:
     type: Documentation
   - type: OpenAPI
     url: openapi/airbnb-activities-api-openapi.yml
-  description: >-
-    The Airbnb Activities API allows approved partners to integrate with Airbnb
-    Experiences, the platform's marketplace for hosted activities and tours. It
-    provides endpoints for managing experience listings, handling bookings, and
-    synchronizing availability for activities offered by local hosts.
+  - type: NaftikoCapability
+    url: capabilities/activities-bookings.yaml
+  - type: NaftikoCapability
+    url: capabilities/activities-experience-messages.yaml
+  - type: NaftikoCapability
+    url: capabilities/activities-experiences.yaml
+  - type: NaftikoCapability
+    url: capabilities/activities-schedules.yaml
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace
+    for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing
+    availability for activities offered by local hosts.
   features:
   - Experience listing creation and management
   - Activity scheduling and availability management
@@ -98,11 +114,9 @@ apis:
     type: Documentation
   - type: AsyncAPI
     url: asyncapi/airbnb-webhooks-asyncapi.yml
-  description: >-
-    The Airbnb Webhooks API enables connectivity partners to receive real-time notifications
-    when events occur on the Airbnb platform. It supports webhook subscriptions
-    for reservation changes, message creation, review submissions, listing calendar
-    updates, and other key events.
+  description: The Airbnb Webhooks API enables connectivity partners to receive real-time notifications when events occur
+    on the Airbnb platform. It supports webhook subscriptions for reservation changes, message creation, review submissions,
+    listing calendar updates, and other key events.
   features:
   - Real-time reservation status change notifications
   - Guest message event notifications
@@ -292,12 +306,10 @@ common:
   url: examples/airbnb-webhook-event-example.json
 - type: SpectralRules
   url: rules/airbnb-spectral-rules.yml
-- type: NaftikoCapability
-  url: capabilities/shared/airbnb-api.yaml
-- type: NaftikoCapability
-  url: capabilities/airbnb-listing-management.yaml
 - type: Vocabulary
   url: vocabulary/airbnb-vocabulary.yaml
-modified: '2026-04-19'
-description: |-
-  Airbnb is the world's leading home-sharing and short-term rental marketplace, connecting hosts who offer accommodations and experiences with guests worldwide. The Airbnb developer platform provides connectivity partners — property management systems, channel managers, and experience operators — with APIs to manage listings, reservations, calendars, messaging, reviews, and webhook-based event notifications. Access is restricted to approved partners.
+modified: '2026-05-19'
+description: Airbnb is the world's leading home-sharing and short-term rental marketplace, connecting hosts who offer accommodations
+  and experiences with guests worldwide. The Airbnb developer platform provides connectivity partners — property management
+  systems, channel managers, and experience operators — with APIs to manage listings, reservations, calendars, messaging,
+  reviews, and webhook-based event notifications. Access is restricted to approved partners.

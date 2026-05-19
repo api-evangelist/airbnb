@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Airbnb Homes API — Reviews
+  description: 'Airbnb Homes API — Reviews. 2 operations. Lead operation: List Listing Reviews. Self-contained Naftiko capability
+    covering one Airbnb business surface.'
+  tags:
+  - Airbnb
+  - Reviews
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AIRBNB_API_KEY: AIRBNB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: homes-reviews
+    baseUri: https://api.airbnb.com/v2
+    description: Airbnb Homes API — Reviews business capability. Self-contained, no shared references.
+    resources:
+    - name: listings-listing_id-reviews
+      path: /listings/{listing_id}/reviews
+      operations:
+      - name: listlistingreviews
+        method: GET
+        description: List Listing Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reservations-reservation_id-reviews
+      path: /reservations/{reservation_id}/reviews
+      operations:
+      - name: listreservationreviews
+        method: GET
+        description: List Reservation Reviews
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AIRBNB_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: homes-reviews-rest
+    port: 8080
+    description: REST adapter for Airbnb Homes API — Reviews. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/listings/{listing-id}/reviews
+      name: listings-listing-id-reviews
+      description: REST surface for listings-listing_id-reviews.
+      operations:
+      - method: GET
+        name: listlistingreviews
+        description: List Listing Reviews
+        call: homes-reviews.listlistingreviews
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reservations/{reservation-id}/reviews
+      name: reservations-reservation-id-reviews
+      description: REST surface for reservations-reservation_id-reviews.
+      operations:
+      - method: GET
+        name: listreservationreviews
+        description: List Reservation Reviews
+        call: homes-reviews.listreservationreviews
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: homes-reviews-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Airbnb Homes API — Reviews. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-listing-reviews
+      description: List Listing Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: homes-reviews.listlistingreviews
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-reservation-reviews
+      description: List Reservation Reviews
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: homes-reviews.listreservationreviews
+      outputParameters:
+      - type: object
+        mapping: $.
