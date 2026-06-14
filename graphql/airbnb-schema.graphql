@@ -1,0 +1,828 @@
+"""
+Airbnb GraphQL Schema
+Conceptual schema derived from the Airbnb Partner API (REST) at https://developer.withairbnb.com/
+Covers listings, reservations, calendars, pricing, guests, hosts, messaging, reviews, experiences, and payments.
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar Date
+scalar DateTime
+scalar URL
+scalar JSON
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum ListingType {
+  ENTIRE_HOME
+  PRIVATE_ROOM
+  SHARED_ROOM
+  HOTEL_ROOM
+}
+
+enum BookingStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  CANCELLED
+  EXPIRED
+  TIMEDOUT
+}
+
+enum ReviewStatus {
+  PENDING
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MessageRole {
+  GUEST
+  HOST
+  SYSTEM
+}
+
+enum PayoutStatus {
+  UPCOMING
+  SENT
+  FAILED
+  CANCELLED
+}
+
+enum VerificationStatus {
+  UNVERIFIED
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+enum ExperienceStatus {
+  ACTIVE
+  INACTIVE
+  PENDING_REVIEW
+  SUSPENDED
+}
+
+enum CancellationPolicy {
+  FLEXIBLE
+  MODERATE
+  STRICT
+  SUPER_STRICT_30
+  SUPER_STRICT_60
+  LONG_TERM
+}
+
+# ─── Location ───────────────────────────────────────────────────────────────
+
+"""Geographic coordinate expressed as latitude and longitude."""
+type GeoCoordinate {
+  latitude: Float!
+  longitude: Float!
+}
+
+"""Street address for a listing or experience."""
+type Address {
+  street: String
+  apt: String
+  city: String!
+  state: String
+  zipCode: String
+  countryCode: String!
+  country: String
+}
+
+"""Full location including address and geo coordinate."""
+type Location {
+  address: Address!
+  coordinates: GeoCoordinate
+  neighborhood: String
+  transitInfo: String
+  directions: String
+}
+
+# ─── Amenities ───────────────────────────────────────────────────────────────
+
+"""A single amenity offered at a listing."""
+type Amenity {
+  id: ID!
+  name: String!
+  category: AmenityCategory!
+  isEssential: Boolean!
+  isSafetyFeature: Boolean!
+}
+
+"""A grouping of amenities by functional category."""
+type AmenityCategory {
+  id: ID!
+  name: String!
+  amenities: [Amenity!]!
+}
+
+# ─── Photos ──────────────────────────────────────────────────────────────────
+
+"""A photo associated with a listing or experience."""
+type Photo {
+  id: ID!
+  url: URL!
+  caption: String
+  sortOrder: Int
+  width: Int
+  height: Int
+  isPrimary: Boolean!
+  createdAt: DateTime!
+}
+
+# ─── Check-in / Check-out ────────────────────────────────────────────────────
+
+"""Check-in instructions and time windows for a listing."""
+type CheckInInfo {
+  checkInTime: String
+  checkInTimeEnd: String
+  instruction: String
+  selfCheckIn: Boolean!
+  selfCheckInType: String
+  keypadCode: String
+}
+
+"""Check-out instructions and time for a listing."""
+type CheckOutInfo {
+  checkOutTime: String
+  instruction: String
+}
+
+# ─── Pricing ─────────────────────────────────────────────────────────────────
+
+"""Base nightly price for a listing."""
+type Price {
+  amount: Float!
+  currency: String!
+  nativeCurrency: String
+  nativeAmount: Float
+}
+
+"""A rule that adjusts pricing under specific conditions."""
+type PricingRule {
+  id: ID!
+  type: String!
+  minNights: Int
+  maxNights: Int
+  priceFactor: Float
+  priceChange: Float
+  startDate: Date
+  endDate: Date
+}
+
+"""Weekend-specific pricing override."""
+type WeekendPrice {
+  price: Price!
+  appliesTo: [String!]!
+}
+
+"""Weekly discount pricing configuration."""
+type WeeklyPrice {
+  price: Price!
+  discountPercent: Float
+}
+
+"""Monthly discount pricing configuration."""
+type MonthlyPrice {
+  price: Price!
+  discountPercent: Float
+}
+
+"""Long-term stay pricing for stays over 28 nights."""
+type LongTermPrice {
+  price: Price!
+  minNights: Int!
+  discountPercent: Float
+}
+
+# ─── Availability & Calendar ──────────────────────────────────────────────────
+
+"""Availability status for a single calendar date."""
+type Availability {
+  date: Date!
+  available: Boolean!
+  minNights: Int
+  maxNights: Int
+  closedToArrival: Boolean!
+  closedToDeparture: Boolean!
+  price: Price
+  note: String
+}
+
+"""A date blocked on a listing calendar."""
+type BlockedDate {
+  date: Date!
+  reason: String
+  reservationId: ID
+}
+
+"""Calendar for a specific listing with availability and blocked dates."""
+type Calendar {
+  listingId: ID!
+  startDate: Date!
+  endDate: Date!
+  availability: [Availability!]!
+  blockedDates: [BlockedDate!]!
+}
+
+"""Host-level calendar view aggregating all managed listings."""
+type HostCalendar {
+  hostId: ID!
+  listings: [Calendar!]!
+}
+
+"""Availability window configured by a host for a listing."""
+type HostAvailability {
+  listingId: ID!
+  advanceNotice: Int
+  preparationTime: Int
+  availabilityWindow: Int
+  checkInDays: [String!]!
+  checkOutDays: [String!]!
+}
+
+# ─── Listing Types ────────────────────────────────────────────────────────────
+
+"""Detailed attributes of a listing."""
+type ListingDetails {
+  listingType: ListingType!
+  bedrooms: Int
+  beds: Int
+  bathrooms: Float
+  maxGuests: Int!
+  squareFeet: Int
+  floor: Int
+  propertyType: String
+  checkIn: CheckInInfo
+  checkOut: CheckOutInfo
+  houseRules: String
+  smokingAllowed: Boolean!
+  petsAllowed: Boolean!
+  eventsAllowed: Boolean!
+}
+
+"""Core listing entity representing a property on Airbnb."""
+type Listing {
+  id: ID!
+  name: String!
+  summary: String
+  description: String
+  space: String
+  access: String
+  interaction: String
+  neighborhoodOverview: String
+  transit: String
+  listingType: ListingType!
+  details: ListingDetails!
+  location: Location!
+  amenities: [Amenity!]!
+  photos: [Photo!]!
+  pricing: Price!
+  pricingRules: [PricingRule!]!
+  weekendPrice: WeekendPrice
+  weeklyPrice: WeeklyPrice
+  monthlyPrice: MonthlyPrice
+  longTermPrice: LongTermPrice
+  cancellationPolicy: CancellationPolicy!
+  calendar: Calendar
+  hostAvailability: HostAvailability
+  host: Host!
+  reviews: [Review!]!
+  rating: Float
+  reviewCount: Int!
+  isActive: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A listing offering an entire home or apartment."""
+type EntireHome {
+  listing: Listing!
+  buildingType: String
+  hasElevator: Boolean
+  hasParking: Boolean
+  parkingDetails: String
+}
+
+"""A listing offering a private room within a shared property."""
+type Room {
+  listing: Listing!
+  sharedBathroom: Boolean!
+  privateEntrance: Boolean!
+  hostShares: Boolean!
+}
+
+"""A listing offering a shared room."""
+type SharedRoom {
+  listing: Listing!
+  totalBeds: Int!
+  sharedWith: String
+}
+
+"""A hotel room listing integrated from a hotel partner."""
+type HotelRoom {
+  listing: Listing!
+  hotelName: String!
+  roomType: String
+  hotelStarRating: Int
+  hotelAmenities: [String!]!
+}
+
+# ─── Guest & Host Profiles ────────────────────────────────────────────────────
+
+"""Verification status for a user identity document or method."""
+type Verification {
+  type: String!
+  status: VerificationStatus!
+  verifiedAt: DateTime
+}
+
+"""Public profile information shared between guests and hosts."""
+type Profile {
+  id: ID!
+  firstName: String!
+  lastName: String
+  displayName: String!
+  pictureUrl: URL
+  about: String
+  languages: [String!]!
+  location: String
+  work: String
+  school: String
+  joinedDate: Date!
+  verifications: [Verification!]!
+}
+
+"""A guest (traveler) using the Airbnb platform."""
+type Guest {
+  id: ID!
+  profile: Profile!
+  email: String
+  phone: String
+  preferredCurrency: String
+  preferredLocale: String
+  wishLists: [Wishlist!]!
+  bookings: [Booking!]!
+  reviews: [Review!]!
+  createdAt: DateTime!
+}
+
+"""Host response to a guest review."""
+type HostResponse {
+  response: String!
+  respondedAt: DateTime!
+}
+
+"""Configuration options set by a host for their listings."""
+type HostConfig {
+  hostId: ID!
+  instantBookEnabled: Boolean!
+  requireGuestVerification: Boolean!
+  requireGuestReviews: Boolean!
+  minGuestRating: Float
+  allowPets: Boolean!
+  allowSmoking: Boolean!
+  allowEvents: Boolean!
+  defaultCheckInTime: String
+  defaultCheckOutTime: String
+}
+
+"""A host (property owner or manager) on the Airbnb platform."""
+type Host {
+  id: ID!
+  profile: Profile!
+  email: String
+  phone: String
+  isSuperhost: Boolean!
+  responseRate: Float
+  responseTime: String
+  config: HostConfig
+  listings: [Listing!]!
+  calendar: HostCalendar
+  reviews: [Review!]!
+  payoutAccount: PayoutAccount
+  createdAt: DateTime!
+}
+
+# ─── Reviews ──────────────────────────────────────────────────────────────────
+
+"""A rating lookup mapping category to numeric score."""
+type LookupRating {
+  accuracy: Float
+  cleanliness: Float
+  checkIn: Float
+  communication: Float
+  location: Float
+  value: Float
+  overall: Float
+}
+
+"""A review written by a guest about a host or listing."""
+type ReviewFrom {
+  id: ID!
+  reservationId: ID!
+  reviewer: Guest!
+  listing: Listing!
+  publicReview: String!
+  privateNote: String
+  rating: LookupRating!
+  status: ReviewStatus!
+  createdAt: DateTime!
+  hostResponse: HostResponse
+}
+
+"""A review written by a host about a guest."""
+type ReviewTo {
+  id: ID!
+  reservationId: ID!
+  reviewer: Host!
+  guest: Guest!
+  publicReview: String!
+  privateNote: String
+  recommended: Boolean!
+  status: ReviewStatus!
+  createdAt: DateTime!
+}
+
+"""A review entity (either guest-to-host or host-to-guest)."""
+type Review {
+  id: ID!
+  reservationId: ID!
+  publicReview: String!
+  rating: LookupRating
+  status: ReviewStatus!
+  createdAt: DateTime!
+  hostResponse: HostResponse
+}
+
+# ─── Reservations & Bookings ──────────────────────────────────────────────────
+
+"""A completed or active reservation on the Airbnb platform."""
+type Reservation {
+  id: ID!
+  confirmationCode: String!
+  listing: Listing!
+  guest: Guest!
+  host: Host!
+  checkIn: Date!
+  checkOut: Date!
+  nights: Int!
+  adults: Int!
+  children: Int!
+  infants: Int!
+  pets: Int!
+  status: BookingStatus!
+  totalPrice: Price!
+  guestPayment: Payment
+  hostPayout: Payout
+  specialRequests: String
+  guestNote: String
+  thread: Thread
+  reviews: [Review!]!
+  airCover: AirCover
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""A booking request or confirmed booking."""
+type Booking {
+  id: ID!
+  reservation: Reservation
+  listing: Listing!
+  guest: Guest!
+  checkIn: Date!
+  checkOut: Date!
+  adults: Int!
+  children: Int!
+  infants: Int!
+  pets: Int!
+  status: BookingStatus!
+  totalPrice: Price!
+  instantBook: Boolean!
+  specialRequests: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Messaging ────────────────────────────────────────────────────────────────
+
+"""A single message within a reservation thread."""
+type Message {
+  id: ID!
+  threadId: ID!
+  role: MessageRole!
+  body: String!
+  attachments: [URL!]!
+  sentAt: DateTime!
+  readAt: DateTime
+}
+
+"""A messaging thread associated with a reservation or booking inquiry."""
+type Thread {
+  id: ID!
+  reservationId: ID
+  listingId: ID!
+  guest: Guest!
+  host: Host!
+  messages: [Message!]!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Wishlists ────────────────────────────────────────────────────────────────
+
+"""An item saved to a wishlist."""
+type WishlistItem {
+  id: ID!
+  listing: Listing
+  experience: Experience
+  addedAt: DateTime!
+  note: String
+}
+
+"""A guest's saved collection of listings or experiences."""
+type Wishlist {
+  id: ID!
+  name: String!
+  guest: Guest!
+  items: [WishlistItem!]!
+  isPublic: Boolean!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Experiences ──────────────────────────────────────────────────────────────
+
+"""The category type of an Airbnb Experience."""
+type ExperienceType {
+  id: ID!
+  name: String!
+  description: String
+  iconUrl: URL
+}
+
+"""A specific scheduled activity session within an experience."""
+type ExperienceActivity {
+  id: ID!
+  experienceId: ID!
+  startDateTime: DateTime!
+  endDateTime: DateTime!
+  maxGuests: Int!
+  currentGuests: Int!
+  availableSpots: Int!
+  price: Price!
+  status: ExperienceStatus!
+}
+
+"""A photo associated with an Airbnb Experience."""
+type ExperiencePhoto {
+  id: ID!
+  experienceId: ID!
+  url: URL!
+  caption: String
+  sortOrder: Int
+  isPrimary: Boolean!
+  createdAt: DateTime!
+}
+
+"""An Airbnb Experience — a hosted activity or tour."""
+type Experience {
+  id: ID!
+  title: String!
+  description: String!
+  whatYoullDo: String
+  whatYoullLearn: String
+  whatToBring: String
+  whatIsProvided: String
+  experienceType: ExperienceType!
+  host: Host!
+  location: Location!
+  photos: [ExperiencePhoto!]!
+  durationMinutes: Int!
+  maxGuests: Int!
+  minAge: Int
+  price: Price!
+  languages: [String!]!
+  activities: [ExperienceActivity!]!
+  reviews: [Review!]!
+  rating: Float
+  reviewCount: Int!
+  status: ExperienceStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Search ───────────────────────────────────────────────────────────────────
+
+"""Input filters for a listing or experience search."""
+type SearchFilter {
+  checkIn: Date
+  checkOut: Date
+  adults: Int
+  children: Int
+  infants: Int
+  pets: Int
+  minPrice: Float
+  maxPrice: Float
+  currency: String
+  listingType: ListingType
+  minBedrooms: Int
+  minBeds: Int
+  minBathrooms: Float
+  amenityIds: [ID!]
+  instantBook: Boolean
+  superhostOnly: Boolean
+  minRating: Float
+  keywords: String
+  radius: Float
+}
+
+"""A single result item from a search query."""
+type SearchResult {
+  listing: Listing
+  experience: Experience
+  distance: Float
+  relevanceScore: Float
+}
+
+"""A search query and its paginated results."""
+type Search {
+  id: ID!
+  location: Location!
+  filters: SearchFilter!
+  results: [SearchResult!]!
+  totalCount: Int!
+  page: Int!
+  pageSize: Int!
+  hasNextPage: Boolean!
+}
+
+# ─── Payments & Payouts ───────────────────────────────────────────────────────
+
+"""A payment made by a guest for a booking."""
+type Payment {
+  id: ID!
+  reservationId: ID!
+  amount: Price!
+  status: String!
+  method: String
+  processedAt: DateTime
+  refundedAt: DateTime
+  refundAmount: Price
+  createdAt: DateTime!
+}
+
+"""A payout disbursed to a host."""
+type Payout {
+  id: ID!
+  hostId: ID!
+  reservationId: ID!
+  amount: Price!
+  status: PayoutStatus!
+  scheduledDate: Date
+  sentAt: DateTime
+  payoutMethod: PayoutMethod
+  createdAt: DateTime!
+}
+
+"""A bank account or payment method for host payouts."""
+type PayoutAccount {
+  id: ID!
+  hostId: ID!
+  accountType: String!
+  bankName: String
+  last4: String
+  currency: String!
+  country: String!
+  isDefault: Boolean!
+  verifiedAt: DateTime
+  createdAt: DateTime!
+}
+
+"""A specific payout method tied to a payout account."""
+type PayoutMethod {
+  id: ID!
+  payoutAccountId: ID!
+  type: String!
+  details: JSON
+  isPreferred: Boolean!
+  createdAt: DateTime!
+}
+
+# ─── Localization ─────────────────────────────────────────────────────────────
+
+"""Currency information for a specific locale."""
+type LocaleCurrency {
+  locale: String!
+  currency: String!
+  currencySymbol: String!
+  decimalSeparator: String!
+  thousandsSeparator: String!
+}
+
+"""Exchange rate between two currencies."""
+type ExchangeRate {
+  fromCurrency: String!
+  toCurrency: String!
+  rate: Float!
+  fetchedAt: DateTime!
+}
+
+# ─── Referrals ────────────────────────────────────────────────────────────────
+
+"""An invitation sent to a prospective user."""
+type Invite {
+  id: ID!
+  senderId: ID!
+  recipientEmail: String!
+  code: String!
+  creditAmount: Price
+  sentAt: DateTime!
+  acceptedAt: DateTime
+  expiresAt: DateTime
+}
+
+"""A completed referral and associated credit."""
+type Referral {
+  id: ID!
+  referrerId: ID!
+  referredUserId: ID!
+  invite: Invite!
+  creditEarned: Price!
+  status: String!
+  createdAt: DateTime!
+}
+
+# ─── Protection ───────────────────────────────────────────────────────────────
+
+"""Coverage detail within an AirCover protection package."""
+type InsuranceCoverage {
+  type: String!
+  coverageLimit: Price!
+  description: String!
+  exclusions: [String!]!
+}
+
+"""AirCover protection applied to a reservation."""
+type AirCover {
+  reservationId: ID!
+  hostDamageProtectionLimit: Price!
+  liabilityCoverageLimit: Price!
+  coverages: [InsuranceCoverage!]!
+  claimDeadlineDays: Int!
+  policyUrl: URL
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  listing(id: ID!): Listing
+  listings(hostId: ID, page: Int, pageSize: Int): [Listing!]!
+  search(location: String!, filters: SearchFilter, page: Int, pageSize: Int): Search!
+  reservation(id: ID!): Reservation
+  reservations(hostId: ID, guestId: ID, status: BookingStatus, page: Int, pageSize: Int): [Reservation!]!
+  calendar(listingId: ID!, startDate: Date!, endDate: Date!): Calendar
+  hostCalendar(hostId: ID!): HostCalendar
+  guest(id: ID!): Guest
+  host(id: ID!): Host
+  review(id: ID!): Review
+  reviews(listingId: ID, guestId: ID, hostId: ID, page: Int, pageSize: Int): [Review!]!
+  experience(id: ID!): Experience
+  experiences(hostId: ID, page: Int, pageSize: Int): [Experience!]!
+  thread(id: ID!): Thread
+  threads(userId: ID!, page: Int, pageSize: Int): [Thread!]!
+  wishlist(id: ID!): Wishlist
+  wishlists(guestId: ID!): [Wishlist!]!
+  payout(id: ID!): Payout
+  payouts(hostId: ID!, status: PayoutStatus, page: Int, pageSize: Int): [Payout!]!
+  exchangeRate(fromCurrency: String!, toCurrency: String!): ExchangeRate
+}
+
+type Mutation {
+  createListing(input: JSON!): Listing!
+  updateListing(id: ID!, input: JSON!): Listing!
+  deleteListing(id: ID!): Boolean!
+  updateCalendar(listingId: ID!, input: JSON!): Calendar!
+  acceptReservation(id: ID!): Reservation!
+  declineReservation(id: ID!, reason: String): Reservation!
+  cancelReservation(id: ID!, reason: String!): Reservation!
+  sendMessage(threadId: ID!, body: String!): Message!
+  createThread(listingId: ID!, guestId: ID!, body: String!): Thread!
+  submitReview(reservationId: ID!, publicReview: String!, rating: JSON!): Review!
+  respondToReview(reviewId: ID!, response: String!): Review!
+  createExperience(input: JSON!): Experience!
+  updateExperience(id: ID!, input: JSON!): Experience!
+  createWishlist(name: String!): Wishlist!
+  addToWishlist(wishlistId: ID!, listingId: ID, experienceId: ID): WishlistItem!
+  removeFromWishlist(wishlistId: ID!, itemId: ID!): Boolean!
+  createPayoutAccount(input: JSON!): PayoutAccount!
+  updatePayoutAccount(id: ID!, input: JSON!): PayoutAccount!
+}
+
+type Subscription {
+  reservationUpdated(hostId: ID!): Reservation!
+  messageReceived(threadId: ID!): Message!
+  reviewSubmitted(listingId: ID!): Review!
+  calendarUpdated(listingId: ID!): Calendar!
+}
