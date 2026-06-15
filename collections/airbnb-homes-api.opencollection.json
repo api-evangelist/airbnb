@@ -1,0 +1,551 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Homes API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter listings by their current status on the platform."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all property listings managed by the authenticated partner. Supports filtering by status and other listing attributes."
+        },
+        {
+          "info": {
+            "name": "Create a New Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/listings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new property listing on Airbnb with the provided details including property type, location, description, amenities, and house rules. The listing will be in a pending state until all required fields are completed and the listing is published."
+        },
+        {
+          "info": {
+            "name": "Get a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific property listing by its unique identifier, including description, amenities, photos, pricing, and availability configuration."
+        },
+        {
+          "info": {
+            "name": "Update a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing property listing with the provided fields. Only the fields included in the request body will be modified. This can be used to update descriptions, amenities, house rules, and other listing attributes."
+        },
+        {
+          "info": {
+            "name": "Delete a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Removes a property listing from the Airbnb platform. This action cannot be undone. Active reservations must be resolved before a listing can be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Photos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Listing Photos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Retrieves all photos associated with a specific listing, including their captions, sort order, and dimensions."
+        },
+        {
+          "info": {
+            "name": "Upload a Listing Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "photo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "caption",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "sort_order",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new photo to a listing. Photos can include captions and a sort order to control display position in the listing gallery."
+        },
+        {
+          "info": {
+            "name": "Delete a Listing Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos/:photo_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              },
+              {
+                "name": "photo_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the photo."
+              }
+            ]
+          },
+          "docs": "Removes a specific photo from a listing by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Calendar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Listing Calendar",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/calendar",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date for the calendar range in ISO 8601 format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date for the calendar range in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the availability calendar for a specific listing over a date range. Returns day-by-day availability status, nightly pricing, minimum stay requirements, and any blocked dates."
+        },
+        {
+          "info": {
+            "name": "Update Listing Calendar",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/calendar",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the availability, pricing, and minimum stay settings for specific dates on a listing calendar. Use this endpoint to block or unblock dates, adjust nightly pricing, and set minimum stay requirements."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Reservations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations by their current status."
+              },
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations by listing identifier."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations with check-in dates on or after this date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations with check-in dates on or before this date."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of reservations for listings managed by the authenticated partner. Supports filtering by status, listing, and date range."
+        },
+        {
+          "info": {
+            "name": "Get a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific reservation including guest information, dates, pricing breakdown, and current status."
+        },
+        {
+          "info": {
+            "name": "Accept a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/accept",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ]
+          },
+          "docs": "Accepts a pending reservation request. Once accepted, the reservation is confirmed and the calendar dates are blocked."
+        },
+        {
+          "info": {
+            "name": "Deny a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/deny",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Denies a pending reservation request. A reason for denial may be provided to inform the guest."
+        },
+        {
+          "info": {
+            "name": "Cancel a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/cancel",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an accepted reservation. Cancellation policies and fees may apply depending on the listing configuration and timing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Reservation Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/messages",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Retrieves the message thread for a specific reservation, including all messages exchanged between the host and guest."
+        },
+        {
+          "info": {
+            "name": "Send a Reservation Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/messages",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a new message in the reservation thread from the host to the guest. Messages are delivered through the Airbnb messaging system."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reviews",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Reservation Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/reviews",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ]
+          },
+          "docs": "Retrieves the reviews associated with a specific reservation, including both the guest review and host response if available."
+        },
+        {
+          "info": {
+            "name": "List Listing Reviews",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/reviews",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all reviews for a specific listing, including guest ratings and comments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

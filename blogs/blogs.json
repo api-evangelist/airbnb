@@ -6,9 +6,9 @@
       "feed_url": "",
       "title": "",
       "saved": 0,
-      "error": "no_feed"
+      "error": "403_forbidden"
     }
   ],
-  "fetched": "2026-05-17T20:48:52Z",
+  "fetched": "2026-06-07T00:00:00Z",
   "post_count": 0
 }

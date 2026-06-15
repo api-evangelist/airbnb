@@ -1,0 +1,439 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Experiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter experiences by their current status on the platform."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter experiences by activity category."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all experience listings managed by the authenticated partner. Supports filtering by status and activity category."
+        },
+        {
+          "info": {
+            "name": "Create a New Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/experiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new experience listing on Airbnb with the provided details including activity type, location, description, pricing, and scheduling information. The experience will be in a pending state until reviewed and approved by Airbnb."
+        },
+        {
+          "info": {
+            "name": "Get an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific experience listing by its unique identifier, including description, schedule, pricing, and host information."
+        },
+        {
+          "info": {
+            "name": "Update an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing experience listing with the provided fields. Only the fields included in the request body will be modified."
+        },
+        {
+          "info": {
+            "name": "Delete an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ]
+          },
+          "docs": "Removes an experience listing from the Airbnb platform. Active bookings must be resolved before an experience can be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Experience Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date for the schedule range in ISO 8601 format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date for the schedule range in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the available time slots and schedule entries for a specific experience over a date range."
+        },
+        {
+          "info": {
+            "name": "Create an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled time slot for an experience, specifying the date, start time, and maximum number of attendees."
+        },
+        {
+          "info": {
+            "name": "Update an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules/:schedule_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule entry."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing schedule entry for an experience, allowing changes to time, capacity, or cancellation of the time slot."
+        },
+        {
+          "info": {
+            "name": "Delete an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules/:schedule_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule entry."
+              }
+            ]
+          },
+          "docs": "Removes a scheduled time slot from an experience. Existing bookings for the time slot must be handled before deletion."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bookings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Experience Bookings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/bookings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings by their current status."
+              },
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings by experience identifier."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings with activity dates on or after this date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings with activity dates on or before this date."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of bookings for experiences managed by the authenticated partner. Supports filtering by status, experience, and date range."
+        },
+        {
+          "info": {
+            "name": "Get a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific experience booking including attendee information, schedule, and pricing."
+        },
+        {
+          "info": {
+            "name": "Confirm a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/confirm",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ]
+          },
+          "docs": "Confirms a pending booking request for an experience. Once confirmed, the attendee count is updated on the schedule."
+        },
+        {
+          "info": {
+            "name": "Cancel a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/cancel",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an existing booking. Cancellation policies and refund rules may apply depending on timing and experience configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Experience Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Booking Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/messages",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Retrieves the message thread for a specific booking, including all messages exchanged between the host and guest."
+        },
+        {
+          "info": {
+            "name": "Send a Booking Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/messages",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a new message in the booking thread from the host to the guest regarding the experience booking."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

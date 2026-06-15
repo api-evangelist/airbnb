@@ -1,0 +1,3808 @@
+{
+  "item": [
+    {
+      "id": "ceb65bcd-2560-415f-8938-34dc915c0d84",
+      "name": "Bookings",
+      "description": {
+        "content": "Operations for managing guest bookings for experiences, including confirmations, cancellations, and attendee details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c028148-1733-438f-b1fe-0ea2af13ab7f",
+          "name": "List Experience Bookings",
+          "request": {
+            "name": "List Experience Bookings",
+            "description": {
+              "content": "Retrieves a paginated list of bookings for experiences managed by the authenticated partner. Supports filtering by status, experience, and date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter bookings by their current status."
+                },
+                {
+                  "disabled": false,
+                  "key": "experience_id",
+                  "value": "<string>",
+                  "description": "Filter bookings by experience identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "Filter bookings with activity dates on or after this date."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "Filter bookings with activity dates on or before this date."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "caf672f3-2d06-4a5d-8305-6ac449a7e11e",
+              "name": "A paginated list of bookings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "experience_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bookings\": [\n    {\n      \"id\": \"string\",\n      \"confirmation_code\": \"string\",\n      \"status\": \"pending\",\n      \"experience_id\": \"string\",\n      \"schedule_id\": \"string\",\n      \"guest\": {\n        \"id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone\": \"string\",\n        \"verified\": false\n      },\n      \"guests_count\": 8118,\n      \"total_price\": 9492.150972346726,\n      \"currency\": \"GAA\",\n      \"host_payout\": 8605.427112191539,\n      \"created_at\": \"1995-03-04T17:06:20.229Z\",\n      \"updated_at\": \"2018-11-22T15:34:34.589Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"confirmation_code\": \"string\",\n      \"status\": \"confirmed\",\n      \"experience_id\": \"string\",\n      \"schedule_id\": \"string\",\n      \"guest\": {\n        \"id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"phone\": \"string\",\n        \"verified\": true\n      },\n      \"guests_count\": 6634,\n      \"total_price\": 9263.611787896516,\n      \"currency\": \"ZGD\",\n      \"host_payout\": 5163.544233318822,\n      \"created_at\": \"1984-05-01T14:45:48.688Z\",\n      \"updated_at\": \"1991-02-14T02:29:15.103Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 2015,\n    \"limit\": 5164,\n    \"offset\": 345,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37c97daa-4299-4aa5-a47b-6773b96119a6",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "experience_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55c8e57a-59f8-4e20-a9f0-f44ac8a51c30",
+          "name": "Get a Booking",
+          "request": {
+            "name": "Get a Booking",
+            "description": {
+              "content": "Retrieves the full details of a specific experience booking including attendee information, schedule, and pricing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                ":booking_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_id",
+                  "description": "(Required) The unique identifier of the booking."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ee4f67b4-07fd-401e-8ca2-632810d9038c",
+              "name": "The booking details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"confirmation_code\": \"string\",\n  \"status\": \"confirmed\",\n  \"experience_id\": \"string\",\n  \"schedule_id\": \"string\",\n  \"guest\": {\n    \"id\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"verified\": true\n  },\n  \"guests_count\": 1999,\n  \"total_price\": 2489.55335090826,\n  \"currency\": \"ABX\",\n  \"host_payout\": 3000.524689532571,\n  \"created_at\": \"1959-12-28T18:52:57.515Z\",\n  \"updated_at\": \"1980-07-31T13:48:25.212Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d6952ed-5e92-473e-9525-6f4d143d19cc",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "112ddbd8-a03a-4048-a7a1-d4e9f6d134d7",
+              "name": "The booking was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8abbfa6-8d2f-4e57-9851-6661b76c86ef",
+          "name": "Confirm a Booking",
+          "request": {
+            "name": "Confirm a Booking",
+            "description": {
+              "content": "Confirms a pending booking request for an experience. Once confirmed, the attendee count is updated on the schedule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                ":booking_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_id",
+                  "description": "(Required) The unique identifier of the booking."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8a20efba-4f66-4054-b5d0-c3099d5188e0",
+              "name": "The booking was successfully confirmed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"confirmation_code\": \"string\",\n  \"status\": \"confirmed\",\n  \"experience_id\": \"string\",\n  \"schedule_id\": \"string\",\n  \"guest\": {\n    \"id\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"verified\": true\n  },\n  \"guests_count\": 1999,\n  \"total_price\": 2489.55335090826,\n  \"currency\": \"ABX\",\n  \"host_payout\": 3000.524689532571,\n  \"created_at\": \"1959-12-28T18:52:57.515Z\",\n  \"updated_at\": \"1980-07-31T13:48:25.212Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fea7238-479a-4aa8-bbf6-b9f066a2ee42",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "236119bf-2c51-43cf-8c2c-a55f53571f8c",
+              "name": "The booking was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbe1cbb3-66bd-43bd-95f4-1f0ab6e4dceb",
+              "name": "The booking is not in a pending state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0e02288-562a-42d6-93c9-6cf8172cd69f",
+          "name": "Cancel a Booking",
+          "request": {
+            "name": "Cancel a Booking",
+            "description": {
+              "content": "Cancels an existing booking. Cancellation policies and refund rules may apply depending on timing and experience configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                ":booking_id",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_id",
+                  "description": "(Required) The unique identifier of the booking."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d827dc6-7e8b-4b65-9d29-17b097fbad06",
+              "name": "The booking was successfully cancelled.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"confirmation_code\": \"string\",\n  \"status\": \"confirmed\",\n  \"experience_id\": \"string\",\n  \"schedule_id\": \"string\",\n  \"guest\": {\n    \"id\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"phone\": \"string\",\n    \"verified\": true\n  },\n  \"guests_count\": 1999,\n  \"total_price\": 2489.55335090826,\n  \"currency\": \"ABX\",\n  \"host_payout\": 3000.524689532571,\n  \"created_at\": \"1959-12-28T18:52:57.515Z\",\n  \"updated_at\": \"1980-07-31T13:48:25.212Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c16ec7d-bc9f-415e-8ad3-c61a72e44149",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0e1f1b9-53cf-4221-b4ac-2013920c7a35",
+              "name": "The booking was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "996ce83a-0c85-4533-9d64-bdb8fecbc341",
+              "name": "The booking cannot be cancelled in its current state.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a03f118b-7a3b-4c54-b7b7-083993a31c04",
+      "name": "Experience Messages",
+      "description": {
+        "content": "Operations for sending and retrieving messages between experience hosts and booked guests.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be27e94e-8de7-4d21-b601-beb4d79b00ad",
+          "name": "List Booking Messages",
+          "request": {
+            "name": "List Booking Messages",
+            "description": {
+              "content": "Retrieves the message thread for a specific booking, including all messages exchanged between the host and guest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                ":booking_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip for pagination."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_id",
+                  "description": "(Required) The unique identifier of the booking."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cfb3d50-e080-45ef-88c6-b9da177575e7",
+              "name": "A paginated list of messages in the booking thread.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"id\": \"string\",\n      \"booking_id\": \"string\",\n      \"sender_type\": \"host\",\n      \"message\": \"string\",\n      \"created_at\": \"1998-07-02T03:12:36.074Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"booking_id\": \"string\",\n      \"sender_type\": \"guest\",\n      \"message\": \"string\",\n      \"created_at\": \"1979-01-26T21:13:59.631Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 5339,\n    \"limit\": 9741,\n    \"offset\": 8709,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "592b1211-1012-4c4d-a833-5c1a350e2e25",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e0db3fae-0e3d-45fc-9c0f-cd5780edabdd",
+              "name": "The booking was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48b07966-33fa-4017-bfd4-dbb681fbaac4",
+          "name": "Send a Booking Message",
+          "request": {
+            "name": "Send a Booking Message",
+            "description": {
+              "content": "Sends a new message in the booking thread from the host to the guest regarding the experience booking.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bookings",
+                ":booking_id",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "booking_id",
+                  "description": "(Required) The unique identifier of the booking."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3779b7d4-7cf7-469c-a7c9-77c95bd5698a",
+              "name": "The message was successfully sent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"booking_id\": \"string\",\n  \"sender_type\": \"guest\",\n  \"message\": \"string\",\n  \"created_at\": \"2022-12-22T04:52:11.045Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa96882e-2636-47dd-870f-27adfc154b1d",
+              "name": "The message content is invalid or exceeds length limits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2d14c5a-1573-456a-81ae-4c1303e84c95",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62c9862a-d889-4cf2-8f3b-4b5981fe3122",
+              "name": "The booking was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bookings",
+                    ":booking_id",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "booking_id",
+                      "description": "(Required) The unique identifier of the booking."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a1cf416c-19f0-4184-a1d1-510a17cb24f0",
+      "name": "Experiences",
+      "description": {
+        "content": "Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f76c846a-d2bd-4ea8-be94-2febcfe8b6a1",
+          "name": "List All Experiences",
+          "request": {
+            "name": "List All Experiences",
+            "description": {
+              "content": "Retrieves a paginated list of all experience listings managed by the authenticated partner. Supports filtering by status and activity category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter experiences by their current status on the platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter experiences by activity category."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb6200c3-12d3-475e-8f37-0e5e931b43a2",
+              "name": "A paginated list of experiences.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"experiences\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"entertainment\",\n      \"status\": \"suspended\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"KM\",\n        \"meeting_point\": \"string\",\n        \"state\": \"string\",\n        \"latitude\": -33.937071162371865,\n        \"longitude\": -158.37970038695283\n      },\n      \"duration_minutes\": 2543,\n      \"max_guests\": 3350,\n      \"pricing\": {\n        \"price_per_person\": 2746.514728998386,\n        \"currency\": \"JLE\",\n        \"group_discount\": {\n          \"min_guests\": 9818,\n          \"discount_percent\": 43.9787098734309\n        }\n      },\n      \"languages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"what_to_bring\": [\n        \"string\",\n        \"string\"\n      ],\n      \"accessibility\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"http://VtOplAapRXERPuFMZo.jwCp\",\n          \"caption\": \"string\",\n          \"sort_order\": 8841\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"http://rrntNjMhRKRoaE.mwmKxGsDW,AfGS,BocyT3Aev8PTnI239Zs4cr\",\n          \"caption\": \"string\",\n          \"sort_order\": 2654\n        }\n      ],\n      \"host\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"profile_picture_url\": \"http://fvxUaF.ammdKq0ALGLXMhkS7guLEFR2sZQVNYrIlziG82,i6fYgbXfc6Vn50D8GT\",\n        \"superhost\": false\n      },\n      \"created_at\": \"1981-06-10T12:57:55.545Z\",\n      \"updated_at\": \"2023-02-16T03:37:34.593Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"nature_and_outdoors\",\n      \"status\": \"suspended\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"WI\",\n        \"meeting_point\": \"string\",\n        \"state\": \"string\",\n        \"latitude\": -34.319425371613285,\n        \"longitude\": 170.28330563133238\n      },\n      \"duration_minutes\": 8490,\n      \"max_guests\": 1288,\n      \"pricing\": {\n        \"price_per_person\": 2598.1901618106886,\n        \"currency\": \"HXM\",\n        \"group_discount\": {\n          \"min_guests\": 3207,\n          \"discount_percent\": 38.20934708818885\n        }\n      },\n      \"languages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"what_to_bring\": [\n        \"string\",\n        \"string\"\n      ],\n      \"accessibility\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"https://hZVcBHqie.tdyNjPQMArkrCaeiFZ3O.R3kLnuTnjK7fQi+h0T7Y,x3Y3GHfWl4ngg\",\n          \"caption\": \"string\",\n          \"sort_order\": 4453\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"https://NidddXkLacFhCycelABMyvfRT.kgjsU5YVJfCCJJn7Cic1ChUIa0K8Jq2JSNIoT+g36ckWj152SHReTi6ScfGY1.xsT-eCXcqQ.rOdFSgzfEnS\",\n          \"caption\": \"string\",\n          \"sort_order\": 6308\n        }\n      ],\n      \"host\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"profile_picture_url\": \"https://YAsDLRdyCsqfnAyOMCcij.isecisvr9FW6GJrqQgL+na0Xi1QxpHPRknYGwF6MUAU6YMnXV\",\n        \"superhost\": true\n      },\n      \"created_at\": \"1991-05-06T17:48:58.899Z\",\n      \"updated_at\": \"1998-01-24T16:27:27.818Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 616,\n    \"limit\": 9051,\n    \"offset\": 5736,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe2f6642-1272-4664-bd2e-afd90c871dea",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "946406e8-892a-4e36-b0ad-c825f23e8690",
+          "name": "Create a New Experience",
+          "request": {
+            "name": "Create a New Experience",
+            "description": {
+              "content": "Creates a new experience listing on Airbnb with the provided details including activity type, location, description, pricing, and scheduling information. The experience will be in a pending state until reviewed and approved by Airbnb.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"meeting_point\": \"<string>\",\n    \"state\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"group_discount\": {\n      \"min_guests\": \"<integer>\",\n      \"discount_percent\": \"<number>\"\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "955fcded-623c-4e84-aa57-d30580608d0f",
+              "name": "The experience was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"RQ\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 40.67897395453275,\n    \"longitude\": 145.75722012841396\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2353.965284954487,\n    \"currency\": \"LVE\",\n    \"group_discount\": {\n      \"min_guests\": 5576,\n      \"discount_percent\": 75.70134865152109\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"tours\",\n  \"status\": \"inactive\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -62.97710957393923,\n    \"longitude\": -111.94471380710078\n  },\n  \"duration_minutes\": 1844,\n  \"max_guests\": 8674,\n  \"pricing\": {\n    \"price_per_person\": 8145.378095005113,\n    \"currency\": \"XUW\",\n    \"group_discount\": {\n      \"min_guests\": 3548,\n      \"discount_percent\": 0.007024039898217982\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://NMqHTNLwE.cekH2+LOuldBFX0b8cG3bZWlIrAF-l+B\",\n      \"caption\": \"string\",\n      \"sort_order\": 6257\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://WqliwCooTWtDJzFFCRsoKhGSg.mnkFXMcqtJdDS9sw.OeBx\",\n      \"caption\": \"string\",\n      \"sort_order\": 8275\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://dc.zhnV9J8ojhyldco1sb,QCcBEZwGJLUOt4k.r6bGwOkmCwoBPT2UTDjWy0XCk\",\n    \"superhost\": true\n  },\n  \"created_at\": \"1961-10-03T19:53:54.369Z\",\n  \"updated_at\": \"2021-07-08T12:29:17.858Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c71b179-6a12-4ca5-962a-21e404da6f64",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"RQ\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 40.67897395453275,\n    \"longitude\": 145.75722012841396\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2353.965284954487,\n    \"currency\": \"LVE\",\n    \"group_discount\": {\n      \"min_guests\": 5576,\n      \"discount_percent\": 75.70134865152109\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae2a9f2d-f084-4ead-ba70-54b79f1f17f5",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"RQ\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 40.67897395453275,\n    \"longitude\": 145.75722012841396\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2353.965284954487,\n    \"currency\": \"LVE\",\n    \"group_discount\": {\n      \"min_guests\": 5576,\n      \"discount_percent\": 75.70134865152109\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b0ef621-8ce2-48b5-88d4-3bd6de240b48",
+          "name": "Get an Experience",
+          "request": {
+            "name": "Get an Experience",
+            "description": {
+              "content": "Retrieves the full details of a specific experience listing by its unique identifier, including description, schedule, pricing, and host information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d08309ee-1a34-48c0-82ee-285393426468",
+              "name": "The experience details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"tours\",\n  \"status\": \"inactive\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -62.97710957393923,\n    \"longitude\": -111.94471380710078\n  },\n  \"duration_minutes\": 1844,\n  \"max_guests\": 8674,\n  \"pricing\": {\n    \"price_per_person\": 8145.378095005113,\n    \"currency\": \"XUW\",\n    \"group_discount\": {\n      \"min_guests\": 3548,\n      \"discount_percent\": 0.007024039898217982\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://NMqHTNLwE.cekH2+LOuldBFX0b8cG3bZWlIrAF-l+B\",\n      \"caption\": \"string\",\n      \"sort_order\": 6257\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://WqliwCooTWtDJzFFCRsoKhGSg.mnkFXMcqtJdDS9sw.OeBx\",\n      \"caption\": \"string\",\n      \"sort_order\": 8275\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://dc.zhnV9J8ojhyldco1sb,QCcBEZwGJLUOt4k.r6bGwOkmCwoBPT2UTDjWy0XCk\",\n    \"superhost\": true\n  },\n  \"created_at\": \"1961-10-03T19:53:54.369Z\",\n  \"updated_at\": \"2021-07-08T12:29:17.858Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2b0a874-ba6a-4df1-a465-d3ef22594ec0",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35d89514-f4fe-4ed9-8ad6-f866bb496867",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e36eae4-0fbb-4854-a114-b8d90703353b",
+          "name": "Update an Experience",
+          "request": {
+            "name": "Update an Experience",
+            "description": {
+              "content": "Updates an existing experience listing with the provided fields. Only the fields included in the request body will be modified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"meeting_point\": \"<string>\",\n    \"state\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"group_discount\": {\n      \"min_guests\": \"<integer>\",\n      \"discount_percent\": \"<number>\"\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b6fdad5d-b834-4af4-9caf-d1069866586f",
+              "name": "The experience was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"TU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -34.02607396369148,\n    \"longitude\": 101.98946925124852\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2194.2721914855847,\n    \"currency\": \"QPM\",\n    \"group_discount\": {\n      \"min_guests\": 5034,\n      \"discount_percent\": 30.573388792723478\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"tours\",\n  \"status\": \"inactive\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -62.97710957393923,\n    \"longitude\": -111.94471380710078\n  },\n  \"duration_minutes\": 1844,\n  \"max_guests\": 8674,\n  \"pricing\": {\n    \"price_per_person\": 8145.378095005113,\n    \"currency\": \"XUW\",\n    \"group_discount\": {\n      \"min_guests\": 3548,\n      \"discount_percent\": 0.007024039898217982\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://NMqHTNLwE.cekH2+LOuldBFX0b8cG3bZWlIrAF-l+B\",\n      \"caption\": \"string\",\n      \"sort_order\": 6257\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://WqliwCooTWtDJzFFCRsoKhGSg.mnkFXMcqtJdDS9sw.OeBx\",\n      \"caption\": \"string\",\n      \"sort_order\": 8275\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://dc.zhnV9J8ojhyldco1sb,QCcBEZwGJLUOt4k.r6bGwOkmCwoBPT2UTDjWy0XCk\",\n    \"superhost\": true\n  },\n  \"created_at\": \"1961-10-03T19:53:54.369Z\",\n  \"updated_at\": \"2021-07-08T12:29:17.858Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09bd02b2-1752-44cf-97de-dc6a6a7b6669",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"TU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -34.02607396369148,\n    \"longitude\": 101.98946925124852\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2194.2721914855847,\n    \"currency\": \"QPM\",\n    \"group_discount\": {\n      \"min_guests\": 5034,\n      \"discount_percent\": 30.573388792723478\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76f8d8ba-05cb-4610-8bb0-fc46254473c8",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"TU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -34.02607396369148,\n    \"longitude\": 101.98946925124852\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2194.2721914855847,\n    \"currency\": \"QPM\",\n    \"group_discount\": {\n      \"min_guests\": 5034,\n      \"discount_percent\": 30.573388792723478\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "10df36a4-de7f-4fb1-9edd-f315b2f599ef",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"TU\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -34.02607396369148,\n    \"longitude\": 101.98946925124852\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 2194.2721914855847,\n    \"currency\": \"QPM\",\n    \"group_discount\": {\n      \"min_guests\": 5034,\n      \"discount_percent\": 30.573388792723478\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11c3cc22-3485-4635-9432-444bb9c6af87",
+          "name": "Delete an Experience",
+          "request": {
+            "name": "Delete an Experience",
+            "description": {
+              "content": "Removes an experience listing from the Airbnb platform. Active bookings must be resolved before an experience can be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "82abf744-eb19-4c0a-a17f-4c06074f6ffc",
+              "name": "The experience was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e845932c-0ada-42ec-ad91-2c57088692e3",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "554a5ae3-623b-40ef-ab30-4c191383d55f",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a15e0c3d-1f0e-4308-b3ce-9b4ed1b0753a",
+              "name": "The experience has active bookings and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8c94ff7d-641d-427f-a4cd-84330007217c",
+      "name": "Schedules",
+      "description": {
+        "content": "Operations for managing experience schedules, time slots, and availability for hosted activities.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a83cf740-5eb1-4b94-99aa-9e22ec2f8d4e",
+          "name": "List Experience Schedules",
+          "request": {
+            "name": "List Experience Schedules",
+            "description": {
+              "content": "Retrieves the available time slots and schedule entries for a specific experience over a date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) The start date for the schedule range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) The end date for the schedule range in ISO 8601 format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14cac29c-ad09-4926-81e7-a560143a9709",
+              "name": "The schedule entries for the specified date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"schedules\": [\n    {\n      \"id\": \"string\",\n      \"experience_id\": \"string\",\n      \"date\": \"1978-02-14\",\n      \"start_time\": \"07:59\",\n      \"end_time\": \"04:09\",\n      \"max_guests\": 5961,\n      \"booked_guests\": 2000,\n      \"available_spots\": 6372,\n      \"status\": \"full\"\n    },\n    {\n      \"id\": \"string\",\n      \"experience_id\": \"string\",\n      \"date\": \"1992-05-13\",\n      \"start_time\": \"19:23\",\n      \"end_time\": \"26:22\",\n      \"max_guests\": 4853,\n      \"booked_guests\": 6685,\n      \"available_spots\": 5091,\n      \"status\": \"full\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a2bee22-20ec-4b3c-98d1-58ba52f6faa7",
+              "name": "The date range is invalid or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c6c3ef7-feac-4283-99cd-e65d19b85af4",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "45bcd271-40ac-4c70-b9b5-f3d2d1d3e653",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1792c5f-dcc1-4509-b69c-a05a03887079",
+          "name": "Create an Experience Schedule",
+          "request": {
+            "name": "Create an Experience Schedule",
+            "description": {
+              "content": "Creates a new scheduled time slot for an experience, specifying the date, start time, and maximum number of attendees.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id",
+                "schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<date>\",\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3c99c2f-d648-4005-bd13-875900af5427",
+              "name": "The schedule was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<date>\",\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"experience_id\": \"string\",\n  \"date\": \"1952-09-19\",\n  \"start_time\": \"22:39\",\n  \"end_time\": \"18:38\",\n  \"max_guests\": 9072,\n  \"booked_guests\": 2116,\n  \"available_spots\": 354,\n  \"status\": \"open\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54127010-fb78-4f75-a7e0-bfbb639d624a",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<date>\",\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a1604b9f-e756-4acf-850b-fa16ec997c86",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<date>\",\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3fd00a85-6521-4aac-9041-a99a77c3c878",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<date>\",\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dff26c77-7f94-4355-a4e6-d2220d00f480",
+          "name": "Update an Experience Schedule",
+          "request": {
+            "name": "Update an Experience Schedule",
+            "description": {
+              "content": "Updates an existing schedule entry for an experience, allowing changes to time, capacity, or cancellation of the time slot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id",
+                "schedules",
+                ":schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schedule_id",
+                  "description": "(Required) The unique identifier of the schedule entry."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7029155-2be8-4b1e-b495-85c44ca66fae",
+              "name": "The schedule was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"experience_id\": \"string\",\n  \"date\": \"1952-09-19\",\n  \"start_time\": \"22:39\",\n  \"end_time\": \"18:38\",\n  \"max_guests\": 9072,\n  \"booked_guests\": 2116,\n  \"available_spots\": 354,\n  \"status\": \"open\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7985abd0-c79a-4cc3-9a7b-3b099895a12c",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b03b6416-0fcf-4e1a-abac-559c497f0a2a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "676bbe84-726b-4769-8011-1f6e88d0c105",
+              "name": "The experience or schedule was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": \"<string>\",\n  \"max_guests\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4929532-7a62-4b6b-aa79-7804da3da5b9",
+          "name": "Delete an Experience Schedule",
+          "request": {
+            "name": "Delete an Experience Schedule",
+            "description": {
+              "content": "Removes a scheduled time slot from an experience. Existing bookings for the time slot must be handled before deletion.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id",
+                "schedules",
+                ":schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "schedule_id",
+                  "description": "(Required) The unique identifier of the schedule entry."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed58e3e6-437d-4087-b2c6-3d61413aa358",
+              "name": "The schedule was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6dbc1870-7146-4e33-8116-41f266cf2397",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c87aff60-700d-4a91-8e5f-7b7e8fc856e9",
+              "name": "The experience or schedule was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eefa149f-beec-4d4c-b693-067fcf733200",
+              "name": "The schedule has active bookings and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id",
+                    "schedules",
+                    ":schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "schedule_id",
+                      "description": "(Required) The unique identifier of the schedule entry."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airbnb.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "experiences:read experiences:write bookings:read bookings:write messages:read messages:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.airbnb.com/v2/oauth2/authorizations"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.airbnb.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7bbe1f92-b665-4ef6-9ee3-62559cb53f91",
+    "name": "Airbnb Activities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.\n\nContact Support:\n Name: Airbnb Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
