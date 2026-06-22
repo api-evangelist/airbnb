@@ -3,12 +3,11 @@
   "feeds": [
     {
       "source": "https://www.airbnb.com/resources/hosting-homes/a/airbnb-newsroom",
-      "feed_url": "",
-      "title": "",
-      "saved": 0,
-      "error": "403_forbidden"
+      "feed_url": "https://news.airbnb.com/feed/",
+      "title": "Airbnb Newsroom",
+      "saved": 2
     }
   ],
-  "fetched": "2026-06-07T00:00:00Z",
-  "post_count": 0
+  "fetched": "2026-06-21T17:00:00Z",
+  "post_count": 2
 }
