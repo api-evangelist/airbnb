@@ -237,57 +237,57 @@ common:
   url: json-structure/airbnb-schedule-update-structure.json
 - type: JSONStructure
   url: json-structure/airbnb-webhook-event-structure.json
-- type: Example
+- type: Examples
   url: examples/airbnb-address-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-booking-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-booking-guest-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-calendar-day-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-calendar-operation-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-create-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-host-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-location-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-message-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-photo-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-pricing-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-experience-update-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-guest-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-listing-create-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-listing-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-listing-update-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-message-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-photo-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-pricing-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-reservation-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-review-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-schedule-create-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-schedule-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-schedule-update-example.json
-- type: Example
+- type: Examples
   url: examples/airbnb-webhook-event-example.json
 - type: SpectralRules
   url: rules/airbnb-spectral-rules.yml
