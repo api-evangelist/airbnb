@@ -1,0 +1,41 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.airbnb.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 26 23:59:59 2027 GMT
+  hsts: true
+  hsts_max_age: 10886400
+- host: developer.withairbnb.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 19 23:34:56 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: api.airbnb.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Jan 13 23:59:59 2027 GMT
+  hsts: null
+domains:
+- domain: airbnb.com
+  dnssec: false
+  caa:
+  - 0 issue "digicert.com"
+  - 0 iodef "mailto:caa-alerts@airbnb.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
+- domain: withairbnb.com
+  dnssec: false
+  caa:
+  - 0 iodef "mailto:caa-alerts@airbnb.com"
+  - 0 issue "awstrust.com"
+  - 0 issue "digicert.com"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
