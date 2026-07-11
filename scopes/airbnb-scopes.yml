@@ -1,0 +1,103 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/airbnb-activities-api-openapi.yml, openapi/airbnb-homes-api-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/airbnb-activities-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.airbnb.com/oauth2/auth
+    tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+  description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application
+    to receive a client ID and secret, then obtain access tokens through the authorization code
+    flow.
+- name: oauth2
+  source: openapi/airbnb-homes-api-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://www.airbnb.com/oauth2/auth
+    tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+  description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application
+    to receive a client ID and secret, then obtain access tokens through the authorization code
+    flow. Access tokens expire after 24 hours and must be refreshed.
+scopes:
+- scope: bookings:read
+  description: Read booking information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+- scope: bookings:write
+  description: Confirm and cancel bookings
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+- scope: calendar:read
+  description: Read calendar availability
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: calendar:write
+  description: Update calendar availability and pricing
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: experiences:read
+  description: Read experience information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+- scope: experiences:write
+  description: Create and update experiences
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+- scope: listings:read
+  description: Read listing information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: listings:write
+  description: Create and update listings
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: messages:read
+  description: Read booking messages
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: messages:write
+  description: Send messages to guests
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-activities-api-openapi.yml
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: reservations:read
+  description: Read reservation information
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: reservations:write
+  description: Accept, deny, and cancel reservations
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
+- scope: reviews:read
+  description: Read reviews
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/airbnb-homes-api-openapi.yml
