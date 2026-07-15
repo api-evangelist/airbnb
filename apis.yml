@@ -113,6 +113,8 @@ apis:
   - Guest communication automation triggered by reservation changes
   - Inventory sync systems responding to availability changes
 common:
+- type: AgenticAccess
+  url: agentic-access/airbnb-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/airbnb-vulnerability-disclosure.yml
 - type: DomainSecurity
