@@ -1,0 +1,473 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Experiences API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Experiences
+  description: Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.
+paths:
+  /experiences:
+    get:
+      operationId: listExperiences
+      summary: List All Experiences
+      description: Retrieves a paginated list of all experience listings managed by the authenticated partner. Supports filtering by status and activity category.
+      tags:
+      - Experiences
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: Filter experiences by their current status on the platform.
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          - suspended
+      - name: category
+        in: query
+        description: Filter experiences by activity category.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A paginated list of experiences.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  experiences:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Experience'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Authentication credentials are missing or invalid.
+    post:
+      operationId: createExperience
+      summary: Create a New Experience
+      description: Creates a new experience listing on Airbnb with the provided details including activity type, location, description, pricing, and scheduling information. The experience will be in a pending state until reviewed and approved by Airbnb.
+      tags:
+      - Experiences
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperienceCreate'
+      responses:
+        '201':
+          description: The experience was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+  /experiences/{experience_id}:
+    get:
+      operationId: getExperience
+      summary: Get an Experience
+      description: Retrieves the full details of a specific experience listing by its unique identifier, including description, schedule, pricing, and host information.
+      tags:
+      - Experiences
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      responses:
+        '200':
+          description: The experience details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience was not found.
+    put:
+      operationId: updateExperience
+      summary: Update an Experience
+      description: Updates an existing experience listing with the provided fields. Only the fields included in the request body will be modified.
+      tags:
+      - Experiences
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperienceUpdate'
+      responses:
+        '200':
+          description: The experience was successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience was not found.
+    delete:
+      operationId: deleteExperience
+      summary: Delete an Experience
+      description: Removes an experience listing from the Airbnb platform. Active bookings must be resolved before an experience can be deleted.
+      tags:
+      - Experiences
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      responses:
+        '204':
+          description: The experience was successfully deleted.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience was not found.
+        '409':
+          description: The experience has active bookings and cannot be deleted.
+components:
+  schemas:
+    ExperienceHost:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the experience host.
+        name:
+          type: string
+          description: The display name of the host.
+        bio:
+          type: string
+          description: A short biography of the host.
+        profile_picture_url:
+          type: string
+          format: uri
+          description: The URL of the host profile picture.
+        superhost:
+          type: boolean
+          description: Whether the host has Superhost status.
+    ExperienceCreate:
+      type: object
+      required:
+      - name
+      - description
+      - category
+      - location
+      - duration_minutes
+      - max_guests
+      - pricing
+      properties:
+        name:
+          type: string
+          description: The display name of the experience.
+          maxLength: 100
+        description:
+          type: string
+          description: The full description of the experience and what guests will do.
+          maxLength: 5000
+        category:
+          type: string
+          description: The activity category of the experience.
+          enum:
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
+        location:
+          $ref: '#/components/schemas/ExperienceLocation'
+        duration_minutes:
+          type: integer
+          description: The duration of the experience in minutes.
+          minimum: 30
+        max_guests:
+          type: integer
+          description: The maximum number of guests per session.
+          minimum: 1
+        pricing:
+          $ref: '#/components/schemas/ExperiencePricing'
+        languages:
+          type: array
+          description: The languages in which the experience is offered.
+          items:
+            type: string
+        what_to_bring:
+          type: array
+          description: Items guests should bring to the experience.
+          items:
+            type: string
+        accessibility:
+          type: string
+          description: Accessibility information for the experience.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
+    ExperienceLocation:
+      type: object
+      required:
+      - city
+      - country
+      properties:
+        meeting_point:
+          type: string
+          description: Description of where guests should meet for the experience.
+        city:
+          type: string
+          description: The city where the experience takes place.
+        state:
+          type: string
+          description: The state or province where the experience takes place.
+        country:
+          type: string
+          description: The ISO 3166-1 alpha-2 country code.
+          pattern: ^[A-Z]{2}$
+        latitude:
+          type: number
+          format: double
+          description: The latitude coordinate of the meeting point.
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          format: double
+          description: The longitude coordinate of the meeting point.
+          minimum: -180
+          maximum: 180
+    ExperiencePricing:
+      type: object
+      required:
+      - price_per_person
+      - currency
+      properties:
+        price_per_person:
+          type: number
+          format: double
+          description: The price per guest in the specified currency.
+          minimum: 0
+        currency:
+          type: string
+          description: The ISO 4217 currency code for pricing.
+          pattern: ^[A-Z]{3}$
+        group_discount:
+          type: object
+          description: Optional group discount configuration.
+          properties:
+            min_guests:
+              type: integer
+              description: Minimum number of guests to qualify for the group discount.
+              minimum: 2
+            discount_percent:
+              type: number
+              description: Percentage discount applied for group bookings.
+              minimum: 0
+              maximum: 100
+    Experience:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the experience.
+        name:
+          type: string
+          description: The display name of the experience.
+        description:
+          type: string
+          description: The full description of the experience and what guests will do.
+        category:
+          type: string
+          description: The activity category of the experience.
+          enum:
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
+        status:
+          type: string
+          description: The current status of the experience on the platform.
+          enum:
+          - active
+          - inactive
+          - pending
+          - suspended
+        location:
+          $ref: '#/components/schemas/ExperienceLocation'
+        duration_minutes:
+          type: integer
+          description: The duration of the experience in minutes.
+          minimum: 30
+        max_guests:
+          type: integer
+          description: The maximum number of guests per session.
+          minimum: 1
+        pricing:
+          $ref: '#/components/schemas/ExperiencePricing'
+        languages:
+          type: array
+          description: The languages in which the experience is offered.
+          items:
+            type: string
+        what_to_bring:
+          type: array
+          description: Items guests should bring to the experience.
+          items:
+            type: string
+        accessibility:
+          type: string
+          description: Accessibility information for the experience.
+        photos:
+          type: array
+          description: Photos showcasing the experience.
+          items:
+            $ref: '#/components/schemas/ExperiencePhoto'
+        host:
+          $ref: '#/components/schemas/ExperienceHost'
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the experience was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the experience was last updated.
+    ExperienceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name of the experience.
+          maxLength: 100
+        description:
+          type: string
+          description: The full description of the experience and what guests will do.
+          maxLength: 5000
+        category:
+          type: string
+          description: The activity category of the experience.
+          enum:
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
+        location:
+          $ref: '#/components/schemas/ExperienceLocation'
+        duration_minutes:
+          type: integer
+          description: The duration of the experience in minutes.
+          minimum: 30
+        max_guests:
+          type: integer
+          description: The maximum number of guests per session.
+          minimum: 1
+        pricing:
+          $ref: '#/components/schemas/ExperiencePricing'
+        languages:
+          type: array
+          description: The languages in which the experience is offered.
+          items:
+            type: string
+        what_to_bring:
+          type: array
+          description: Items guests should bring to the experience.
+          items:
+            type: string
+        accessibility:
+          type: string
+          description: Accessibility information for the experience.
+    ExperiencePhoto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the photo.
+        url:
+          type: string
+          format: uri
+          description: The URL where the photo is hosted.
+        caption:
+          type: string
+          description: A caption describing the photo.
+        sort_order:
+          type: integer
+          description: The display position of the photo.
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

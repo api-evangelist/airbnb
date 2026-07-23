@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Calendar API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Calendar
+  description: Operations for managing listing availability, pricing, and calendar synchronization across platforms.
+paths:
+  /listings/{listing_id}/calendar:
+    get:
+      operationId: getListingCalendar
+      summary: Get Listing Calendar
+      description: Retrieves the availability calendar for a specific listing over a date range. Returns day-by-day availability status, nightly pricing, minimum stay requirements, and any blocked dates.
+      tags:
+      - Calendar
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      - name: start_date
+        in: query
+        required: true
+        description: The start date for the calendar range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: true
+        description: The end date for the calendar range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: The calendar data for the specified date range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  calendar_days:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CalendarDay'
+        '400':
+          description: The date range is invalid or missing.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+    put:
+      operationId: updateListingCalendar
+      summary: Update Listing Calendar
+      description: Updates the availability, pricing, and minimum stay settings for specific dates on a listing calendar. Use this endpoint to block or unblock dates, adjust nightly pricing, and set minimum stay requirements.
+      tags:
+      - Calendar
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - calendar_operations
+              properties:
+                calendar_operations:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CalendarOperation'
+      responses:
+        '200':
+          description: The calendar was successfully updated.
+        '400':
+          description: The request body contains invalid operations.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+components:
+  parameters:
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
+  schemas:
+    CalendarDay:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date for this calendar entry.
+        available:
+          type: boolean
+          description: Whether the listing is available for booking on this date.
+        price:
+          type: number
+          format: double
+          description: The nightly price for this date in the listing currency.
+        minimum_nights:
+          type: integer
+          description: The minimum number of nights required for a stay starting on this date.
+          minimum: 1
+        maximum_nights:
+          type: integer
+          description: The maximum number of nights allowed for a stay starting on this date.
+        reservation_id:
+          type: string
+          description: The reservation identifier if this date is booked.
+    CalendarOperation:
+      type: object
+      required:
+      - start_date
+      - end_date
+      properties:
+        start_date:
+          type: string
+          format: date
+          description: The start date of the range to update.
+        end_date:
+          type: string
+          format: date
+          description: The end date of the range to update.
+        available:
+          type: boolean
+          description: Whether the dates should be available or blocked.
+        price:
+          type: number
+          format: double
+          description: The nightly price to set for this date range.
+          minimum: 0
+        minimum_nights:
+          type: integer
+          description: The minimum number of nights required for stays in this range.
+          minimum: 1
+        maximum_nights:
+          type: integer
+          description: The maximum number of nights allowed for stays in this range.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

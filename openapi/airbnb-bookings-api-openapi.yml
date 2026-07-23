@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Bookings
+  description: Operations for managing guest bookings for experiences, including confirmations, cancellations, and attendee details.
+paths:
+  /bookings:
+    get:
+      operationId: listBookings
+      summary: List Experience Bookings
+      description: Retrieves a paginated list of bookings for experiences managed by the authenticated partner. Supports filtering by status, experience, and date range.
+      tags:
+      - Bookings
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: Filter bookings by their current status.
+        schema:
+          type: string
+          enum:
+          - pending
+          - confirmed
+          - cancelled
+          - completed
+      - name: experience_id
+        in: query
+        description: Filter bookings by experience identifier.
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: Filter bookings with activity dates on or after this date.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        description: Filter bookings with activity dates on or before this date.
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: A paginated list of bookings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Booking'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Authentication credentials are missing or invalid.
+  /bookings/{booking_id}:
+    get:
+      operationId: getBooking
+      summary: Get a Booking
+      description: Retrieves the full details of a specific experience booking including attendee information, schedule, and pricing.
+      tags:
+      - Bookings
+      parameters:
+      - $ref: '#/components/parameters/bookingIdParam'
+      responses:
+        '200':
+          description: The booking details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The booking was not found.
+  /bookings/{booking_id}/confirm:
+    post:
+      operationId: confirmBooking
+      summary: Confirm a Booking
+      description: Confirms a pending booking request for an experience. Once confirmed, the attendee count is updated on the schedule.
+      tags:
+      - Bookings
+      parameters:
+      - $ref: '#/components/parameters/bookingIdParam'
+      responses:
+        '200':
+          description: The booking was successfully confirmed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The booking was not found.
+        '409':
+          description: The booking is not in a pending state.
+  /bookings/{booking_id}/cancel:
+    post:
+      operationId: cancelBooking
+      summary: Cancel a Booking
+      description: Cancels an existing booking. Cancellation policies and refund rules may apply depending on timing and experience configuration.
+      tags:
+      - Bookings
+      parameters:
+      - $ref: '#/components/parameters/bookingIdParam'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: The reason for cancelling the booking.
+      responses:
+        '200':
+          description: The booking was successfully cancelled.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The booking was not found.
+        '409':
+          description: The booking cannot be cancelled in its current state.
+components:
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    bookingIdParam:
+      name: booking_id
+      in: path
+      required: true
+      description: The unique identifier of the booking.
+      schema:
+        type: string
+  schemas:
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
+    Booking:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the booking.
+        confirmation_code:
+          type: string
+          description: The human-readable confirmation code for the booking.
+        status:
+          type: string
+          description: The current status of the booking.
+          enum:
+          - pending
+          - confirmed
+          - cancelled
+          - completed
+        experience_id:
+          type: string
+          description: The identifier of the booked experience.
+        schedule_id:
+          type: string
+          description: The identifier of the booked schedule entry.
+        guest:
+          $ref: '#/components/schemas/BookingGuest'
+        guests_count:
+          type: integer
+          description: The number of guests included in the booking.
+          minimum: 1
+        total_price:
+          type: number
+          format: double
+          description: The total price of the booking.
+        currency:
+          type: string
+          description: The ISO 4217 currency code for the booking pricing.
+          pattern: ^[A-Z]{3}$
+        host_payout:
+          type: number
+          format: double
+          description: The amount to be paid out to the host after fees.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the booking was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the booking was last updated.
+    BookingGuest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the guest.
+        first_name:
+          type: string
+          description: The first name of the guest.
+        last_name:
+          type: string
+          description: The last name of the guest.
+        phone:
+          type: string
+          description: The phone number of the guest.
+        verified:
+          type: boolean
+          description: Whether the guest has completed identity verification.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

@@ -1,0 +1,243 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Schedules API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Schedules
+  description: Operations for managing experience schedules, time slots, and availability for hosted activities.
+paths:
+  /experiences/{experience_id}/schedules:
+    get:
+      operationId: listExperienceSchedules
+      summary: List Experience Schedules
+      description: Retrieves the available time slots and schedule entries for a specific experience over a date range.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      - name: start_date
+        in: query
+        required: true
+        description: The start date for the schedule range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      - name: end_date
+        in: query
+        required: true
+        description: The end date for the schedule range in ISO 8601 format.
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: The schedule entries for the specified date range.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  schedules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Schedule'
+        '400':
+          description: The date range is invalid or missing.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience was not found.
+    post:
+      operationId: createExperienceSchedule
+      summary: Create an Experience Schedule
+      description: Creates a new scheduled time slot for an experience, specifying the date, start time, and maximum number of attendees.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleCreate'
+      responses:
+        '201':
+          description: The schedule was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience was not found.
+  /experiences/{experience_id}/schedules/{schedule_id}:
+    put:
+      operationId: updateExperienceSchedule
+      summary: Update an Experience Schedule
+      description: Updates an existing schedule entry for an experience, allowing changes to time, capacity, or cancellation of the time slot.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/scheduleIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScheduleUpdate'
+      responses:
+        '200':
+          description: The schedule was successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Schedule'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience or schedule was not found.
+    delete:
+      operationId: deleteExperienceSchedule
+      summary: Delete an Experience Schedule
+      description: Removes a scheduled time slot from an experience. Existing bookings for the time slot must be handled before deletion.
+      tags:
+      - Schedules
+      parameters:
+      - $ref: '#/components/parameters/experienceIdParam'
+      - $ref: '#/components/parameters/scheduleIdParam'
+      responses:
+        '204':
+          description: The schedule was successfully deleted.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The experience or schedule was not found.
+        '409':
+          description: The schedule has active bookings and cannot be deleted.
+components:
+  schemas:
+    ScheduleCreate:
+      type: object
+      required:
+      - date
+      - start_time
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date of the scheduled session.
+        start_time:
+          type: string
+          description: The start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: Override the maximum number of guests for this specific session.
+          minimum: 1
+    ScheduleUpdate:
+      type: object
+      properties:
+        start_time:
+          type: string
+          description: The updated start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: The updated maximum number of guests for this session.
+          minimum: 1
+        status:
+          type: string
+          description: The updated status of the schedule entry.
+          enum:
+          - open
+          - cancelled
+    Schedule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the schedule entry.
+        experience_id:
+          type: string
+          description: The identifier of the associated experience.
+        date:
+          type: string
+          format: date
+          description: The date of the scheduled session.
+        start_time:
+          type: string
+          description: The start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        end_time:
+          type: string
+          description: The end time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: The maximum number of guests for this session.
+          minimum: 1
+        booked_guests:
+          type: integer
+          description: The current number of booked guests.
+          minimum: 0
+        available_spots:
+          type: integer
+          description: The number of remaining available spots.
+          minimum: 0
+        status:
+          type: string
+          description: The status of the schedule entry.
+          enum:
+          - open
+          - full
+          - cancelled
+  parameters:
+    scheduleIdParam:
+      name: schedule_id
+      in: path
+      required: true
+      description: The unique identifier of the schedule entry.
+      schema:
+        type: string
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

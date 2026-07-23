@@ -1,0 +1,536 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Listings API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Listings
+  description: Operations for creating, reading, updating, and managing property listings on Airbnb, including descriptions, amenities, and photos.
+paths:
+  /listings:
+    get:
+      operationId: listListings
+      summary: List All Listings
+      description: Retrieves a paginated list of all property listings managed by the authenticated partner. Supports filtering by status and other listing attributes.
+      tags:
+      - Listings
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      - name: status
+        in: query
+        description: Filter listings by their current status on the platform.
+        schema:
+          type: string
+          enum:
+          - active
+          - inactive
+          - pending
+          - unlisted
+      responses:
+        '200':
+          description: A paginated list of listings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  listings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Listing'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '403':
+          description: The partner does not have permission to access listings.
+    post:
+      operationId: createListing
+      summary: Create a New Listing
+      description: Creates a new property listing on Airbnb with the provided details including property type, location, description, amenities, and house rules. The listing will be in a pending state until all required fields are completed and the listing is published.
+      tags:
+      - Listings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingCreate'
+      responses:
+        '201':
+          description: The listing was successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+  /listings/{listing_id}:
+    get:
+      operationId: getListing
+      summary: Get a Listing
+      description: Retrieves the full details of a specific property listing by its unique identifier, including description, amenities, photos, pricing, and availability configuration.
+      tags:
+      - Listings
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      responses:
+        '200':
+          description: The listing details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+    put:
+      operationId: updateListing
+      summary: Update a Listing
+      description: Updates an existing property listing with the provided fields. Only the fields included in the request body will be modified. This can be used to update descriptions, amenities, house rules, and other listing attributes.
+      tags:
+      - Listings
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingUpdate'
+      responses:
+        '200':
+          description: The listing was successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Listing'
+        '400':
+          description: The request body contains invalid or missing fields.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+    delete:
+      operationId: deleteListing
+      summary: Delete a Listing
+      description: Removes a property listing from the Airbnb platform. This action cannot be undone. Active reservations must be resolved before a listing can be deleted.
+      tags:
+      - Listings
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      responses:
+        '204':
+          description: The listing was successfully deleted.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+        '409':
+          description: The listing has active reservations and cannot be deleted.
+components:
+  schemas:
+    ListingCreate:
+      type: object
+      required:
+      - name
+      - property_type
+      - room_type
+      - address
+      - max_guests
+      properties:
+        name:
+          type: string
+          description: The display name of the listing.
+          maxLength: 50
+        description:
+          type: string
+          description: The full description of the property.
+          maxLength: 5000
+        property_type:
+          type: string
+          description: The type of property being listed.
+          enum:
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
+        room_type:
+          type: string
+          description: The type of room or space being offered.
+          enum:
+          - entire_home
+          - private_room
+          - shared_room
+        address:
+          $ref: '#/components/schemas/Address'
+        bedrooms:
+          type: integer
+          description: The number of bedrooms in the property.
+          minimum: 0
+        bathrooms:
+          type: number
+          description: The number of bathrooms in the property.
+          minimum: 0
+        beds:
+          type: integer
+          description: The total number of beds in the property.
+          minimum: 0
+        max_guests:
+          type: integer
+          description: The maximum number of guests allowed.
+          minimum: 1
+        amenities:
+          type: array
+          description: The list of amenity identifiers available at the property.
+          items:
+            type: string
+        house_rules:
+          type: string
+          description: The house rules and guidelines for guests.
+        check_in_time:
+          type: string
+          description: The earliest check-in time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        check_out_time:
+          type: string
+          description: The latest check-out time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        cancellation_policy:
+          type: string
+          description: The cancellation policy applied to the listing.
+          enum:
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
+    Address:
+      type: object
+      required:
+      - street
+      - city
+      - country
+      properties:
+        street:
+          type: string
+          description: The street address of the property.
+        city:
+          type: string
+          description: The city where the property is located.
+        state:
+          type: string
+          description: The state or province where the property is located.
+        zip_code:
+          type: string
+          description: The postal or ZIP code.
+        country:
+          type: string
+          description: The ISO 3166-1 alpha-2 country code.
+          pattern: ^[A-Z]{2}$
+        latitude:
+          type: number
+          format: double
+          description: The latitude coordinate of the property.
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          format: double
+          description: The longitude coordinate of the property.
+          minimum: -180
+          maximum: 180
+    Photo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the photo.
+        url:
+          type: string
+          format: uri
+          description: The URL where the photo is hosted.
+        caption:
+          type: string
+          description: A caption describing the photo.
+        sort_order:
+          type: integer
+          description: The display position of the photo in the listing gallery.
+        width:
+          type: integer
+          description: The width of the photo in pixels.
+        height:
+          type: integer
+          description: The height of the photo in pixels.
+    ListingUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name of the listing.
+          maxLength: 50
+        description:
+          type: string
+          description: The full description of the property.
+          maxLength: 5000
+        property_type:
+          type: string
+          description: The type of property being listed.
+          enum:
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
+        room_type:
+          type: string
+          description: The type of room or space being offered.
+          enum:
+          - entire_home
+          - private_room
+          - shared_room
+        bedrooms:
+          type: integer
+          description: The number of bedrooms in the property.
+          minimum: 0
+        bathrooms:
+          type: number
+          description: The number of bathrooms in the property.
+          minimum: 0
+        beds:
+          type: integer
+          description: The total number of beds in the property.
+          minimum: 0
+        max_guests:
+          type: integer
+          description: The maximum number of guests allowed.
+          minimum: 1
+        amenities:
+          type: array
+          description: The list of amenity identifiers available at the property.
+          items:
+            type: string
+        house_rules:
+          type: string
+          description: The house rules and guidelines for guests.
+        check_in_time:
+          type: string
+          description: The earliest check-in time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        check_out_time:
+          type: string
+          description: The latest check-out time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        cancellation_policy:
+          type: string
+          description: The cancellation policy applied to the listing.
+          enum:
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
+    Listing:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the listing.
+        name:
+          type: string
+          description: The display name of the listing.
+        description:
+          type: string
+          description: The full description of the property.
+        property_type:
+          type: string
+          description: The type of property being listed.
+          enum:
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
+        room_type:
+          type: string
+          description: The type of room or space being offered.
+          enum:
+          - entire_home
+          - private_room
+          - shared_room
+        status:
+          type: string
+          description: The current status of the listing on the platform.
+          enum:
+          - active
+          - inactive
+          - pending
+          - unlisted
+        address:
+          $ref: '#/components/schemas/Address'
+        bedrooms:
+          type: integer
+          description: The number of bedrooms in the property.
+          minimum: 0
+        bathrooms:
+          type: number
+          description: The number of bathrooms in the property.
+          minimum: 0
+        beds:
+          type: integer
+          description: The total number of beds in the property.
+          minimum: 0
+        max_guests:
+          type: integer
+          description: The maximum number of guests allowed.
+          minimum: 1
+        amenities:
+          type: array
+          description: The list of amenity identifiers available at the property.
+          items:
+            type: string
+        house_rules:
+          type: string
+          description: The house rules and guidelines for guests.
+        check_in_time:
+          type: string
+          description: The earliest check-in time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        check_out_time:
+          type: string
+          description: The latest check-out time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        pricing:
+          $ref: '#/components/schemas/Pricing'
+        photos:
+          type: array
+          description: The photos associated with the listing.
+          items:
+            $ref: '#/components/schemas/Photo'
+        cancellation_policy:
+          type: string
+          description: The cancellation policy applied to the listing.
+          enum:
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the listing was created.
+        updated_at:
+          type: string
+          format: date-time
+          description: The timestamp when the listing was last updated.
+    Pricing:
+      type: object
+      properties:
+        nightly_price:
+          type: number
+          format: double
+          description: The base nightly price in the listing currency.
+          minimum: 0
+        currency:
+          type: string
+          description: The ISO 4217 currency code for pricing.
+          pattern: ^[A-Z]{3}$
+        cleaning_fee:
+          type: number
+          format: double
+          description: The one-time cleaning fee charged per reservation.
+          minimum: 0
+        weekly_discount:
+          type: number
+          description: The percentage discount for stays of 7 or more nights.
+          minimum: 0
+          maximum: 100
+        monthly_discount:
+          type: number
+          description: The percentage discount for stays of 28 or more nights.
+          minimum: 0
+          maximum: 100
+        extra_guest_fee:
+          type: number
+          format: double
+          description: The additional fee per extra guest beyond the base occupancy.
+          minimum: 0
+  parameters:
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Reviews API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Reviews
+  description: Operations for retrieving and responding to guest and host reviews.
+paths:
+  /reservations/{reservation_id}/reviews:
+    get:
+      operationId: listReservationReviews
+      summary: List Reservation Reviews
+      description: Retrieves the reviews associated with a specific reservation, including both the guest review and host response if available.
+      tags:
+      - Reviews
+      parameters:
+      - $ref: '#/components/parameters/reservationIdParam'
+      responses:
+        '200':
+          description: The reviews for the reservation.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviews:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Review'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The reservation was not found.
+  /listings/{listing_id}/reviews:
+    get:
+      operationId: listListingReviews
+      summary: List Listing Reviews
+      description: Retrieves a paginated list of all reviews for a specific listing, including guest ratings and comments.
+      tags:
+      - Reviews
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: A paginated list of reviews for the listing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reviews:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Review'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+components:
+  parameters:
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    reservationIdParam:
+      name: reservation_id
+      in: path
+      required: true
+      description: The unique identifier of the reservation.
+      schema:
+        type: string
+  schemas:
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the review.
+        reservation_id:
+          type: string
+          description: The identifier of the associated reservation.
+        reviewer_type:
+          type: string
+          description: Whether the review was written by a guest or host.
+          enum:
+          - guest
+          - host
+        rating:
+          type: integer
+          description: The overall star rating from 1 to 5.
+          minimum: 1
+          maximum: 5
+        comments:
+          type: string
+          description: The text content of the review.
+        category_ratings:
+          type: object
+          description: Individual category ratings provided by the reviewer.
+          properties:
+            cleanliness:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for cleanliness.
+            communication:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for communication.
+            check_in:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for check-in experience.
+            accuracy:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for listing accuracy.
+            location:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for location.
+            value:
+              type: integer
+              minimum: 1
+              maximum: 5
+              description: Rating for value.
+        host_response:
+          type: string
+          description: The host response to the review, if provided.
+        created_at:
+          type: string
+          format: date-time
+          description: The timestamp when the review was submitted.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/

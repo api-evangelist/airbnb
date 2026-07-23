@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: Airbnb Activities Bookings Photos API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  version: 2025.03.31
+  contact:
+    name: Airbnb Developer Support
+    url: https://developer.withairbnb.com/
+  termsOfService: https://www.airbnb.com/terms
+servers:
+- url: https://api.airbnb.com/v2
+  description: Airbnb Production API Server
+security:
+- oauth2: []
+tags:
+- name: Photos
+  description: Operations for uploading, updating, and managing listing photos.
+paths:
+  /listings/{listing_id}/photos:
+    get:
+      operationId: listListingPhotos
+      summary: List Listing Photos
+      description: Retrieves all photos associated with a specific listing, including their captions, sort order, and dimensions.
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      responses:
+        '200':
+          description: A list of photos for the listing.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  photos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Photo'
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+    post:
+      operationId: uploadListingPhoto
+      summary: Upload a Listing Photo
+      description: Uploads a new photo to a listing. Photos can include captions and a sort order to control display position in the listing gallery.
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - photo
+              properties:
+                photo:
+                  type: string
+                  format: binary
+                  description: The photo file to upload.
+                caption:
+                  type: string
+                  description: An optional caption describing the photo.
+                sort_order:
+                  type: integer
+                  description: The display position of the photo in the listing gallery.
+      responses:
+        '201':
+          description: The photo was successfully uploaded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Photo'
+        '400':
+          description: The uploaded file is invalid or exceeds size limits.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing was not found.
+  /listings/{listing_id}/photos/{photo_id}:
+    delete:
+      operationId: deleteListingPhoto
+      summary: Delete a Listing Photo
+      description: Removes a specific photo from a listing by its identifier.
+      tags:
+      - Photos
+      parameters:
+      - $ref: '#/components/parameters/listingIdParam'
+      - $ref: '#/components/parameters/photoIdParam'
+      responses:
+        '204':
+          description: The photo was successfully deleted.
+        '401':
+          description: Authentication credentials are missing or invalid.
+        '404':
+          description: The listing or photo was not found.
+components:
+  parameters:
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
+    photoIdParam:
+      name: photo_id
+      in: path
+      required: true
+      description: The unique identifier of the photo.
+      schema:
+        type: string
+  schemas:
+    Photo:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the photo.
+        url:
+          type: string
+          format: uri
+          description: The URL where the photo is hosted.
+        caption:
+          type: string
+          description: A caption describing the photo.
+        sort_order:
+          type: integer
+          description: The display position of the photo in the listing gallery.
+        width:
+          type: integer
+          description: The width of the photo in pixels.
+        height:
+          type: integer
+          description: The height of the photo in pixels.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://www.airbnb.com/oauth2/auth
+          tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
+          scopes:
+            experiences:read: Read experience information
+            experiences:write: Create and update experiences
+            bookings:read: Read booking information
+            bookings:write: Confirm and cancel bookings
+            messages:read: Read booking messages
+            messages:write: Send messages to guests
+externalDocs:
+  description: Airbnb Developer Documentation
+  url: https://developer.withairbnb.com/
