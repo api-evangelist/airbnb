@@ -1,84 +1,20 @@
 aid: airbnb
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/airbnb.png
 url: https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
 apis:
-- aid: airbnb:homes-api
-  name: Airbnb Homes API
-  tags:
-  - Airbnb
-  - Calendar
-  - Channel Manager
-  - Hospitality
-  - Host
-  - Listings
-  - Lodging
-  - Photos
-  - Property Management
-  - Reservations
-  - Short-Term Rental
-  - Travel
-  - Vacation Rentals
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.airbnb.com
-  humanURL: https://developer.withairbnb.com/
-  properties:
-  - url: https://developer.withairbnb.com/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/airbnb-homes-api-openapi.yml
-  - url: graphql/airbnb-graphql.md
-    type: GraphQL
-  description: The Airbnb Homes API provides partner developers with programmatic
-    access to manage vacation rental listings on the Airbnb platform. It supports
-    creating and updating property listings, managing descriptions, amenities, photos,
-    pricing, and availability rules. The API also enables reservation management,
-    calendar synchronization, guest messaging, and review handling.
-  features:
-  - Listing creation and management with full property details
-  - Photo upload and management for listings
-  - Calendar and availability management
-  - Dynamic pricing and availability rules
-  - Reservation management (accept, decline, modify)
-  - Guest messaging within reservation threads
-  - Review retrieval and response
-  - Multi-unit and room-type support
-  use_cases:
-  - Property management systems syncing Airbnb listings
-  - Channel managers distributing inventory across platforms
-  - Vacation rental software managing guest communications
-  - Revenue management tools adjusting pricing dynamically
-- aid: airbnb:activities-api
-  name: Airbnb Activities API
-  tags:
-  - Activities
-  - Airbnb
-  - Bookings
-  - Experiences
-  - Hospitality
-  - Tourism
-  - Travel
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  baseURL: https://api.airbnb.com
-  humanURL: https://developer.withairbnb.com/
-  properties:
-  - url: https://developer.withairbnb.com/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/airbnb-activities-api-openapi.yml
-  description: The Airbnb Activities API allows approved partners to integrate with
-    Airbnb Experiences, the platform's marketplace for hosted activities and tours.
-    It provides endpoints for managing experience listings, handling bookings, and
-    synchronizing availability for activities offered by local hosts.
-  features:
-  - Experience listing creation and management
-  - Activity scheduling and availability management
-  - Booking management for hosted experiences
-  - Guest communication for experience bookings
-  - Photo management for experience listings
-  - Host profile and capacity management
-  use_cases:
-  - Tour operators managing Airbnb Experiences listings
-  - Activity booking platforms syncing availability
-  - Experience management software integrating with Airbnb
 - aid: airbnb:webhooks-api
   name: Airbnb Webhooks API
   tags:
@@ -98,10 +34,10 @@ apis:
     type: Documentation
   - type: AsyncAPI
     url: asyncapi/airbnb-webhooks-asyncapi.yml
-  description: The Airbnb Webhooks API enables connectivity partners to receive real-time
-    notifications when events occur on the Airbnb platform. It supports webhook subscriptions
-    for reservation changes, message creation, review submissions, listing calendar
-    updates, and other key events.
+  description: >-
+    The Airbnb Webhooks API enables connectivity partners to receive real-time notifications when events
+    occur on the Airbnb platform. It supports webhook subscriptions for reservation changes, message creation,
+    review submissions, listing calendar updates, and other key events.
   features:
   - Real-time reservation status change notifications
   - Guest message event notifications
@@ -112,6 +48,156 @@ apis:
   - Property management systems reacting to booking events in real time
   - Guest communication automation triggered by reservation changes
   - Inventory sync systems responding to availability changes
+- aid: airbnb:airbnb-bookings-api
+  name: airbnb Bookings API
+  description: >-
+    Operations for managing guest bookings for experiences, including confirmations, cancellations, and
+    attendee details.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Bookings
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-bookings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-calendar-api
+  name: airbnb Calendar API
+  description: >-
+    Operations for managing listing availability, pricing, and calendar synchronization across platforms.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Calendar
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-calendar-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-experience-messages-api
+  name: airbnb Experience Messages API
+  description: >-
+    Operations for sending and retrieving messages between experience hosts and booked guests.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Experience Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-experience-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-experiences-api
+  name: airbnb Experiences API
+  description: >-
+    Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Experiences
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-experiences-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-listings-api
+  name: airbnb Listings API
+  description: >-
+    Operations for creating, reading, updating, and managing property listings on Airbnb, including descriptions,
+    amenities, and photos.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Listings
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-listings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-messages-api
+  name: airbnb Messages API
+  description: >-
+    Operations for sending and retrieving guest and host messages within reservation threads.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-messages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-photos-api
+  name: airbnb Photos API
+  description: Operations for uploading, updating, and managing listing photos.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Photos
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-photos-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-reservations-api
+  name: airbnb Reservations API
+  description: >-
+    Operations for managing reservations, including accepting, declining, and retrieving booking details.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Reservations
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-reservations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-reviews-api
+  name: airbnb Reviews API
+  description: Operations for retrieving and responding to guest and host reviews.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Reviews
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-reviews-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
+- aid: airbnb:airbnb-schedules-api
+  name: airbnb Schedules API
+  description: >-
+    Operations for managing experience schedules, time slots, and availability for hosted activities.
+  humanURL: https://developer.withairbnb.com/
+  baseURL: https://api.airbnb.com
+  tags:
+  - Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/airbnb-schedules-api-openapi.yml
+  - type: Documentation
+    url: https://developer.withairbnb.com/
+  - type: GraphQL
+    url: graphql/airbnb-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/airbnb-agentic-access.yml
