@@ -1,0 +1,32 @@
+{
+  "provider": "airbnb",
+  "sources": [
+    "airbnb-bookings-api-openapi.yml",
+    "airbnb-calendar-api-openapi.yml",
+    "airbnb-experience-messages-api-openapi.yml",
+    "airbnb-experiences-api-openapi.yml",
+    "airbnb-listings-api-openapi.yml",
+    "airbnb-messages-api-openapi.yml",
+    "airbnb-photos-api-openapi.yml",
+    "airbnb-reservations-api-openapi.yml",
+    "airbnb-reviews-api-openapi.yml",
+    "airbnb-schedules-api-openapi.yml"
+  ],
+  "outputs": [
+    "airbnb-bookings-api-openapi.yml",
+    "airbnb-calendar-api-openapi.yml",
+    "airbnb-experience-messages-api-openapi.yml",
+    "airbnb-experiences-api-openapi.yml",
+    "airbnb-listings-api-openapi.yml",
+    "airbnb-messages-api-openapi.yml",
+    "airbnb-photos-api-openapi.yml",
+    "airbnb-reservations-api-openapi.yml",
+    "airbnb-reviews-api-openapi.yml",
+    "airbnb-schedules-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
