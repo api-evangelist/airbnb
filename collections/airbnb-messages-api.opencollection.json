@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Messages API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Reservation Messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/messages",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              }
+            ]
+          },
+          "docs": "Retrieves the message thread for a specific reservation, including all messages exchanged between the host and guest."
+        },
+        {
+          "info": {
+            "name": "Send a Reservation Message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/messages",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a new message in the reservation thread from the host to the guest. Messages are delivered through the Airbnb messaging system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

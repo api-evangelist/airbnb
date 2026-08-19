@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Reservations API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reservations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Reservations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations by their current status."
+              },
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations by listing identifier."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations with check-in dates on or after this date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter reservations with check-in dates on or before this date."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of reservations for listings managed by the authenticated partner. Supports filtering by status, listing, and date range."
+        },
+        {
+          "info": {
+            "name": "Get a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific reservation including guest information, dates, pricing breakdown, and current status."
+        },
+        {
+          "info": {
+            "name": "Accept a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/accept",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ]
+          },
+          "docs": "Accepts a pending reservation request. Once accepted, the reservation is confirmed and the calendar dates are blocked."
+        },
+        {
+          "info": {
+            "name": "Deny a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/deny",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Denies a pending reservation request. A reason for denial may be provided to inform the guest."
+        },
+        {
+          "info": {
+            "name": "Cancel a Reservation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/reservations/:reservation_id/cancel",
+            "params": [
+              {
+                "name": "reservation_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reservation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an accepted reservation. Cancellation policies and fees may apply depending on the listing configuration and timing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

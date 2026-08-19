@@ -1,0 +1,629 @@
+{
+  "item": [
+    {
+      "id": "f326fe7b-44e5-47ad-b1ec-204b0e67600f",
+      "name": "Calendar",
+      "description": {
+        "content": "Operations for managing listing availability, pricing, and calendar synchronization across platforms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d32b20a-9452-4568-ab03-f3201ac9fedb",
+          "name": "Get Listing Calendar",
+          "request": {
+            "name": "Get Listing Calendar",
+            "description": {
+              "content": "Retrieves the availability calendar for a specific listing over a date range. Returns day-by-day availability status, nightly pricing, minimum stay requirements, and any blocked dates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id",
+                "calendar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) The start date for the calendar range in ISO 8601 format."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) The end date for the calendar range in ISO 8601 format."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec6155b4-b9bb-4083-a655-a70b2ab2d3b6",
+              "name": "The calendar data for the specified date range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"calendar_days\": [\n    {\n      \"date\": \"1971-06-21\",\n      \"available\": false,\n      \"price\": 3531.8465548195486,\n      \"minimum_nights\": 5550,\n      \"maximum_nights\": 3277,\n      \"reservation_id\": \"string\"\n    },\n    {\n      \"date\": \"1966-03-20\",\n      \"available\": true,\n      \"price\": 5024.463757669998,\n      \"minimum_nights\": 5771,\n      \"maximum_nights\": 8440,\n      \"reservation_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe3f17a8-6ebc-4ed6-843b-2eab1242601f",
+              "name": "The date range is invalid or missing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "547a7889-3737-4e3c-9018-24b5e934913e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2dab7eb0-a08b-4f82-bf87-2c6b0db93ddf",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdce1c73-5e25-423f-94d7-fa69800f2c67",
+          "name": "Update Listing Calendar",
+          "request": {
+            "name": "Update Listing Calendar",
+            "description": {
+              "content": "Updates the availability, pricing, and minimum stay settings for specific dates on a listing calendar. Use this endpoint to block or unblock dates, adjust nightly pricing, and set minimum stay requirements.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id",
+                "calendar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calendar_operations\": [\n    {\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"available\": \"<boolean>\",\n      \"price\": \"<double>\",\n      \"minimum_nights\": \"<integer>\",\n      \"maximum_nights\": \"<integer>\"\n    },\n    {\n      \"start_date\": \"<date>\",\n      \"end_date\": \"<date>\",\n      \"available\": \"<boolean>\",\n      \"price\": \"<double>\",\n      \"minimum_nights\": \"<integer>\",\n      \"maximum_nights\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cab65041-2bef-47ec-9736-598fdb73d41f",
+              "name": "The calendar was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar_operations\": [\n    {\n      \"start_date\": \"1947-11-26\",\n      \"end_date\": \"1998-08-14\",\n      \"available\": true,\n      \"price\": 1238.7640935236088,\n      \"minimum_nights\": 9564,\n      \"maximum_nights\": 916\n    },\n    {\n      \"start_date\": \"1954-02-02\",\n      \"end_date\": \"2004-01-05\",\n      \"available\": false,\n      \"price\": 6709.112593522341,\n      \"minimum_nights\": 1956,\n      \"maximum_nights\": 7373\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f0e8156-e393-48d6-8513-0e0707d6ea21",
+              "name": "The request body contains invalid operations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar_operations\": [\n    {\n      \"start_date\": \"1947-11-26\",\n      \"end_date\": \"1998-08-14\",\n      \"available\": true,\n      \"price\": 1238.7640935236088,\n      \"minimum_nights\": 9564,\n      \"maximum_nights\": 916\n    },\n    {\n      \"start_date\": \"1954-02-02\",\n      \"end_date\": \"2004-01-05\",\n      \"available\": false,\n      \"price\": 6709.112593522341,\n      \"minimum_nights\": 1956,\n      \"maximum_nights\": 7373\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a6cefd4d-cac6-4a6d-ae03-d4bac5b156a1",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar_operations\": [\n    {\n      \"start_date\": \"1947-11-26\",\n      \"end_date\": \"1998-08-14\",\n      \"available\": true,\n      \"price\": 1238.7640935236088,\n      \"minimum_nights\": 9564,\n      \"maximum_nights\": 916\n    },\n    {\n      \"start_date\": \"1954-02-02\",\n      \"end_date\": \"2004-01-05\",\n      \"available\": false,\n      \"price\": 6709.112593522341,\n      \"minimum_nights\": 1956,\n      \"maximum_nights\": 7373\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2277226f-4259-423e-b8bf-6050d48ead19",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "calendar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calendar_operations\": [\n    {\n      \"start_date\": \"1947-11-26\",\n      \"end_date\": \"1998-08-14\",\n      \"available\": true,\n      \"price\": 1238.7640935236088,\n      \"minimum_nights\": 9564,\n      \"maximum_nights\": 916\n    },\n    {\n      \"start_date\": \"1954-02-02\",\n      \"end_date\": \"2004-01-05\",\n      \"available\": false,\n      \"price\": 6709.112593522341,\n      \"minimum_nights\": 1956,\n      \"maximum_nights\": 7373\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airbnb.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "experiences:read experiences:write bookings:read bookings:write messages:read messages:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.airbnb.com/v2/oauth2/authorizations"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.airbnb.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ec0a88bd-f925-423d-bc32-8429b26d022a",
+    "name": "Airbnb Activities Bookings Calendar API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.\n\nContact Support:\n Name: Airbnb Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

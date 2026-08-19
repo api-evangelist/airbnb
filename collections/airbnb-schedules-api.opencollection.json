@@ -1,0 +1,138 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Schedules API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Experience Schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "The start date for the schedule range in ISO 8601 format."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "The end date for the schedule range in ISO 8601 format."
+              }
+            ]
+          },
+          "docs": "Retrieves the available time slots and schedule entries for a specific experience over a date range."
+        },
+        {
+          "info": {
+            "name": "Create an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new scheduled time slot for an experience, specifying the date, start time, and maximum number of attendees."
+        },
+        {
+          "info": {
+            "name": "Update an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules/:schedule_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule entry."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing schedule entry for an experience, allowing changes to time, capacity, or cancellation of the time slot."
+        },
+        {
+          "info": {
+            "name": "Delete an Experience Schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id/schedules/:schedule_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the schedule entry."
+              }
+            ]
+          },
+          "docs": "Removes a scheduled time slot from an experience. Existing bookings for the time slot must be handled before deletion."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

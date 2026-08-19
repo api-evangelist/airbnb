@@ -1,0 +1,1167 @@
+{
+  "item": [
+    {
+      "id": "e0c1af44-8ce7-4f62-9f2a-c055f2f67957",
+      "name": "Listings",
+      "description": {
+        "content": "Operations for creating, reading, updating, and managing property listings on Airbnb, including descriptions, amenities, and photos.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43ede826-c51f-4914-a726-c349a4aa7008",
+          "name": "List All Listings",
+          "request": {
+            "name": "List All Listings",
+            "description": {
+              "content": "Retrieves a paginated list of all property listings managed by the authenticated partner. Supports filtering by status and other listing attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter listings by their current status on the platform."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "09e68689-d0df-46b3-b658-a8476d69c08f",
+              "name": "A paginated list of listings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listings\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"property_type\": \"bed_and_breakfast\",\n      \"room_type\": \"shared_room\",\n      \"status\": \"active\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"country\": \"SN\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"latitude\": 32.28738140098538,\n        \"longitude\": 80.0554115905856\n      },\n      \"bedrooms\": 9598,\n      \"bathrooms\": 1764.652954220356,\n      \"beds\": 9258,\n      \"max_guests\": 1826,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"house_rules\": \"string\",\n      \"check_in_time\": \"03:45\",\n      \"check_out_time\": \"00:43\",\n      \"pricing\": {\n        \"nightly_price\": 8119.9179209324975,\n        \"currency\": \"VCV\",\n        \"cleaning_fee\": 4243.993634853511,\n        \"weekly_discount\": 10.702774364876056,\n        \"monthly_discount\": 96.04992414211219,\n        \"extra_guest_fee\": 5221.984270108894\n      },\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"https://TOpYnVYWzNyZHsqHPIpZcZotBCsdS.znkpx.Mr+TZDHCqH0KQlmV9BYzQsspYe\",\n          \"caption\": \"string\",\n          \"sort_order\": 5643,\n          \"width\": 3741,\n          \"height\": 8172\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"http://bQTrEIKs.ijkuW.us-YblGMzN2QBOon3K0Maf3Qo7ovgBx.e8PH2B.QkYgyI\",\n          \"caption\": \"string\",\n          \"sort_order\": 6705,\n          \"width\": 7210,\n          \"height\": 6318\n        }\n      ],\n      \"cancellation_policy\": \"flexible\",\n      \"created_at\": \"1982-03-05T09:51:23.803Z\",\n      \"updated_at\": \"2001-05-02T06:40:11.262Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"property_type\": \"house\",\n      \"room_type\": \"shared_room\",\n      \"status\": \"pending\",\n      \"address\": {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"country\": \"AI\",\n        \"state\": \"string\",\n        \"zip_code\": \"string\",\n        \"latitude\": -59.726838801560575,\n        \"longitude\": -87.1103234115635\n      },\n      \"bedrooms\": 7185,\n      \"bathrooms\": 7097.179816495771,\n      \"beds\": 2208,\n      \"max_guests\": 810,\n      \"amenities\": [\n        \"string\",\n        \"string\"\n      ],\n      \"house_rules\": \"string\",\n      \"check_in_time\": \"02:47\",\n      \"check_out_time\": \"12:40\",\n      \"pricing\": {\n        \"nightly_price\": 5367.177118138503,\n        \"currency\": \"OYV\",\n        \"cleaning_fee\": 1922.8688292056972,\n        \"weekly_discount\": 96.30802164601351,\n        \"monthly_discount\": 47.924750453874566,\n        \"extra_guest_fee\": 1936.6709531031468\n      },\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"http://hneG.qthQUULELyRbWWkKh.wIZasDEz1b+3ESEkoslUMJ8Z7+PtaW\",\n          \"caption\": \"string\",\n          \"sort_order\": 1451,\n          \"width\": 2167,\n          \"height\": 4274\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"https://ZDRspgKEwdlEfeiVmCfUwM.zjybbFO-bZqRfT7PLsUX2LY5C.MeM0Gn2rbnDWaGQzzyGCMicBZSaQ21gPHokoBqMPY6cG.fFy\",\n          \"caption\": \"string\",\n          \"sort_order\": 1039,\n          \"width\": 9993,\n          \"height\": 3128\n        }\n      ],\n      \"cancellation_policy\": \"super_strict_30\",\n      \"created_at\": \"1990-01-25T03:41:22.214Z\",\n      \"updated_at\": \"1963-07-07T06:15:37.603Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 3293,\n    \"limit\": 9529,\n    \"offset\": 9355,\n    \"has_more\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95fd4762-7b20-466f-baf6-ddf7d709b623",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "714b2f38-c069-46e1-b83f-8902ed1911fd",
+              "name": "The partner does not have permission to access listings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35e4b58d-6eb8-4e1d-9f88-167bdc41e037",
+          "name": "Create a New Listing",
+          "request": {
+            "name": "Create a New Listing",
+            "description": {
+              "content": "Creates a new property listing on Airbnb with the provided details including property type, location, description, amenities, and house rules. The listing will be in a pending state until all required fields are completed and the listing is published.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zip_code\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"max_guests\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6342b64a-098f-4074-a9fb-cc945356075a",
+              "name": "The listing was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"TL\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -79.6145951301531,\n    \"longitude\": 113.88763168282253\n  },\n  \"max_guests\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"property_type\": \"boutique_hotel\",\n  \"room_type\": \"shared_room\",\n  \"status\": \"pending\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"UD\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -18.19362301443826,\n    \"longitude\": -55.46800816638368\n  },\n  \"bedrooms\": 1761,\n  \"bathrooms\": 5866.542638510134,\n  \"beds\": 364,\n  \"max_guests\": 5083,\n  \"amenities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"house_rules\": \"string\",\n  \"check_in_time\": \"21:58\",\n  \"check_out_time\": \"18:08\",\n  \"pricing\": {\n    \"nightly_price\": 7661.07468600047,\n    \"currency\": \"NCS\",\n    \"cleaning_fee\": 1231.762910217994,\n    \"weekly_discount\": 71.67402702446898,\n    \"monthly_discount\": 59.624372320643396,\n    \"extra_guest_fee\": 7958.188649616725\n  },\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://gnFEZvJXUNBnLf.fvdk-uYDyd9GJICgvbbKmROWyREhh\",\n      \"caption\": \"string\",\n      \"sort_order\": 6302,\n      \"width\": 1428,\n      \"height\": 8283\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"http://QklUufmitXNSNAsk.ozxmfdnlZQmwraJpoMgkhaXQRTB9FlovPp6Sk,\",\n      \"caption\": \"string\",\n      \"sort_order\": 1555,\n      \"width\": 5839,\n      \"height\": 7852\n    }\n  ],\n  \"cancellation_policy\": \"flexible\",\n  \"created_at\": \"1975-11-05T00:36:57.958Z\",\n  \"updated_at\": \"1978-01-03T14:53:24.806Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a4a40b1-4305-4355-b1b4-d2678f99b1d8",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"TL\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -79.6145951301531,\n    \"longitude\": 113.88763168282253\n  },\n  \"max_guests\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5e67041-02a6-40f2-a7ef-f74597c89b23",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"TL\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -79.6145951301531,\n    \"longitude\": 113.88763168282253\n  },\n  \"max_guests\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3eb1cc35-4bf6-49dc-9170-66e7e6fe957e",
+          "name": "Get a Listing",
+          "request": {
+            "name": "Get a Listing",
+            "description": {
+              "content": "Retrieves the full details of a specific property listing by its unique identifier, including description, amenities, photos, pricing, and availability configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fb4a919-9012-4123-a1b4-410328075937",
+              "name": "The listing details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"property_type\": \"boutique_hotel\",\n  \"room_type\": \"shared_room\",\n  \"status\": \"pending\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"UD\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -18.19362301443826,\n    \"longitude\": -55.46800816638368\n  },\n  \"bedrooms\": 1761,\n  \"bathrooms\": 5866.542638510134,\n  \"beds\": 364,\n  \"max_guests\": 5083,\n  \"amenities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"house_rules\": \"string\",\n  \"check_in_time\": \"21:58\",\n  \"check_out_time\": \"18:08\",\n  \"pricing\": {\n    \"nightly_price\": 7661.07468600047,\n    \"currency\": \"NCS\",\n    \"cleaning_fee\": 1231.762910217994,\n    \"weekly_discount\": 71.67402702446898,\n    \"monthly_discount\": 59.624372320643396,\n    \"extra_guest_fee\": 7958.188649616725\n  },\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://gnFEZvJXUNBnLf.fvdk-uYDyd9GJICgvbbKmROWyREhh\",\n      \"caption\": \"string\",\n      \"sort_order\": 6302,\n      \"width\": 1428,\n      \"height\": 8283\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"http://QklUufmitXNSNAsk.ozxmfdnlZQmwraJpoMgkhaXQRTB9FlovPp6Sk,\",\n      \"caption\": \"string\",\n      \"sort_order\": 1555,\n      \"width\": 5839,\n      \"height\": 7852\n    }\n  ],\n  \"cancellation_policy\": \"flexible\",\n  \"created_at\": \"1975-11-05T00:36:57.958Z\",\n  \"updated_at\": \"1978-01-03T14:53:24.806Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93d26c3f-96b2-455b-812a-cee1b55c04a8",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d64a7754-71e5-4acd-a8fc-4d675d851620",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bf8f283-6b7e-4c2b-96a0-fd80823974c2",
+          "name": "Update a Listing",
+          "request": {
+            "name": "Update a Listing",
+            "description": {
+              "content": "Updates an existing property listing with the provided fields. Only the fields included in the request body will be modified. This can be used to update descriptions, amenities, house rules, and other listing attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd795b18-e8bb-4c56-aca8-7de92d098a16",
+              "name": "The listing was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"property_type\": \"boutique_hotel\",\n  \"room_type\": \"shared_room\",\n  \"status\": \"pending\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"country\": \"UD\",\n    \"state\": \"string\",\n    \"zip_code\": \"string\",\n    \"latitude\": -18.19362301443826,\n    \"longitude\": -55.46800816638368\n  },\n  \"bedrooms\": 1761,\n  \"bathrooms\": 5866.542638510134,\n  \"beds\": 364,\n  \"max_guests\": 5083,\n  \"amenities\": [\n    \"string\",\n    \"string\"\n  ],\n  \"house_rules\": \"string\",\n  \"check_in_time\": \"21:58\",\n  \"check_out_time\": \"18:08\",\n  \"pricing\": {\n    \"nightly_price\": 7661.07468600047,\n    \"currency\": \"NCS\",\n    \"cleaning_fee\": 1231.762910217994,\n    \"weekly_discount\": 71.67402702446898,\n    \"monthly_discount\": 59.624372320643396,\n    \"extra_guest_fee\": 7958.188649616725\n  },\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://gnFEZvJXUNBnLf.fvdk-uYDyd9GJICgvbbKmROWyREhh\",\n      \"caption\": \"string\",\n      \"sort_order\": 6302,\n      \"width\": 1428,\n      \"height\": 8283\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"http://QklUufmitXNSNAsk.ozxmfdnlZQmwraJpoMgkhaXQRTB9FlovPp6Sk,\",\n      \"caption\": \"string\",\n      \"sort_order\": 1555,\n      \"width\": 5839,\n      \"height\": 7852\n    }\n  ],\n  \"cancellation_policy\": \"flexible\",\n  \"created_at\": \"1975-11-05T00:36:57.958Z\",\n  \"updated_at\": \"1978-01-03T14:53:24.806Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58443dca-4c46-4432-b387-3d7d2dcdca27",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "78b415e1-1c65-446d-9702-9585cd5fcf19",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f916cf43-d0e7-4168-8434-e571e3b20c22",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"property_type\": \"<string>\",\n  \"room_type\": \"<string>\",\n  \"bedrooms\": \"<integer>\",\n  \"bathrooms\": \"<number>\",\n  \"beds\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"amenities\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"house_rules\": \"<string>\",\n  \"check_in_time\": \"<string>\",\n  \"check_out_time\": \"<string>\",\n  \"cancellation_policy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "152a5b26-8f58-4ddd-8ea1-c02876d47547",
+          "name": "Delete a Listing",
+          "request": {
+            "name": "Delete a Listing",
+            "description": {
+              "content": "Removes a property listing from the Airbnb platform. This action cannot be undone. Active reservations must be resolved before a listing can be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30432625-3171-4a94-a045-b6dfdc27da52",
+              "name": "The listing was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "be741ee2-0998-42a4-abcd-54a664502c44",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b2c5e03-3de8-4f96-a43f-1287109b23d7",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ae12a87d-66ec-42f0-99b0-1b0ba75a5115",
+              "name": "The listing has active reservations and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airbnb.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "experiences:read experiences:write bookings:read bookings:write messages:read messages:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.airbnb.com/v2/oauth2/authorizations"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.airbnb.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e4920e09-5994-49e9-a134-b69dbc361af6",
+    "name": "Airbnb Activities Bookings Listings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.\n\nContact Support:\n Name: Airbnb Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

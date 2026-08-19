@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Photos API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Photos",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Listing Photos",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Retrieves all photos associated with a specific listing, including their captions, sort order, and dimensions."
+        },
+        {
+          "info": {
+            "name": "Upload a Listing Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "photo",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "caption",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "sort_order",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a new photo to a listing. Photos can include captions and a sort order to control display position in the listing gallery."
+        },
+        {
+          "info": {
+            "name": "Delete a Listing Photo",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id/photos/:photo_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              },
+              {
+                "name": "photo_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the photo."
+              }
+            ]
+          },
+          "docs": "Removes a specific photo from a listing by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

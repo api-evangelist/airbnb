@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Experiences API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Experiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter experiences by their current status on the platform."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter experiences by activity category."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all experience listings managed by the authenticated partner. Supports filtering by status and activity category."
+        },
+        {
+          "info": {
+            "name": "Create a New Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/experiences",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new experience listing on Airbnb with the provided details including activity type, location, description, pricing, and scheduling information. The experience will be in a pending state until reviewed and approved by Airbnb."
+        },
+        {
+          "info": {
+            "name": "Get an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific experience listing by its unique identifier, including description, schedule, pricing, and host information."
+        },
+        {
+          "info": {
+            "name": "Update an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing experience listing with the provided fields. Only the fields included in the request body will be modified."
+        },
+        {
+          "info": {
+            "name": "Delete an Experience",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/experiences/:experience_id",
+            "params": [
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the experience."
+              }
+            ]
+          },
+          "docs": "Removes an experience listing from the Airbnb platform. Active bookings must be resolved before an experience can be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

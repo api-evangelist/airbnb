@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings Listings API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Listings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Listings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter listings by their current status on the platform."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of all property listings managed by the authenticated partner. Supports filtering by status and other listing attributes."
+        },
+        {
+          "info": {
+            "name": "Create a New Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/listings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new property listing on Airbnb with the provided details including property type, location, description, amenities, and house rules. The listing will be in a pending state until all required fields are completed and the listing is published."
+        },
+        {
+          "info": {
+            "name": "Get a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific property listing by its unique identifier, including description, amenities, photos, pricing, and availability configuration."
+        },
+        {
+          "info": {
+            "name": "Update a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing property listing with the provided fields. Only the fields included in the request body will be modified. This can be used to update descriptions, amenities, house rules, and other listing attributes."
+        },
+        {
+          "info": {
+            "name": "Delete a Listing",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.airbnb.com/v2/listings/:listing_id",
+            "params": [
+              {
+                "name": "listing_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the listing."
+              }
+            ]
+          },
+          "docs": "Removes a property listing from the Airbnb platform. This action cannot be undone. Active reservations must be resolved before a listing can be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

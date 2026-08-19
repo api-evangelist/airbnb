@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Airbnb Activities Bookings API",
+    "version": "2025.03.31"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://www.airbnb.com/oauth2/auth",
+      "accessTokenUrl": "https://api.airbnb.com/v2/oauth2/authorizations",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bookings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Experience Bookings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/bookings",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of results to return per page."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The number of results to skip for pagination."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings by their current status."
+              },
+              {
+                "name": "experience_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings by experience identifier."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings with activity dates on or after this date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter bookings with activity dates on or before this date."
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of bookings for experiences managed by the authenticated partner. Supports filtering by status, experience, and date range."
+        },
+        {
+          "info": {
+            "name": "Get a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ]
+          },
+          "docs": "Retrieves the full details of a specific experience booking including attendee information, schedule, and pricing."
+        },
+        {
+          "info": {
+            "name": "Confirm a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/confirm",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ]
+          },
+          "docs": "Confirms a pending booking request for an experience. Once confirmed, the attendee count is updated on the schedule."
+        },
+        {
+          "info": {
+            "name": "Cancel a Booking",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.airbnb.com/v2/bookings/:booking_id/cancel",
+            "params": [
+              {
+                "name": "booking_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the booking."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an existing booking. Cancellation policies and refund rules may apply depending on timing and experience configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

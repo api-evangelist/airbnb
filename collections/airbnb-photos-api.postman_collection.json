@@ -1,0 +1,862 @@
+{
+  "item": [
+    {
+      "id": "ea0b845d-35ce-43c8-9af5-f716791170a6",
+      "name": "Photos",
+      "description": {
+        "content": "Operations for uploading, updating, and managing listing photos.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1682269e-798b-4d18-9c81-24164faccd56",
+          "name": "List Listing Photos",
+          "request": {
+            "name": "List Listing Photos",
+            "description": {
+              "content": "Retrieves all photos associated with a specific listing, including their captions, sort order, and dimensions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id",
+                "photos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fffd2015-73f2-44cb-8d96-5a71711b276b",
+              "name": "A list of photos for the listing.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://EbQpBbeXhloWnCFXUryGapi.xdos6pplOQFYX5SwBnGJ7umXpVW-6GSNnpfhCcEFx\",\n      \"caption\": \"string\",\n      \"sort_order\": 5853,\n      \"width\": 9138,\n      \"height\": 6217\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://AQxGlZPh.ezlIVJOPklBltZUHhrGZeHUEJXlzGGKYpT8j.3UA8\",\n      \"caption\": \"string\",\n      \"sort_order\": 383,\n      \"width\": 661,\n      \"height\": 1953\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "103c4a9e-df2f-449f-b9c7-c0f73edda6b9",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0dc9851e-34e5-4c84-8c03-9f929f967881",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98f0eb7e-e9bb-4ae6-a91d-d211898d67a9",
+          "name": "Upload a Listing Photo",
+          "request": {
+            "name": "Upload a Listing Photo",
+            "description": {
+              "content": "Uploads a new photo to a listing. Photos can include captions and a sort order to control display position in the listing gallery.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id",
+                "photos"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "photo",
+                  "type": "file",
+                  "description": "(Required) The photo file to upload."
+                },
+                {
+                  "key": "caption",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "An optional caption describing the photo."
+                },
+                {
+                  "key": "sort_order",
+                  "value": "<integer>",
+                  "type": "text",
+                  "description": "The display position of the photo in the listing gallery."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e4ee4833-0b8a-40a5-8848-f71df45b1094",
+              "name": "The photo was successfully uploaded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The photo file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "photo",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An optional caption describing the photo.",
+                        "type": "text/plain"
+                      },
+                      "key": "caption",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The display position of the photo in the listing gallery.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_order",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"url\": \"http://LkaRJtJwNAMuc.uhafjrURGrXd092XF\",\n  \"caption\": \"string\",\n  \"sort_order\": 3208,\n  \"width\": 3653,\n  \"height\": 4657\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e1b11dc-57b0-414b-b178-d59cfa083771",
+              "name": "The uploaded file is invalid or exceeds size limits.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The photo file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "photo",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An optional caption describing the photo.",
+                        "type": "text/plain"
+                      },
+                      "key": "caption",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The display position of the photo in the listing gallery.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_order",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71e57631-b642-487c-a3ec-1e83f468ef8e",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The photo file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "photo",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An optional caption describing the photo.",
+                        "type": "text/plain"
+                      },
+                      "key": "caption",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The display position of the photo in the listing gallery.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_order",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5b6de37-51f7-4d51-8bd2-25e7df4fa4b0",
+              "name": "The listing was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) The photo file to upload.",
+                        "type": "text/plain"
+                      },
+                      "key": "photo",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "An optional caption describing the photo.",
+                        "type": "text/plain"
+                      },
+                      "key": "caption",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "The display position of the photo in the listing gallery.",
+                        "type": "text/plain"
+                      },
+                      "key": "sort_order",
+                      "value": "<integer>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cee261f9-bb47-45c2-8b4f-a6d3e50c8e5c",
+          "name": "Delete a Listing Photo",
+          "request": {
+            "name": "Delete a Listing Photo",
+            "description": {
+              "content": "Removes a specific photo from a listing by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "listings",
+                ":listing_id",
+                "photos",
+                ":photo_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listing_id",
+                  "description": "(Required) The unique identifier of the listing."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "photo_id",
+                  "description": "(Required) The unique identifier of the photo."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21e658d9-d39b-40eb-b8b2-262fc43fe931",
+              "name": "The photo was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos",
+                    ":photo_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photo_id",
+                      "description": "(Required) The unique identifier of the photo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5605376c-3e3a-4336-99ff-ad055cbea911",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos",
+                    ":photo_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photo_id",
+                      "description": "(Required) The unique identifier of the photo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2b92cb9c-dd07-4a68-8540-d4ba7cc81ffb",
+              "name": "The listing or photo was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "listings",
+                    ":listing_id",
+                    "photos",
+                    ":photo_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listing_id",
+                      "description": "(Required) The unique identifier of the listing."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "photo_id",
+                      "description": "(Required) The unique identifier of the photo."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airbnb.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "experiences:read experiences:write bookings:read bookings:write messages:read messages:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.airbnb.com/v2/oauth2/authorizations"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.airbnb.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a0259ff0-9b25-42ed-a06a-03b6f57204b5",
+    "name": "Airbnb Activities Bookings Photos API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.\n\nContact Support:\n Name: Airbnb Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

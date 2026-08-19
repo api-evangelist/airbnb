@@ -1,0 +1,1129 @@
+{
+  "item": [
+    {
+      "id": "3dfd813a-7c06-4468-8e2f-236c4f22be47",
+      "name": "Experiences",
+      "description": {
+        "content": "Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71723ead-9427-4917-920a-848a68fd4dee",
+          "name": "List All Experiences",
+          "request": {
+            "name": "List All Experiences",
+            "description": {
+              "content": "Retrieves a paginated list of all experience listings managed by the authenticated partner. Supports filtering by status and activity category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "The maximum number of results to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "The number of results to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter experiences by their current status on the platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter experiences by activity category."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37adfe3a-6dce-4581-a44f-390dd8c18369",
+              "name": "A paginated list of experiences.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"experiences\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"arts_and_culture\",\n      \"status\": \"active\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"YH\",\n        \"meeting_point\": \"string\",\n        \"state\": \"string\",\n        \"latitude\": 81.15146165078392,\n        \"longitude\": -55.37424340912867\n      },\n      \"duration_minutes\": 4300,\n      \"max_guests\": 9929,\n      \"pricing\": {\n        \"price_per_person\": 5165.944376833723,\n        \"currency\": \"BPG\",\n        \"group_discount\": {\n          \"min_guests\": 9259,\n          \"discount_percent\": 75.63192259764281\n        }\n      },\n      \"languages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"what_to_bring\": [\n        \"string\",\n        \"string\"\n      ],\n      \"accessibility\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"https://WNiPGuyCmIrRPRuNGrKOeNpLShvmiPD.plfbP8E,s\",\n          \"caption\": \"string\",\n          \"sort_order\": 6789\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"http://OwHbaNbJGfdHygNyviHMspvE.tllqZbjC.3MQMgYttsWyzCuV5e0Exl14rDqodGvUQzeIuFEtoxCLu.l7AVs5v\",\n          \"caption\": \"string\",\n          \"sort_order\": 4728\n        }\n      ],\n      \"host\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"profile_picture_url\": \"http://ncEeXleNMJVSNjaNkgGHbDUrtYn.uxfzp5FsJL,eSkUIAIsKe5SHSH\",\n        \"superhost\": true\n      },\n      \"created_at\": \"2006-02-25T19:40:32.597Z\",\n      \"updated_at\": \"2004-12-15T22:14:36.327Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"food_and_drink\",\n      \"status\": \"inactive\",\n      \"location\": {\n        \"city\": \"string\",\n        \"country\": \"IN\",\n        \"meeting_point\": \"string\",\n        \"state\": \"string\",\n        \"latitude\": -52.01761867072703,\n        \"longitude\": -143.6624152748621\n      },\n      \"duration_minutes\": 4323,\n      \"max_guests\": 3934,\n      \"pricing\": {\n        \"price_per_person\": 1692.4067777329922,\n        \"currency\": \"YXJ\",\n        \"group_discount\": {\n          \"min_guests\": 12,\n          \"discount_percent\": 52.085812871773086\n        }\n      },\n      \"languages\": [\n        \"string\",\n        \"string\"\n      ],\n      \"what_to_bring\": [\n        \"string\",\n        \"string\"\n      ],\n      \"accessibility\": \"string\",\n      \"photos\": [\n        {\n          \"id\": \"string\",\n          \"url\": \"http://xswZTxBfDZImahHkxFKHI.vzbaPaWVWOI8CZF-GTW,\",\n          \"caption\": \"string\",\n          \"sort_order\": 5890\n        },\n        {\n          \"id\": \"string\",\n          \"url\": \"http://jIMbQntOadcHrRJwoEQZOhXTrvWYmJJV.ejeoJ8R6RAqDDIwFbotKQolXd2BK1GMh9iQl8.FiiBPQIk2VSLZ\",\n          \"caption\": \"string\",\n          \"sort_order\": 2041\n        }\n      ],\n      \"host\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"bio\": \"string\",\n        \"profile_picture_url\": \"http://vkdJQJXdJkydqhhaiBkEY.zgevSJ15wqDITQvk1yzGAYUTU2IqfJShGmZjH+VFhlkp+THrZlNogmsCBrUKcxo7XbKLBYU0n+z\",\n        \"superhost\": false\n      },\n      \"created_at\": \"1980-01-02T00:06:15.074Z\",\n      \"updated_at\": \"1979-08-21T22:12:50.529Z\"\n    }\n  ],\n  \"pagination\": {\n    \"total\": 931,\n    \"limit\": 7561,\n    \"offset\": 2481,\n    \"has_more\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa191468-35bc-4970-afe3-0af8218d24dc",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57576ab4-5f44-4a94-b4ff-538f67999f58",
+          "name": "Create a New Experience",
+          "request": {
+            "name": "Create a New Experience",
+            "description": {
+              "content": "Creates a new experience listing on Airbnb with the provided details including activity type, location, description, pricing, and scheduling information. The experience will be in a pending state until reviewed and approved by Airbnb.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"meeting_point\": \"<string>\",\n    \"state\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"group_discount\": {\n      \"min_guests\": \"<integer>\",\n      \"discount_percent\": \"<number>\"\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "47783c07-3be2-48e9-aa13-2aa10422afaf",
+              "name": "The experience was successfully created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"CD\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -30.656962282402418,\n    \"longitude\": 60.39852922139082\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 6068.847572165329,\n    \"currency\": \"BTX\",\n    \"group_discount\": {\n      \"min_guests\": 9629,\n      \"discount_percent\": 4.961249261552803\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"sports\",\n  \"status\": \"suspended\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"OF\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 28.356927834623733,\n    \"longitude\": -110.04851119929445\n  },\n  \"duration_minutes\": 6493,\n  \"max_guests\": 1996,\n  \"pricing\": {\n    \"price_per_person\": 3528.3441647264804,\n    \"currency\": \"ZNG\",\n    \"group_discount\": {\n      \"min_guests\": 3255,\n      \"discount_percent\": 72.41839875809586\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://wiPJFPEdnyrGNkvV.rwat4EOLKEXTrKh0E57rJ1q\",\n      \"caption\": \"string\",\n      \"sort_order\": 4896\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://sfpNJXOKVLGZrfHzyRDySbWOXP.ajer9NVrqkXAu8ly7yaUQ0z0dXnw\",\n      \"caption\": \"string\",\n      \"sort_order\": 7131\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://wpQttxrbvwtksWtYWs.frWMtv4q4eRJzn89SPSS,xXkHGAPG-Ag-yGTaAYEBP24\",\n    \"superhost\": false\n  },\n  \"created_at\": \"1965-03-08T08:03:37.092Z\",\n  \"updated_at\": \"1961-08-29T08:05:12.299Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea8352c3-808c-4963-9d47-0070a95e11e9",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"CD\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -30.656962282402418,\n    \"longitude\": 60.39852922139082\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 6068.847572165329,\n    \"currency\": \"BTX\",\n    \"group_discount\": {\n      \"min_guests\": 9629,\n      \"discount_percent\": 4.961249261552803\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4c025f8-af5a-45e3-a4a9-ac2ceb0b2629",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"CD\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": -30.656962282402418,\n    \"longitude\": 60.39852922139082\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 6068.847572165329,\n    \"currency\": \"BTX\",\n    \"group_discount\": {\n      \"min_guests\": 9629,\n      \"discount_percent\": 4.961249261552803\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a5de4bb-03f1-41fb-b40d-5ad2a9e9d435",
+          "name": "Get an Experience",
+          "request": {
+            "name": "Get an Experience",
+            "description": {
+              "content": "Retrieves the full details of a specific experience listing by its unique identifier, including description, schedule, pricing, and host information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cffd20c2-960e-4d96-b51e-8e2bf4e7d399",
+              "name": "The experience details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"sports\",\n  \"status\": \"suspended\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"OF\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 28.356927834623733,\n    \"longitude\": -110.04851119929445\n  },\n  \"duration_minutes\": 6493,\n  \"max_guests\": 1996,\n  \"pricing\": {\n    \"price_per_person\": 3528.3441647264804,\n    \"currency\": \"ZNG\",\n    \"group_discount\": {\n      \"min_guests\": 3255,\n      \"discount_percent\": 72.41839875809586\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://wiPJFPEdnyrGNkvV.rwat4EOLKEXTrKh0E57rJ1q\",\n      \"caption\": \"string\",\n      \"sort_order\": 4896\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://sfpNJXOKVLGZrfHzyRDySbWOXP.ajer9NVrqkXAu8ly7yaUQ0z0dXnw\",\n      \"caption\": \"string\",\n      \"sort_order\": 7131\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://wpQttxrbvwtksWtYWs.frWMtv4q4eRJzn89SPSS,xXkHGAPG-Ag-yGTaAYEBP24\",\n    \"superhost\": false\n  },\n  \"created_at\": \"1965-03-08T08:03:37.092Z\",\n  \"updated_at\": \"1961-08-29T08:05:12.299Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5281ee29-3220-4889-ab7f-d244050c272a",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a479a32d-52fc-4ff7-aed1-aa74bd9995c4",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "248812d3-223c-4ada-a280-257139ed6a61",
+          "name": "Update an Experience",
+          "request": {
+            "name": "Update an Experience",
+            "description": {
+              "content": "Updates an existing experience listing with the provided fields. Only the fields included in the request body will be modified.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"meeting_point\": \"<string>\",\n    \"state\": \"<string>\",\n    \"latitude\": \"<double>\",\n    \"longitude\": \"<double>\"\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": \"<double>\",\n    \"currency\": \"<string>\",\n    \"group_discount\": {\n      \"min_guests\": \"<integer>\",\n      \"discount_percent\": \"<number>\"\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "024a7dcc-010d-416e-a851-11f283921bd7",
+              "name": "The experience was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UO\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 20.850429158970144,\n    \"longitude\": -163.81002904798783\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 264.1578465206651,\n    \"currency\": \"WQL\",\n    \"group_discount\": {\n      \"min_guests\": 8837,\n      \"discount_percent\": 87.15088796879222\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"category\": \"sports\",\n  \"status\": \"suspended\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"OF\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 28.356927834623733,\n    \"longitude\": -110.04851119929445\n  },\n  \"duration_minutes\": 6493,\n  \"max_guests\": 1996,\n  \"pricing\": {\n    \"price_per_person\": 3528.3441647264804,\n    \"currency\": \"ZNG\",\n    \"group_discount\": {\n      \"min_guests\": 3255,\n      \"discount_percent\": 72.41839875809586\n    }\n  },\n  \"languages\": [\n    \"string\",\n    \"string\"\n  ],\n  \"what_to_bring\": [\n    \"string\",\n    \"string\"\n  ],\n  \"accessibility\": \"string\",\n  \"photos\": [\n    {\n      \"id\": \"string\",\n      \"url\": \"http://wiPJFPEdnyrGNkvV.rwat4EOLKEXTrKh0E57rJ1q\",\n      \"caption\": \"string\",\n      \"sort_order\": 4896\n    },\n    {\n      \"id\": \"string\",\n      \"url\": \"https://sfpNJXOKVLGZrfHzyRDySbWOXP.ajer9NVrqkXAu8ly7yaUQ0z0dXnw\",\n      \"caption\": \"string\",\n      \"sort_order\": 7131\n    }\n  ],\n  \"host\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"bio\": \"string\",\n    \"profile_picture_url\": \"http://wpQttxrbvwtksWtYWs.frWMtv4q4eRJzn89SPSS,xXkHGAPG-Ag-yGTaAYEBP24\",\n    \"superhost\": false\n  },\n  \"created_at\": \"1965-03-08T08:03:37.092Z\",\n  \"updated_at\": \"1961-08-29T08:05:12.299Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b172da06-9a74-4f95-b9a6-058343458fdf",
+              "name": "The request body contains invalid or missing fields.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UO\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 20.850429158970144,\n    \"longitude\": -163.81002904798783\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 264.1578465206651,\n    \"currency\": \"WQL\",\n    \"group_discount\": {\n      \"min_guests\": 8837,\n      \"discount_percent\": 87.15088796879222\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6cfbd420-cdc3-4663-b6c8-7ba03592477d",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UO\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 20.850429158970144,\n    \"longitude\": -163.81002904798783\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 264.1578465206651,\n    \"currency\": \"WQL\",\n    \"group_discount\": {\n      \"min_guests\": 8837,\n      \"discount_percent\": 87.15088796879222\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "06169f02-4cd0-4487-90ce-1df32277173b",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"<string>\",\n  \"location\": {\n    \"city\": \"string\",\n    \"country\": \"UO\",\n    \"meeting_point\": \"string\",\n    \"state\": \"string\",\n    \"latitude\": 20.850429158970144,\n    \"longitude\": -163.81002904798783\n  },\n  \"duration_minutes\": \"<integer>\",\n  \"max_guests\": \"<integer>\",\n  \"pricing\": {\n    \"price_per_person\": 264.1578465206651,\n    \"currency\": \"WQL\",\n    \"group_discount\": {\n      \"min_guests\": 8837,\n      \"discount_percent\": 87.15088796879222\n    }\n  },\n  \"languages\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"what_to_bring\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"accessibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6de0a664-c5d5-4b04-adad-4084f9cc092a",
+          "name": "Delete an Experience",
+          "request": {
+            "name": "Delete an Experience",
+            "description": {
+              "content": "Removes an experience listing from the Airbnb platform. Active bookings must be resolved before an experience can be deleted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "experiences",
+                ":experience_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "experience_id",
+                  "description": "(Required) The unique identifier of the experience."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e0d4b9a-b146-4d1f-903a-2877b91989ad",
+              "name": "The experience was successfully deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55854f0f-ac0d-4bfd-adc7-748ad1721e92",
+              "name": "Authentication credentials are missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "58a8add5-def4-4146-bb7f-e20e74bad8c9",
+              "name": "The experience was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36211e43-9758-4962-95bc-a96eb91d53e4",
+              "name": "The experience has active bookings and cannot be deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "experiences",
+                    ":experience_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "experience_id",
+                      "description": "(Required) The unique identifier of the experience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.airbnb.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "experiences:read experiences:write bookings:read bookings:write messages:read messages:write"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.airbnb.com/v2/oauth2/authorizations"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://www.airbnb.com/oauth2/auth"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "17cd6630-913b-4a4e-af67-61155e22c480",
+    "name": "Airbnb Activities Bookings Experiences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.\n\nContact Support:\n Name: Airbnb Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
