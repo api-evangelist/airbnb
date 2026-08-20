@@ -20,6 +20,15 @@ apis:
   name: Airbnb Webhooks API
   tags:
   - Airbnb
+  - Event
+  - Hospitality
+  - Notification
+  - Real-Time
+  - Reservations
+  - Travel
+  - Webhook
+  tags_raw:
+  - Airbnb
   - Events
   - Hospitality
   - Notifications
@@ -102,6 +111,8 @@ apis:
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
+  - Experience
+  tags_raw:
   - Experiences
   properties:
   - type: OpenAPI
@@ -133,6 +144,8 @@ apis:
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
