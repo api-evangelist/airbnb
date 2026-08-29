@@ -1,0 +1,67 @@
+slug: airbnb
+provider: airbnb
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Travel & Hospitality
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: Bookings
+  spec_file: airbnb-bookings-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.85
+  evidence: GET /bookings listBookings 'List Experience Bookings'; POST /bookings/{booking_id}/confirm
+    'Confirm a Booking'; POST /bookings/{booking_id}/cancel 'Cancel a Booking'
+  reason: Operations manage the lifecycle of experience bookings (list, retrieve, confirm, cancel), which
+    is reservation/booking lifecycle management. Spans capture, confirmation and cancellation, so no single
+    L2 is named cleanly.
+- tag: Reservations
+  spec_file: airbnb-reservations-api-openapi.yml
+  capability_id: BC-4020
+  capability_id_l1: BC-4020
+  capability_name: Reservation & Booking Management
+  confidence: 0.85
+  evidence: POST /reservations/{reservation_id}/accept acceptReservation 'Accept a Reservation'; POST
+    /reservations/{reservation_id}/cancel cancelReservation 'Cancel a Reservation'; schemas Reservation,
+    Guest
+  reason: Accept/deny/cancel and retrieval of reservations is the reservation lifecycle. Mixed across
+    capture, confirmation and cancellation so L1 only.
+- tag: Photos
+  spec_file: airbnb-photos-api-openapi.yml
+  capability_id: BC-4000.70
+  capability_id_l1: BC-4000
+  capability_name: Travel Content & Imagery Management
+  confidence: 0.78
+  evidence: POST /listings/{listing_id}/photos uploadListingPhoto 'Upload a Listing Photo'; schema Photo
+  reason: Upload, listing and deletion of imagery assets attached to a travel listing is management of
+    descriptive content and imagery for the travel product.
+- tag: Listings
+  spec_file: airbnb-listings-api-openapi.yml
+  capability_id: BC-4000.10
+  capability_id_l1: BC-4000
+  capability_name: Lodging Product Management
+  confidence: 0.75
+  evidence: POST /listings createListing 'Create a New Listing'; schemas Listing, Pricing, Photo, Address
+  reason: Creation and maintenance of accommodation listings with pricing and address for a short-term
+    rental marketplace is definition of the lodging product; some ambiguity because this spec is the Activities
+    variant.
+- tag: Experiences
+  spec_file: airbnb-experiences-api-openapi.yml
+  capability_id: BC-4000
+  capability_id_l1: BC-4000
+  capability_name: Travel Product & Inventory Management
+  confidence: 0.72
+  evidence: POST /experiences createExperience 'Create a New Experience'; schemas ExperiencePricing, ExperienceLocation,
+    ExperiencePhoto, ExperienceHost
+  reason: CRUD over the definition of bookable hosted activity/tour products (pricing, location, photos,
+    host) is travel product master definition. Ambiguous whether this is tour/package or ancillary/attraction
+    product, so L2 withheld.

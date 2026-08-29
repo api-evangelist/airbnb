@@ -225,6 +225,9 @@ apis:
   - type: GraphQL
     url: graphql/airbnb-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/airbnb-capability-edges.yml
+  name: airbnb Business Capability Map
 - type: AgenticAccess
   url: agentic-access/airbnb-agentic-access.yml
 - type: VulnerabilityDisclosure
