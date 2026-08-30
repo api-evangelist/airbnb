@@ -5,9 +5,10 @@
       "source": "https://www.airbnb.com/resources/hosting-homes/a/airbnb-newsroom",
       "feed_url": "https://news.airbnb.com/feed/",
       "title": "Airbnb Newsroom",
-      "saved": 2
+      "saved": 0,
+      "error": "fetch_failed: HTTPError"
     }
   ],
-  "fetched": "2026-08-22T20:08:02Z",
+  "fetched": "2026-08-30T22:05:13Z",
   "post_count": 24
 }
