@@ -57,10 +57,9 @@ apis:
     type: Documentation
   - type: AsyncAPI
     url: asyncapi/airbnb-webhooks-asyncapi.yml
-  description: >-
-    The Airbnb Webhooks API enables connectivity partners to receive real-time notifications when events
-    occur on the Airbnb platform. It supports webhook subscriptions for reservation changes, message creation,
-    review submissions, listing calendar updates, and other key events.
+  description: The Airbnb Webhooks API enables connectivity partners to receive real-time notifications
+    when events occur on the Airbnb platform. It supports webhook subscriptions for reservation changes,
+    message creation, review submissions, listing calendar updates, and other key events.
   features:
   - Real-time reservation status change notifications
   - Guest message event notifications
@@ -73,9 +72,8 @@ apis:
   - Inventory sync systems responding to availability changes
 - aid: airbnb:airbnb-bookings-api
   name: airbnb Bookings API
-  description: >-
-    Operations for managing guest bookings for experiences, including confirmations, cancellations, and
-    attendee details.
+  description: Operations for managing guest bookings for experiences, including confirmations, cancellations,
+    and attendee details.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -89,8 +87,8 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-calendar-api
   name: airbnb Calendar API
-  description: >-
-    Operations for managing listing availability, pricing, and calendar synchronization across platforms.
+  description: Operations for managing listing availability, pricing, and calendar synchronization across
+    platforms.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -104,8 +102,7 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-experience-messages-api
   name: airbnb Experience Messages API
-  description: >-
-    Operations for sending and retrieving messages between experience hosts and booked guests.
+  description: Operations for sending and retrieving messages between experience hosts and booked guests.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -119,8 +116,8 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-experiences-api
   name: airbnb Experiences API
-  description: >-
-    Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.
+  description: Operations for creating, reading, updating, and managing experience and activity listings
+    on Airbnb.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -136,9 +133,8 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-listings-api
   name: airbnb Listings API
-  description: >-
-    Operations for creating, reading, updating, and managing property listings on Airbnb, including descriptions,
-    amenities, and photos.
+  description: Operations for creating, reading, updating, and managing property listings on Airbnb, including
+    descriptions, amenities, and photos.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -152,8 +148,7 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-messages-api
   name: airbnb Messages API
-  description: >-
-    Operations for sending and retrieving guest and host messages within reservation threads.
+  description: Operations for sending and retrieving guest and host messages within reservation threads.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -183,8 +178,8 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-reservations-api
   name: airbnb Reservations API
-  description: >-
-    Operations for managing reservations, including accepting, declining, and retrieving booking details.
+  description: Operations for managing reservations, including accepting, declining, and retrieving booking
+    details.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -212,8 +207,7 @@ apis:
     url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-schedules-api
   name: airbnb Schedules API
-  description: >-
-    Operations for managing experience schedules, time slots, and availability for hosted activities.
+  description: Operations for managing experience schedules, time slots, and availability for hosted activities.
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
@@ -419,10 +413,13 @@ common:
   url: rules/airbnb-spectral-rules.yml
 - type: Vocabulary
   url: vocabulary/airbnb-vocabulary.yaml
-modified: '2026-05-19'
-description: Airbnb is the world's leading home-sharing and short-term rental marketplace,
-  connecting hosts who offer accommodations and experiences with guests worldwide.
-  The Airbnb developer platform provides connectivity partners — property management
-  systems, channel managers, and experience operators — with APIs to manage listings,
-  reservations, calendars, messaging, reviews, and webhook-based event notifications.
-  Access is restricted to approved partners.
+modified: '2026-09-16'
+description: Airbnb is the world's leading home-sharing and short-term rental marketplace, connecting
+  hosts who offer accommodations and experiences with guests worldwide. The Airbnb developer platform
+  provides connectivity partners — property management systems, channel managers, and experience operators
+  — with APIs to manage listings, reservations, calendars, messaging, reviews, and webhook-based event
+  notifications. Access is restricted to approved partners.
+tags:
+- Reservations
+- Hospitality
+- Travel
