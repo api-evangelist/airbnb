@@ -28,6 +28,9 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/airbnb.png
 url: https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml
+x-docs-platform: readme
+x-docs-platform-confidence: high
+x-docs-platform-checked: 2026-09-17
 apis:
 - aid: airbnb:webhooks-api
   name: Airbnb Webhooks API
@@ -77,6 +80,8 @@ apis:
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
+  - Booking
+  tags_raw:
   - Bookings
   properties:
   - type: OpenAPI
@@ -211,6 +216,8 @@ apis:
   humanURL: https://developer.withairbnb.com/
   baseURL: https://api.airbnb.com
   tags:
+  - Schedule
+  tags_raw:
   - Schedules
   properties:
   - type: OpenAPI
