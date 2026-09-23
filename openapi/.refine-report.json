@@ -1,32 +1,40 @@
 {
   "provider": "airbnb",
   "sources": [
-    "airbnb-bookings-api-openapi.yml",
-    "airbnb-calendar-api-openapi.yml",
-    "airbnb-experience-messages-api-openapi.yml",
-    "airbnb-experiences-api-openapi.yml",
-    "airbnb-listings-api-openapi.yml",
-    "airbnb-messages-api-openapi.yml",
-    "airbnb-photos-api-openapi.yml",
-    "airbnb-reservations-api-openapi.yml",
-    "airbnb-reviews-api-openapi.yml",
-    "airbnb-schedules-api-openapi.yml"
+    "_original/airbnb-activities-api-openapi.yml",
+    "_original/airbnb-homes-api-openapi.yml"
   ],
   "outputs": [
     "airbnb-bookings-api-openapi.yml",
-    "airbnb-calendar-api-openapi.yml",
     "airbnb-experience-messages-api-openapi.yml",
     "airbnb-experiences-api-openapi.yml",
+    "airbnb-schedules-api-openapi.yml",
+    "airbnb-calendar-api-openapi.yml",
     "airbnb-listings-api-openapi.yml",
     "airbnb-messages-api-openapi.yml",
     "airbnb-photos-api-openapi.yml",
     "airbnb-reservations-api-openapi.yml",
-    "airbnb-reviews-api-openapi.yml",
-    "airbnb-schedules-api-openapi.yml"
+    "airbnb-reviews-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "airbnb-activities-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "airbnb-homes-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "airbnb-bookings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-calendar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-experience-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-experiences-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-listings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-photos-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-reservations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-reviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "airbnb-schedules-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

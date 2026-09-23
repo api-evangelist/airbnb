@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Airbnb Activities Bookings Schedules API
-  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  title: Airbnb Activities Schedules API
+  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours.
   version: 2025.03.31
   contact:
     name: Airbnb Developer Support
@@ -132,42 +132,22 @@ paths:
         '409':
           description: The schedule has active bookings and cannot be deleted.
 components:
+  parameters:
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
+    scheduleIdParam:
+      name: schedule_id
+      in: path
+      required: true
+      description: The unique identifier of the schedule entry.
+      schema:
+        type: string
   schemas:
-    ScheduleCreate:
-      type: object
-      required:
-      - date
-      - start_time
-      properties:
-        date:
-          type: string
-          format: date
-          description: The date of the scheduled session.
-        start_time:
-          type: string
-          description: The start time in HH:MM format.
-          pattern: ^[0-2][0-9]:[0-5][0-9]$
-        max_guests:
-          type: integer
-          description: Override the maximum number of guests for this specific session.
-          minimum: 1
-    ScheduleUpdate:
-      type: object
-      properties:
-        start_time:
-          type: string
-          description: The updated start time in HH:MM format.
-          pattern: ^[0-2][0-9]:[0-5][0-9]$
-        max_guests:
-          type: integer
-          description: The updated maximum number of guests for this session.
-          minimum: 1
-        status:
-          type: string
-          description: The updated status of the schedule entry.
-          enum:
-          - open
-          - cancelled
     Schedule:
       type: object
       properties:
@@ -208,21 +188,41 @@ components:
           - open
           - full
           - cancelled
-  parameters:
-    scheduleIdParam:
-      name: schedule_id
-      in: path
-      required: true
-      description: The unique identifier of the schedule entry.
-      schema:
-        type: string
-    experienceIdParam:
-      name: experience_id
-      in: path
-      required: true
-      description: The unique identifier of the experience.
-      schema:
-        type: string
+    ScheduleUpdate:
+      type: object
+      properties:
+        start_time:
+          type: string
+          description: The updated start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: The updated maximum number of guests for this session.
+          minimum: 1
+        status:
+          type: string
+          description: The updated status of the schedule entry.
+          enum:
+          - open
+          - cancelled
+    ScheduleCreate:
+      type: object
+      required:
+      - date
+      - start_time
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date of the scheduled session.
+        start_time:
+          type: string
+          description: The start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: Override the maximum number of guests for this specific session.
+          minimum: 1
   securitySchemes:
     oauth2:
       type: oauth2

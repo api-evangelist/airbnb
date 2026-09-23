@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Airbnb Activities Bookings Photos API
-  description: The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts. Partners can use the API to build integrations that help experience hosts manage their offerings alongside other tour and activity platforms, enabling centralized management of schedules, pricing, and guest communications.
+  title: Airbnb Homes Photos API
+  description: The Airbnb Homes API provides approved connectivity partners with programmatic access to manage vacation rental listings on the Airbnb platform.
   version: 2025.03.31
   contact:
     name: Airbnb Developer Support
@@ -99,21 +99,6 @@ paths:
         '404':
           description: The listing or photo was not found.
 components:
-  parameters:
-    listingIdParam:
-      name: listing_id
-      in: path
-      required: true
-      description: The unique identifier of the listing.
-      schema:
-        type: string
-    photoIdParam:
-      name: photo_id
-      in: path
-      required: true
-      description: The unique identifier of the photo.
-      schema:
-        type: string
   schemas:
     Photo:
       type: object
@@ -137,21 +122,39 @@ components:
         height:
           type: integer
           description: The height of the photo in pixels.
+  parameters:
+    photoIdParam:
+      name: photo_id
+      in: path
+      required: true
+      description: The unique identifier of the photo.
+      schema:
+        type: string
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
-      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow.
+      description: Airbnb uses OAuth 2.0 for authentication. Partners must register their application to receive a client ID and secret, then obtain access tokens through the authorization code flow. Access tokens expire after 24 hours and must be refreshed.
       flows:
         authorizationCode:
           authorizationUrl: https://www.airbnb.com/oauth2/auth
           tokenUrl: https://api.airbnb.com/v2/oauth2/authorizations
           scopes:
-            experiences:read: Read experience information
-            experiences:write: Create and update experiences
-            bookings:read: Read booking information
-            bookings:write: Confirm and cancel bookings
-            messages:read: Read booking messages
+            listings:read: Read listing information
+            listings:write: Create and update listings
+            reservations:read: Read reservation information
+            reservations:write: Accept, deny, and cancel reservations
+            messages:read: Read reservation messages
             messages:write: Send messages to guests
+            reviews:read: Read reviews
+            calendar:read: Read calendar availability
+            calendar:write: Update calendar availability and pricing
 externalDocs:
   description: Airbnb Developer Documentation
   url: https://developer.withairbnb.com/
