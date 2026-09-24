@@ -88,8 +88,6 @@ apis:
     url: openapi/airbnb-bookings-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-calendar-api
   name: airbnb Calendar API
   description: Operations for managing listing availability, pricing, and calendar synchronization across
@@ -103,8 +101,6 @@ apis:
     url: openapi/airbnb-calendar-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-experience-messages-api
   name: airbnb Experience Messages API
   description: Operations for sending and retrieving messages between experience hosts and booked guests.
@@ -117,8 +113,6 @@ apis:
     url: openapi/airbnb-experience-messages-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-experiences-api
   name: airbnb Experiences API
   description: Operations for creating, reading, updating, and managing experience and activity listings
@@ -134,8 +128,6 @@ apis:
     url: openapi/airbnb-experiences-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-listings-api
   name: airbnb Listings API
   description: Operations for creating, reading, updating, and managing property listings on Airbnb, including
@@ -149,8 +141,6 @@ apis:
     url: openapi/airbnb-listings-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-messages-api
   name: airbnb Messages API
   description: Operations for sending and retrieving guest and host messages within reservation threads.
@@ -165,8 +155,6 @@ apis:
     url: openapi/airbnb-messages-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-photos-api
   name: airbnb Photos API
   description: Operations for uploading, updating, and managing listing photos.
@@ -179,8 +167,6 @@ apis:
     url: openapi/airbnb-photos-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-reservations-api
   name: airbnb Reservations API
   description: Operations for managing reservations, including accepting, declining, and retrieving booking
@@ -194,8 +180,6 @@ apis:
     url: openapi/airbnb-reservations-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-reviews-api
   name: airbnb Reviews API
   description: Operations for retrieving and responding to guest and host reviews.
@@ -208,8 +192,6 @@ apis:
     url: openapi/airbnb-reviews-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 - aid: airbnb:airbnb-schedules-api
   name: airbnb Schedules API
   description: Operations for managing experience schedules, time slots, and availability for hosted activities.
@@ -224,8 +206,6 @@ apis:
     url: openapi/airbnb-schedules-api-openapi.yml
   - type: Documentation
     url: https://developer.withairbnb.com/
-  - type: GraphQL
-    url: graphql/airbnb-graphql.md
 common:
 - type: CapabilityMap
   url: capabilities/airbnb-capability-edges.yml
@@ -431,3 +411,4 @@ tags:
 - Hospitality
 - Travel
 - Airbnb
+- Booking
