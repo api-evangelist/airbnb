@@ -142,31 +142,6 @@ paths:
         '409':
           description: The listing has active reservations and cannot be deleted.
 components:
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    listingIdParam:
-      name: listing_id
-      in: path
-      required: true
-      description: The unique identifier of the listing.
-      schema:
-        type: string
-    offsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     Listing:
       type: object
@@ -264,76 +239,6 @@ components:
           type: string
           format: date-time
           description: The timestamp when the listing was last updated.
-    ListingUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The display name of the listing.
-          maxLength: 50
-        description:
-          type: string
-          description: The full description of the property.
-          maxLength: 5000
-        property_type:
-          type: string
-          description: The type of property being listed.
-          enum:
-          - apartment
-          - house
-          - secondary_unit
-          - unique_space
-          - bed_and_breakfast
-          - boutique_hotel
-        room_type:
-          type: string
-          description: The type of room or space being offered.
-          enum:
-          - entire_home
-          - private_room
-          - shared_room
-        bedrooms:
-          type: integer
-          description: The number of bedrooms in the property.
-          minimum: 0
-        bathrooms:
-          type: number
-          description: The number of bathrooms in the property.
-          minimum: 0
-        beds:
-          type: integer
-          description: The total number of beds in the property.
-          minimum: 0
-        max_guests:
-          type: integer
-          description: The maximum number of guests allowed.
-          minimum: 1
-        amenities:
-          type: array
-          description: The list of amenity identifiers available at the property.
-          items:
-            type: string
-        house_rules:
-          type: string
-          description: The house rules and guidelines for guests.
-        check_in_time:
-          type: string
-          description: The earliest check-in time in HH:MM format.
-          pattern: ^[0-2][0-9]:[0-5][0-9]$
-        check_out_time:
-          type: string
-          description: The latest check-out time in HH:MM format.
-          pattern: ^[0-2][0-9]:[0-5][0-9]$
-        cancellation_policy:
-          type: string
-          description: The cancellation policy applied to the listing.
-          enum:
-          - flexible
-          - moderate
-          - strict
-          - strict_14_with_grace_period
-          - super_strict_30
-          - super_strict_60
     Photo:
       type: object
       properties:
@@ -356,6 +261,21 @@ components:
         height:
           type: integer
           description: The height of the photo in pixels.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
     ListingCreate:
       type: object
       required:
@@ -434,21 +354,108 @@ components:
           - strict_14_with_grace_period
           - super_strict_30
           - super_strict_60
-    Pagination:
+    ListingUpdate:
       type: object
       properties:
-        total:
+        name:
+          type: string
+          description: The display name of the listing.
+          maxLength: 50
+        description:
+          type: string
+          description: The full description of the property.
+          maxLength: 5000
+        property_type:
+          type: string
+          description: The type of property being listed.
+          enum:
+          - apartment
+          - house
+          - secondary_unit
+          - unique_space
+          - bed_and_breakfast
+          - boutique_hotel
+        room_type:
+          type: string
+          description: The type of room or space being offered.
+          enum:
+          - entire_home
+          - private_room
+          - shared_room
+        bedrooms:
           type: integer
-          description: The total number of results available.
-        limit:
+          description: The number of bedrooms in the property.
+          minimum: 0
+        bathrooms:
+          type: number
+          description: The number of bathrooms in the property.
+          minimum: 0
+        beds:
           type: integer
-          description: The number of results returned per page.
-        offset:
+          description: The total number of beds in the property.
+          minimum: 0
+        max_guests:
           type: integer
-          description: The current offset in the result set.
-        has_more:
-          type: boolean
-          description: Whether more results are available beyond this page.
+          description: The maximum number of guests allowed.
+          minimum: 1
+        amenities:
+          type: array
+          description: The list of amenity identifiers available at the property.
+          items:
+            type: string
+        house_rules:
+          type: string
+          description: The house rules and guidelines for guests.
+        check_in_time:
+          type: string
+          description: The earliest check-in time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        check_out_time:
+          type: string
+          description: The latest check-out time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        cancellation_policy:
+          type: string
+          description: The cancellation policy applied to the listing.
+          enum:
+          - flexible
+          - moderate
+          - strict
+          - strict_14_with_grace_period
+          - super_strict_30
+          - super_strict_60
+    Pricing:
+      type: object
+      properties:
+        nightly_price:
+          type: number
+          format: double
+          description: The base nightly price in the listing currency.
+          minimum: 0
+        currency:
+          type: string
+          description: The ISO 4217 currency code for pricing.
+          pattern: ^[A-Z]{3}$
+        cleaning_fee:
+          type: number
+          format: double
+          description: The one-time cleaning fee charged per reservation.
+          minimum: 0
+        weekly_discount:
+          type: number
+          description: The percentage discount for stays of 7 or more nights.
+          minimum: 0
+          maximum: 100
+        monthly_discount:
+          type: number
+          description: The percentage discount for stays of 28 or more nights.
+          minimum: 0
+          maximum: 100
+        extra_guest_fee:
+          type: number
+          format: double
+          description: The additional fee per extra guest beyond the base occupancy.
+          minimum: 0
     Address:
       type: object
       required:
@@ -484,38 +491,31 @@ components:
           description: The longitude coordinate of the property.
           minimum: -180
           maximum: 180
-    Pricing:
-      type: object
-      properties:
-        nightly_price:
-          type: number
-          format: double
-          description: The base nightly price in the listing currency.
-          minimum: 0
-        currency:
-          type: string
-          description: The ISO 4217 currency code for pricing.
-          pattern: ^[A-Z]{3}$
-        cleaning_fee:
-          type: number
-          format: double
-          description: The one-time cleaning fee charged per reservation.
-          minimum: 0
-        weekly_discount:
-          type: number
-          description: The percentage discount for stays of 7 or more nights.
-          minimum: 0
-          maximum: 100
-        monthly_discount:
-          type: number
-          description: The percentage discount for stays of 28 or more nights.
-          minimum: 0
-          maximum: 100
-        extra_guest_fee:
-          type: number
-          format: double
-          description: The additional fee per extra guest beyond the base occupancy.
-          minimum: 0
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

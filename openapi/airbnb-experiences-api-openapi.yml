@@ -145,48 +145,7 @@ paths:
         '409':
           description: The experience has active bookings and cannot be deleted.
 components:
-  parameters:
-    experienceIdParam:
-      name: experience_id
-      in: path
-      required: true
-      description: The unique identifier of the experience.
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
-    ExperiencePhoto:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the photo.
-        url:
-          type: string
-          format: uri
-          description: The URL where the photo is hosted.
-        caption:
-          type: string
-          description: A caption describing the photo.
-        sort_order:
-          type: integer
-          description: The display position of the photo.
     ExperienceCreate:
       type: object
       required:
@@ -313,6 +272,84 @@ components:
           type: string
           format: date-time
           description: The timestamp when the experience was last updated.
+    ExperiencePhoto:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the photo.
+        url:
+          type: string
+          format: uri
+          description: The URL where the photo is hosted.
+        caption:
+          type: string
+          description: A caption describing the photo.
+        sort_order:
+          type: integer
+          description: The display position of the photo.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
+    ExperienceUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name of the experience.
+          maxLength: 100
+        description:
+          type: string
+          description: The full description of the experience and what guests will do.
+          maxLength: 5000
+        category:
+          type: string
+          description: The activity category of the experience.
+          enum:
+          - arts_and_culture
+          - entertainment
+          - food_and_drink
+          - nature_and_outdoors
+          - sports
+          - tours
+          - wellness
+        location:
+          $ref: '#/components/schemas/ExperienceLocation'
+        duration_minutes:
+          type: integer
+          description: The duration of the experience in minutes.
+          minimum: 30
+        max_guests:
+          type: integer
+          description: The maximum number of guests per session.
+          minimum: 1
+        pricing:
+          $ref: '#/components/schemas/ExperiencePricing'
+        languages:
+          type: array
+          description: The languages in which the experience is offered.
+          items:
+            type: string
+        what_to_bring:
+          type: array
+          description: Items guests should bring to the experience.
+          items:
+            type: string
+        accessibility:
+          type: string
+          description: Accessibility information for the experience.
     ExperiencePricing:
       type: object
       required:
@@ -391,68 +428,31 @@ components:
         superhost:
           type: boolean
           description: Whether the host has Superhost status.
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The total number of results available.
-        limit:
-          type: integer
-          description: The number of results returned per page.
-        offset:
-          type: integer
-          description: The current offset in the result set.
-        has_more:
-          type: boolean
-          description: Whether more results are available beyond this page.
-    ExperienceUpdate:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The display name of the experience.
-          maxLength: 100
-        description:
-          type: string
-          description: The full description of the experience and what guests will do.
-          maxLength: 5000
-        category:
-          type: string
-          description: The activity category of the experience.
-          enum:
-          - arts_and_culture
-          - entertainment
-          - food_and_drink
-          - nature_and_outdoors
-          - sports
-          - tours
-          - wellness
-        location:
-          $ref: '#/components/schemas/ExperienceLocation'
-        duration_minutes:
-          type: integer
-          description: The duration of the experience in minutes.
-          minimum: 30
-        max_guests:
-          type: integer
-          description: The maximum number of guests per session.
-          minimum: 1
-        pricing:
-          $ref: '#/components/schemas/ExperiencePricing'
-        languages:
-          type: array
-          description: The languages in which the experience is offered.
-          items:
-            type: string
-        what_to_bring:
-          type: array
-          description: Items guests should bring to the experience.
-          items:
-            type: string
-        accessibility:
-          type: string
-          description: Accessibility information for the experience.
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

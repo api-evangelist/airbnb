@@ -143,31 +143,6 @@ paths:
         '409':
           description: The booking cannot be cancelled in its current state.
 components:
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
-    bookingIdParam:
-      name: booking_id
-      in: path
-      required: true
-      description: The unique identifier of the booking.
-      schema:
-        type: string
-    offsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     Booking:
       type: object
@@ -218,6 +193,21 @@ components:
           type: string
           format: date-time
           description: The timestamp when the booking was last updated.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
     BookingGuest:
       type: object
       properties:
@@ -236,21 +226,31 @@ components:
         verified:
           type: boolean
           description: Whether the guest has completed identity verification.
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The total number of results available.
-        limit:
-          type: integer
-          description: The number of results returned per page.
-        offset:
-          type: integer
-          description: The current offset in the result set.
-        has_more:
-          type: boolean
-          description: Whether more results are available beyond this page.
+  parameters:
+    bookingIdParam:
+      name: booking_id
+      in: path
+      required: true
+      description: The unique identifier of the booking.
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

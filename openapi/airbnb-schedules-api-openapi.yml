@@ -133,18 +133,18 @@ paths:
           description: The schedule has active bookings and cannot be deleted.
 components:
   parameters:
-    experienceIdParam:
-      name: experience_id
-      in: path
-      required: true
-      description: The unique identifier of the experience.
-      schema:
-        type: string
     scheduleIdParam:
       name: schedule_id
       in: path
       required: true
       description: The unique identifier of the schedule entry.
+      schema:
+        type: string
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
       schema:
         type: string
   schemas:

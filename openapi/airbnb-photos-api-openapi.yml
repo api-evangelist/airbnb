@@ -99,6 +99,21 @@ paths:
         '404':
           description: The listing or photo was not found.
 components:
+  parameters:
+    photoIdParam:
+      name: photo_id
+      in: path
+      required: true
+      description: The unique identifier of the photo.
+      schema:
+        type: string
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
   schemas:
     Photo:
       type: object
@@ -122,21 +137,6 @@ components:
         height:
           type: integer
           description: The height of the photo in pixels.
-  parameters:
-    photoIdParam:
-      name: photo_id
-      in: path
-      required: true
-      description: The unique identifier of the photo.
-      schema:
-        type: string
-    listingIdParam:
-      name: listing_id
-      in: path
-      required: true
-      description: The unique identifier of the listing.
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2
