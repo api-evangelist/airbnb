@@ -81,13 +81,6 @@ paths:
           description: The reservation was not found.
 components:
   parameters:
-    reservationIdParam:
-      name: reservation_id
-      in: path
-      required: true
-      description: The unique identifier of the reservation.
-      schema:
-        type: string
     limitParam:
       name: limit
       in: query
@@ -105,22 +98,14 @@ components:
         type: integer
         minimum: 0
         default: 0
+    reservationIdParam:
+      name: reservation_id
+      in: path
+      required: true
+      description: The unique identifier of the reservation.
+      schema:
+        type: string
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The total number of results available.
-        limit:
-          type: integer
-          description: The number of results returned per page.
-        offset:
-          type: integer
-          description: The current offset in the result set.
-        has_more:
-          type: boolean
-          description: Whether more results are available beyond this page.
     Message:
       type: object
       properties:
@@ -143,6 +128,21 @@ components:
           type: string
           format: date-time
           description: The timestamp when the message was sent.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
   securitySchemes:
     oauth2:
       type: oauth2

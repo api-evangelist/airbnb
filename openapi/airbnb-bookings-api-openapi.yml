@@ -144,6 +144,24 @@ paths:
           description: The booking cannot be cancelled in its current state.
 components:
   schemas:
+    BookingGuest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the guest.
+        first_name:
+          type: string
+          description: The first name of the guest.
+        last_name:
+          type: string
+          description: The last name of the guest.
+        phone:
+          type: string
+          description: The phone number of the guest.
+        verified:
+          type: boolean
+          description: Whether the guest has completed identity verification.
     Booking:
       type: object
       properties:
@@ -208,32 +226,7 @@ components:
         has_more:
           type: boolean
           description: Whether more results are available beyond this page.
-    BookingGuest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the guest.
-        first_name:
-          type: string
-          description: The first name of the guest.
-        last_name:
-          type: string
-          description: The last name of the guest.
-        phone:
-          type: string
-          description: The phone number of the guest.
-        verified:
-          type: boolean
-          description: Whether the guest has completed identity verification.
   parameters:
-    bookingIdParam:
-      name: booking_id
-      in: path
-      required: true
-      description: The unique identifier of the booking.
-      schema:
-        type: string
     limitParam:
       name: limit
       in: query
@@ -251,6 +244,13 @@ components:
         type: integer
         minimum: 0
         default: 0
+    bookingIdParam:
+      name: booking_id
+      in: path
+      required: true
+      description: The unique identifier of the booking.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

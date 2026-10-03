@@ -88,31 +88,15 @@ paths:
         '404':
           description: The listing was not found.
 components:
+  parameters:
+    listingIdParam:
+      name: listing_id
+      in: path
+      required: true
+      description: The unique identifier of the listing.
+      schema:
+        type: string
   schemas:
-    CalendarDay:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-          description: The date for this calendar entry.
-        available:
-          type: boolean
-          description: Whether the listing is available for booking on this date.
-        price:
-          type: number
-          format: double
-          description: The nightly price for this date in the listing currency.
-        minimum_nights:
-          type: integer
-          description: The minimum number of nights required for a stay starting on this date.
-          minimum: 1
-        maximum_nights:
-          type: integer
-          description: The maximum number of nights allowed for a stay starting on this date.
-        reservation_id:
-          type: string
-          description: The reservation identifier if this date is booked.
     CalendarOperation:
       type: object
       required:
@@ -142,14 +126,30 @@ components:
         maximum_nights:
           type: integer
           description: The maximum number of nights allowed for stays in this range.
-  parameters:
-    listingIdParam:
-      name: listing_id
-      in: path
-      required: true
-      description: The unique identifier of the listing.
-      schema:
-        type: string
+    CalendarDay:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: The date for this calendar entry.
+        available:
+          type: boolean
+          description: Whether the listing is available for booking on this date.
+        price:
+          type: number
+          format: double
+          description: The nightly price for this date in the listing currency.
+        minimum_nights:
+          type: integer
+          description: The minimum number of nights required for a stay starting on this date.
+          minimum: 1
+        maximum_nights:
+          type: integer
+          description: The maximum number of nights allowed for a stay starting on this date.
+        reservation_id:
+          type: string
+          description: The reservation identifier if this date is booked.
   securitySchemes:
     oauth2:
       type: oauth2

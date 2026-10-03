@@ -100,18 +100,18 @@ paths:
           description: The listing or photo was not found.
 components:
   parameters:
-    photoIdParam:
-      name: photo_id
-      in: path
-      required: true
-      description: The unique identifier of the photo.
-      schema:
-        type: string
     listingIdParam:
       name: listing_id
       in: path
       required: true
       description: The unique identifier of the listing.
+      schema:
+        type: string
+    photoIdParam:
+      name: photo_id
+      in: path
+      required: true
+      description: The unique identifier of the photo.
       schema:
         type: string
   schemas:

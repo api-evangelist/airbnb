@@ -72,11 +72,11 @@ paths:
           description: The listing was not found.
 components:
   parameters:
-    reservationIdParam:
-      name: reservation_id
+    listingIdParam:
+      name: listing_id
       in: path
       required: true
-      description: The unique identifier of the reservation.
+      description: The unique identifier of the listing.
       schema:
         type: string
     limitParam:
@@ -96,29 +96,14 @@ components:
         type: integer
         minimum: 0
         default: 0
-    listingIdParam:
-      name: listing_id
+    reservationIdParam:
+      name: reservation_id
       in: path
       required: true
-      description: The unique identifier of the listing.
+      description: The unique identifier of the reservation.
       schema:
         type: string
   schemas:
-    Pagination:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: The total number of results available.
-        limit:
-          type: integer
-          description: The number of results returned per page.
-        offset:
-          type: integer
-          description: The current offset in the result set.
-        has_more:
-          type: boolean
-          description: Whether more results are available beyond this page.
     Review:
       type: object
       properties:
@@ -183,6 +168,21 @@ components:
           type: string
           format: date-time
           description: The timestamp when the review was submitted.
+    Pagination:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of results available.
+        limit:
+          type: integer
+          description: The number of results returned per page.
+        offset:
+          type: integer
+          description: The current offset in the result set.
+        has_more:
+          type: boolean
+          description: Whether more results are available beyond this page.
   securitySchemes:
     oauth2:
       type: oauth2

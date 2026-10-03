@@ -177,13 +177,6 @@ paths:
           description: The reservation cannot be cancelled in its current state.
 components:
   parameters:
-    reservationIdParam:
-      name: reservation_id
-      in: path
-      required: true
-      description: The unique identifier of the reservation.
-      schema:
-        type: string
     limitParam:
       name: limit
       in: query
@@ -201,7 +194,36 @@ components:
         type: integer
         minimum: 0
         default: 0
+    reservationIdParam:
+      name: reservation_id
+      in: path
+      required: true
+      description: The unique identifier of the reservation.
+      schema:
+        type: string
   schemas:
+    Guest:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the guest.
+        first_name:
+          type: string
+          description: The first name of the guest.
+        last_name:
+          type: string
+          description: The last name of the guest.
+        phone:
+          type: string
+          description: The phone number of the guest, available after booking is confirmed.
+        profile_picture_url:
+          type: string
+          format: uri
+          description: The URL of the guest profile picture.
+        verified:
+          type: boolean
+          description: Whether the guest has completed identity verification.
     Reservation:
       type: object
       properties:
@@ -262,28 +284,6 @@ components:
           type: string
           format: date-time
           description: The timestamp when the reservation was last updated.
-    Guest:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the guest.
-        first_name:
-          type: string
-          description: The first name of the guest.
-        last_name:
-          type: string
-          description: The last name of the guest.
-        phone:
-          type: string
-          description: The phone number of the guest, available after booking is confirmed.
-        profile_picture_url:
-          type: string
-          format: uri
-          description: The URL of the guest profile picture.
-        verified:
-          type: boolean
-          description: Whether the guest has completed identity verification.
     Pagination:
       type: object
       properties:
