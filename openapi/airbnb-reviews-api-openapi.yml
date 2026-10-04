@@ -72,11 +72,26 @@ paths:
           description: The listing was not found.
 components:
   parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: The number of results to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
     listingIdParam:
       name: listing_id
       in: path
       required: true
       description: The unique identifier of the listing.
+      schema:
+        type: string
+    reservationIdParam:
+      name: reservation_id
+      in: path
+      required: true
+      description: The unique identifier of the reservation.
       schema:
         type: string
     limitParam:
@@ -88,21 +103,6 @@ components:
         minimum: 1
         maximum: 100
         default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: The number of results to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    reservationIdParam:
-      name: reservation_id
-      in: path
-      required: true
-      description: The unique identifier of the reservation.
-      schema:
-        type: string
   schemas:
     Review:
       type: object

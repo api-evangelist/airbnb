@@ -132,6 +132,21 @@ paths:
         '409':
           description: The schedule has active bookings and cannot be deleted.
 components:
+  parameters:
+    scheduleIdParam:
+      name: schedule_id
+      in: path
+      required: true
+      description: The unique identifier of the schedule entry.
+      schema:
+        type: string
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
   schemas:
     Schedule:
       type: object
@@ -208,21 +223,6 @@ components:
           type: integer
           description: Override the maximum number of guests for this specific session.
           minimum: 1
-  parameters:
-    scheduleIdParam:
-      name: schedule_id
-      in: path
-      required: true
-      description: The unique identifier of the schedule entry.
-      schema:
-        type: string
-    experienceIdParam:
-      name: experience_id
-      in: path
-      required: true
-      description: The unique identifier of the experience.
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2

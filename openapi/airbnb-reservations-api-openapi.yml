@@ -177,15 +177,6 @@ paths:
           description: The reservation cannot be cancelled in its current state.
 components:
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: The maximum number of results to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 25
     offsetParam:
       name: offset
       in: query
@@ -201,6 +192,15 @@ components:
       description: The unique identifier of the reservation.
       schema:
         type: string
+    limitParam:
+      name: limit
+      in: query
+      description: The maximum number of results to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 25
   schemas:
     Guest:
       type: object
