@@ -132,21 +132,6 @@ paths:
         '409':
           description: The schedule has active bookings and cannot be deleted.
 components:
-  parameters:
-    scheduleIdParam:
-      name: schedule_id
-      in: path
-      required: true
-      description: The unique identifier of the schedule entry.
-      schema:
-        type: string
-    experienceIdParam:
-      name: experience_id
-      in: path
-      required: true
-      description: The unique identifier of the experience.
-      schema:
-        type: string
   schemas:
     Schedule:
       type: object
@@ -188,23 +173,6 @@ components:
           - open
           - full
           - cancelled
-    ScheduleUpdate:
-      type: object
-      properties:
-        start_time:
-          type: string
-          description: The updated start time in HH:MM format.
-          pattern: ^[0-2][0-9]:[0-5][0-9]$
-        max_guests:
-          type: integer
-          description: The updated maximum number of guests for this session.
-          minimum: 1
-        status:
-          type: string
-          description: The updated status of the schedule entry.
-          enum:
-          - open
-          - cancelled
     ScheduleCreate:
       type: object
       required:
@@ -223,6 +191,38 @@ components:
           type: integer
           description: Override the maximum number of guests for this specific session.
           minimum: 1
+    ScheduleUpdate:
+      type: object
+      properties:
+        start_time:
+          type: string
+          description: The updated start time in HH:MM format.
+          pattern: ^[0-2][0-9]:[0-5][0-9]$
+        max_guests:
+          type: integer
+          description: The updated maximum number of guests for this session.
+          minimum: 1
+        status:
+          type: string
+          description: The updated status of the schedule entry.
+          enum:
+          - open
+          - cancelled
+  parameters:
+    experienceIdParam:
+      name: experience_id
+      in: path
+      required: true
+      description: The unique identifier of the experience.
+      schema:
+        type: string
+    scheduleIdParam:
+      name: schedule_id
+      in: path
+      required: true
+      description: The unique identifier of the schedule entry.
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
