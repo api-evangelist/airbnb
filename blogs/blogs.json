@@ -4,13 +4,9 @@
     {
       "source": "https://www.airbnb.com/resources/hosting-homes/a/airbnb-newsroom",
       "error": "HTTPError"
-    },
-    {
-      "source": "https://news.airbnb.com/feed/",
-      "error": "HTTPError"
     }
   ],
-  "fetched": "2026-10-10T13:15:00Z",
+  "fetched": "2026-10-17T14:53:57Z",
   "post_count": 24,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
