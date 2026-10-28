@@ -1,4 +1,4 @@
-# airbnb (airbnb)
+# Airbnb
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,184 +66,276 @@
 
 Airbnb is the world's leading home-sharing and short-term rental marketplace, connecting hosts who offer accommodations and experiences with guests worldwide. The Airbnb developer platform provides connectivity partners — property management systems, channel managers, and experience operators — with APIs to manage listings, reservations, calendars, messaging, reviews, and webhook-based event notifications. Access is restricted to approved partners.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/airbnb/refs/heads/main/apis.yml)
+**Areas:** Reservations · Hospitality · Travel · Airbnb · Booking
 
-## Timestamps
+## Airbnb on APIs.io
 
-- **Modified:** 2026-05-19
+Everything profiled for Airbnb is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/airbnb/](https://apis.io/providers/airbnb/)** — or go straight to one of the APIs or properties below.
 
-## APIs
+### APIs (11)
 
-### Airbnb Homes API
+- [Airbnb Webhooks API](https://apis.io/apis/airbnb/webhooks-api/) — The Airbnb Webhooks API enables connectivity partners to receive real-time notifications when events occur on the Airbnb platform. It supports webhook…
+- [airbnb Bookings API](https://apis.io/apis/airbnb/airbnb-bookings-api/) — Operations for managing guest bookings for experiences, including confirmations, cancellations, and attendee details.
+- [airbnb Calendar API](https://apis.io/apis/airbnb/airbnb-calendar-api/) — Operations for managing listing availability, pricing, and calendar synchronization across platforms.
+- [airbnb Experience Messages API](https://apis.io/apis/airbnb/airbnb-experience-messages-api/) — Operations for sending and retrieving messages between experience hosts and booked guests.
+- [airbnb Experiences API](https://apis.io/apis/airbnb/airbnb-experiences-api/) — Operations for creating, reading, updating, and managing experience and activity listings on Airbnb.
+- [airbnb Listings API](https://apis.io/apis/airbnb/airbnb-listings-api/) — Operations for creating, reading, updating, and managing property listings on Airbnb, including descriptions, amenities, and photos.
+- [airbnb Messages API](https://apis.io/apis/airbnb/airbnb-messages-api/) — Operations for sending and retrieving guest and host messages within reservation threads.
+- [airbnb Photos API](https://apis.io/apis/airbnb/airbnb-photos-api/) — Operations for uploading, updating, and managing listing photos.
+- [airbnb Reservations API](https://apis.io/apis/airbnb/airbnb-reservations-api/) — Operations for managing reservations, including accepting, declining, and retrieving booking details.
+- [airbnb Reviews API](https://apis.io/apis/airbnb/airbnb-reviews-api/) — Operations for retrieving and responding to guest and host reviews.
+- [airbnb Schedules API](https://apis.io/apis/airbnb/airbnb-schedules-api/) — Operations for managing experience schedules, time slots, and availability for hosted activities.
 
-The Airbnb Homes API provides partner developers with programmatic access to manage vacation rental listings on the Airbnb platform. It supports creating and updating property listings, managing descriptions, amenities, photos, pricing, and availability rules. The API also enables reservation management, calendar synchronization, guest messaging, and review handling.
+### Published properties
 
-- **Human URL:** [https://developer.withairbnb.com/](https://developer.withairbnb.com/)
-- **Base URL:** `https://api.airbnb.com`
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-#### Tags
+#### AsyncAPI (1)
 
-- Airbnb
-- Calendar
-- Channel Manager
-- Hospitality
-- Host
-- Listings
-- Lodging
-- Photos
-- Property Management
-- Reservations
-- Short-Term Rental
-- Travel
-- Vacation Rentals
+Event-driven and webhook contracts.
 
-#### Properties
+- [Airbnb Webhooks API](https://apis.io/asyncapis/airbnb/airbnb-webhooks-asyncapi/)
 
-- [Documentation](https://developer.withairbnb.com/)
-- [OpenAPI](openapi/airbnb-homes-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airbnb-homes-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airbnb-homes-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Event channels (1)
 
-### Airbnb Activities API
+Individual events and webhooks the provider emits.
 
-The Airbnb Activities API allows approved partners to integrate with Airbnb Experiences, the platform's marketplace for hosted activities and tours. It provides endpoints for managing experience listings, handling bookings, and synchronizing availability for activities offered by local hosts.
+- [/webhook](https://apis.io/channels/airbnb/webhook/)
 
-- **Human URL:** [https://developer.withairbnb.com/](https://developer.withairbnb.com/)
-- **Base URL:** `https://api.airbnb.com`
+#### GraphQL (1)
 
-#### Tags
+GraphQL schemas.
 
-- Activities
-- Airbnb
-- Bookings
-- Experiences
-- Hospitality
-- Tourism
-- Travel
+- [Moved to /providers/airbnb/](https://apis.io/graphqls/airbnb/airbnb-graphql/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://developer.withairbnb.com/)
-- [OpenAPI](openapi/airbnb-activities-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/airbnb-activities-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airbnb-activities-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Airbnb Webhooks API
+- [Airbnb Agentic Access](https://apis.io/agentic-access/airbnb/airbnb-agentic-access/)
 
-The Airbnb Webhooks API enables connectivity partners to receive real-time notifications when events occur on the Airbnb platform. It supports webhook subscriptions for reservation changes, message creation, review submissions, listing calendar updates, and other key events.
+#### JSON Schema (26)
 
-- **Human URL:** [https://developer.withairbnb.com/](https://developer.withairbnb.com/)
-- **Base URL:** `https://api.airbnb.com`
+The data models the API reads and writes.
 
-#### Tags
+- [Address](https://apis.io/schemas/airbnb/airbnb-address/)
+- [Booking](https://apis.io/schemas/airbnb/airbnb-booking/)
+- [BookingGuest](https://apis.io/schemas/airbnb/airbnb-booking-guest/)
+- [CalendarDay](https://apis.io/schemas/airbnb/airbnb-calendar-day/)
+- [CalendarOperation](https://apis.io/schemas/airbnb/airbnb-calendar-operation/)
+- [Experience](https://apis.io/schemas/airbnb/airbnb-experience/)
+- [ExperienceCreate](https://apis.io/schemas/airbnb/airbnb-experience-create/)
+- [ExperienceHost](https://apis.io/schemas/airbnb/airbnb-experience-host/)
+- [ExperienceLocation](https://apis.io/schemas/airbnb/airbnb-experience-location/)
+- [ExperienceMessage](https://apis.io/schemas/airbnb/airbnb-experience-message/)
+- [ExperiencePhoto](https://apis.io/schemas/airbnb/airbnb-experience-photo/)
+- [ExperiencePricing](https://apis.io/schemas/airbnb/airbnb-experience-pricing/)
+- [ExperienceUpdate](https://apis.io/schemas/airbnb/airbnb-experience-update/)
+- [Guest](https://apis.io/schemas/airbnb/airbnb-guest/)
+- [Listing](https://apis.io/schemas/airbnb/airbnb-listing/)
+- [ListingCreate](https://apis.io/schemas/airbnb/airbnb-listing-create/)
+- [ListingUpdate](https://apis.io/schemas/airbnb/airbnb-listing-update/)
+- [Message](https://apis.io/schemas/airbnb/airbnb-message/)
+- [Photo](https://apis.io/schemas/airbnb/airbnb-photo/)
+- [Pricing](https://apis.io/schemas/airbnb/airbnb-pricing/)
+- [Reservation](https://apis.io/schemas/airbnb/airbnb-reservation/)
+- [Review](https://apis.io/schemas/airbnb/airbnb-review/)
+- [Schedule](https://apis.io/schemas/airbnb/airbnb-schedule/)
+- [ScheduleCreate](https://apis.io/schemas/airbnb/airbnb-schedule-create/)
+- [ScheduleUpdate](https://apis.io/schemas/airbnb/airbnb-schedule-update/)
+- …and 1 more published on APIs.io
 
-- Airbnb
-- Events
-- Hospitality
-- Notifications
-- Real-Time
-- Reservations
-- Travel
-- Webhooks
+#### JSON Structure (26)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://developer.withairbnb.com/)
-- [AsyncAPI](asyncapi/airbnb-webhooks-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/airbnb-activities-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airbnb-activities-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/airbnb-homes-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/airbnb-homes-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Airbnb Address Structure](https://apis.io/json-structure/airbnb/airbnb-address-structure/)
+- [Airbnb Booking Guest Structure](https://apis.io/json-structure/airbnb/airbnb-booking-guest-structure/)
+- [Airbnb Booking Structure](https://apis.io/json-structure/airbnb/airbnb-booking-structure/)
+- [Airbnb Calendar Day Structure](https://apis.io/json-structure/airbnb/airbnb-calendar-day-structure/)
+- [Airbnb Calendar Operation Structure](https://apis.io/json-structure/airbnb/airbnb-calendar-operation-structure/)
+- [Airbnb Experience Create Structure](https://apis.io/json-structure/airbnb/airbnb-experience-create-structure/)
+- [Airbnb Experience Host Structure](https://apis.io/json-structure/airbnb/airbnb-experience-host-structure/)
+- [Airbnb Experience Location Structure](https://apis.io/json-structure/airbnb/airbnb-experience-location-structure/)
+- [Airbnb Experience Message Structure](https://apis.io/json-structure/airbnb/airbnb-experience-message-structure/)
+- [Airbnb Experience Photo Structure](https://apis.io/json-structure/airbnb/airbnb-experience-photo-structure/)
+- [Airbnb Experience Pricing Structure](https://apis.io/json-structure/airbnb/airbnb-experience-pricing-structure/)
+- [Airbnb Experience Structure](https://apis.io/json-structure/airbnb/airbnb-experience-structure/)
+- [Airbnb Experience Update Structure](https://apis.io/json-structure/airbnb/airbnb-experience-update-structure/)
+- [Airbnb Guest Structure](https://apis.io/json-structure/airbnb/airbnb-guest-structure/)
+- [Airbnb Listing Create Structure](https://apis.io/json-structure/airbnb/airbnb-listing-create-structure/)
+- [Airbnb Listing Structure](https://apis.io/json-structure/airbnb/airbnb-listing-structure/)
+- [Airbnb Listing Update Structure](https://apis.io/json-structure/airbnb/airbnb-listing-update-structure/)
+- [Airbnb Message Structure](https://apis.io/json-structure/airbnb/airbnb-message-structure/)
+- [Airbnb Photo Structure](https://apis.io/json-structure/airbnb/airbnb-photo-structure/)
+- [Airbnb Pricing Structure](https://apis.io/json-structure/airbnb/airbnb-pricing-structure/)
+- [Airbnb Reservation Structure](https://apis.io/json-structure/airbnb/airbnb-reservation-structure/)
+- [Airbnb Review Structure](https://apis.io/json-structure/airbnb/airbnb-review-structure/)
+- [Airbnb Schedule Create Structure](https://apis.io/json-structure/airbnb/airbnb-schedule-create-structure/)
+- [Airbnb Schedule Structure](https://apis.io/json-structure/airbnb/airbnb-schedule-structure/)
+- [Airbnb Schedule Update Structure](https://apis.io/json-structure/airbnb/airbnb-schedule-update-structure/)
+- …and 1 more published on APIs.io
 
-## Common Properties
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Airbnb Context](https://apis.io/jsonld/airbnb/airbnb-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Airbnb API Vocabulary](https://apis.io/vocabularies/airbnb/airbnb-vocabulary/)
+
+#### Examples (26)
+
+Example requests and responses.
+
+- [Airbnb Address Example](https://apis.io/examples/airbnb/airbnb-address-example/)
+- [Airbnb Booking Example](https://apis.io/examples/airbnb/airbnb-booking-example/)
+- [Airbnb Booking Guest Example](https://apis.io/examples/airbnb/airbnb-booking-guest-example/)
+- [Airbnb Calendar Day Example](https://apis.io/examples/airbnb/airbnb-calendar-day-example/)
+- [Airbnb Calendar Operation Example](https://apis.io/examples/airbnb/airbnb-calendar-operation-example/)
+- [Airbnb Experience Create Example](https://apis.io/examples/airbnb/airbnb-experience-create-example/)
+- [Airbnb Experience Example](https://apis.io/examples/airbnb/airbnb-experience-example/)
+- [Airbnb Experience Host Example](https://apis.io/examples/airbnb/airbnb-experience-host-example/)
+- [Airbnb Experience Location Example](https://apis.io/examples/airbnb/airbnb-experience-location-example/)
+- [Airbnb Experience Message Example](https://apis.io/examples/airbnb/airbnb-experience-message-example/)
+- [Airbnb Experience Photo Example](https://apis.io/examples/airbnb/airbnb-experience-photo-example/)
+- [Airbnb Experience Pricing Example](https://apis.io/examples/airbnb/airbnb-experience-pricing-example/)
+- [Airbnb Experience Update Example](https://apis.io/examples/airbnb/airbnb-experience-update-example/)
+- [Airbnb Guest Example](https://apis.io/examples/airbnb/airbnb-guest-example/)
+- [Airbnb Listing Create Example](https://apis.io/examples/airbnb/airbnb-listing-create-example/)
+- [Airbnb Listing Example](https://apis.io/examples/airbnb/airbnb-listing-example/)
+- [Airbnb Listing Update Example](https://apis.io/examples/airbnb/airbnb-listing-update-example/)
+- [Airbnb Message Example](https://apis.io/examples/airbnb/airbnb-message-example/)
+- [Airbnb Photo Example](https://apis.io/examples/airbnb/airbnb-photo-example/)
+- [Airbnb Pricing Example](https://apis.io/examples/airbnb/airbnb-pricing-example/)
+- [Airbnb Reservation Example](https://apis.io/examples/airbnb/airbnb-reservation-example/)
+- [Airbnb Review Example](https://apis.io/examples/airbnb/airbnb-review-example/)
+- [Airbnb Schedule Create Example](https://apis.io/examples/airbnb/airbnb-schedule-create-example/)
+- [Airbnb Schedule Example](https://apis.io/examples/airbnb/airbnb-schedule-example/)
+- [Airbnb Schedule Update Example](https://apis.io/examples/airbnb/airbnb-schedule-update-example/)
+- …and 1 more published on APIs.io
+
+#### Collections (11)
+
+Postman and Open Collection request collections.
+
+- [Airbnb Activities API](https://apis.io/collections/airbnb/open-airbnb-activities-api/)
+- [Airbnb Activities Bookings API](https://apis.io/collections/airbnb/open-airbnb-bookings-api/)
+- [Airbnb Activities Bookings Calendar API](https://apis.io/collections/airbnb/open-airbnb-calendar-api/)
+- [Airbnb Activities Bookings Experience Messages API](https://apis.io/collections/airbnb/open-airbnb-experience-messages-api/)
+- [Airbnb Activities Bookings Experiences API](https://apis.io/collections/airbnb/open-airbnb-experiences-api/)
+- [Airbnb Homes API](https://apis.io/collections/airbnb/open-airbnb-homes-api/)
+- [Airbnb Activities Bookings Listings API](https://apis.io/collections/airbnb/open-airbnb-listings-api/)
+- [Airbnb Activities Bookings Messages API](https://apis.io/collections/airbnb/open-airbnb-messages-api/)
+- [Airbnb Activities Bookings Photos API](https://apis.io/collections/airbnb/open-airbnb-photos-api/)
+- [Airbnb Activities Bookings Reservations API](https://apis.io/collections/airbnb/open-airbnb-reservations-api/)
+- [Airbnb Activities Bookings Schedules API](https://apis.io/collections/airbnb/open-airbnb-schedules-api/)
+
+#### Governance rules (3)
+
+Spectral rulesets for the provider's contracts.
+
+- [Airbnb — asyncapi rules](https://apis.io/rules/airbnb/airbnb-asyncapi-spectral-rules/)
+- [Airbnb — jsonschema rules](https://apis.io/rules/airbnb/airbnb-jsonschema-spectral-rules/)
+- [Airbnb API Rules](https://apis.io/rules/airbnb/airbnb-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Airbnb Authentication](https://apis.io/security/airbnb/airbnb-authentication/)
+- [Airbnb Domain Security](https://apis.io/security/airbnb/airbnb-domain-security/)
+- [Airbnb Vulnerability Disclosure](https://apis.io/security/airbnb/airbnb-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Airbnb Scopes](https://apis.io/scopes/airbnb/airbnb-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Airbnb Plans Pricing](https://apis.io/plans/airbnb/airbnb-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Airbnb Rate Limits](https://apis.io/rate-limits/airbnb/airbnb-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Airbnb Finops](https://apis.io/finops/airbnb/airbnb-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.airbnb.com/)
-- [Portal](https://developer.withairbnb.com/)
-- [JSON-LD](json-ld/airbnb-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Schema](json-schema/airbnb-listing-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-reservation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-webhook-event-schema.json) — [JSON Schema](https://json-schema.org/specification)
 - [Blog](https://www.airbnb.com/resources/hosting-homes/a/airbnb-newsroom)
-- [Git Hub](https://github.com/airbnb)
-- [LinkedIn](https://www.linkedin.com/company/airbnb)
-- [Twitter](https://twitter.com/airbnb)
-- [Terms of Service](https://www.airbnb.com/terms)
-- [Privacy Policy](https://www.airbnb.com/privacy)
-- [Status Page](https://airbnb.statuspage.io/)
-- [JSON Schema](json-schema/airbnb-address-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-booking-guest-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-booking-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-calendar-day-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-calendar-operation-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-host-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-location-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-message-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-photo-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-pricing-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-experience-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-guest-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-listing-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-listing-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-message-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-photo-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-pricing-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-review-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-schedule-create-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-schedule-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/airbnb-schedule-update-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/airbnb-address-structure.json)
-- [JSON Structure](json-structure/airbnb-booking-guest-structure.json)
-- [JSON Structure](json-structure/airbnb-booking-structure.json)
-- [JSON Structure](json-structure/airbnb-calendar-day-structure.json)
-- [JSON Structure](json-structure/airbnb-calendar-operation-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-create-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-host-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-location-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-message-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-photo-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-pricing-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-structure.json)
-- [JSON Structure](json-structure/airbnb-experience-update-structure.json)
-- [JSON Structure](json-structure/airbnb-guest-structure.json)
-- [JSON Structure](json-structure/airbnb-listing-create-structure.json)
-- [JSON Structure](json-structure/airbnb-listing-structure.json)
-- [JSON Structure](json-structure/airbnb-listing-update-structure.json)
-- [JSON Structure](json-structure/airbnb-message-structure.json)
-- [JSON Structure](json-structure/airbnb-photo-structure.json)
-- [JSON Structure](json-structure/airbnb-pricing-structure.json)
-- [JSON Structure](json-structure/airbnb-reservation-structure.json)
-- [JSON Structure](json-structure/airbnb-review-structure.json)
-- [JSON Structure](json-structure/airbnb-schedule-create-structure.json)
-- [JSON Structure](json-structure/airbnb-schedule-structure.json)
-- [JSON Structure](json-structure/airbnb-schedule-update-structure.json)
-- [JSON Structure](json-structure/airbnb-webhook-event-structure.json)
-- [Example](examples/airbnb-address-example.json)
-- [Example](examples/airbnb-booking-example.json)
-- [Example](examples/airbnb-booking-guest-example.json)
-- [Example](examples/airbnb-calendar-day-example.json)
-- [Example](examples/airbnb-calendar-operation-example.json)
-- [Example](examples/airbnb-experience-create-example.json)
-- [Example](examples/airbnb-experience-example.json)
-- [Example](examples/airbnb-experience-host-example.json)
-- [Example](examples/airbnb-experience-location-example.json)
-- [Example](examples/airbnb-experience-message-example.json)
-- [Example](examples/airbnb-experience-photo-example.json)
-- [Example](examples/airbnb-experience-pricing-example.json)
-- [Example](examples/airbnb-experience-update-example.json)
-- [Example](examples/airbnb-guest-example.json)
-- [Example](examples/airbnb-listing-create-example.json)
-- [Example](examples/airbnb-listing-example.json)
-- [Example](examples/airbnb-listing-update-example.json)
-- [Example](examples/airbnb-message-example.json)
-- [Example](examples/airbnb-photo-example.json)
-- [Example](examples/airbnb-pricing-example.json)
-- [Example](examples/airbnb-reservation-example.json)
-- [Example](examples/airbnb-review-example.json)
-- [Example](examples/airbnb-schedule-create-example.json)
-- [Example](examples/airbnb-schedule-example.json)
-- [Example](examples/airbnb-schedule-update-example.json)
-- [Example](examples/airbnb-webhook-event-example.json)
-- [Spectral Rules](rules/airbnb-spectral-rules.yml)
-- [Vocabulary](vocabulary/airbnb-vocabulary.yaml)
+- [Terms of service](https://www.airbnb.com/terms)
+- [Privacy policy](https://www.airbnb.com/privacy)
+- [Status](https://airbnb.statuspage.io/)
+
+## API Evangelist rating
+
+**Kin Score 45.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.7 |
+| Contract quality | 70.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 26.2 |
+| Access clarity | 28.9 |
+
+**Agent readiness 31.1** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | verified |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/airbnb/](https://apis.io/providers/airbnb/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Airbnb: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/airbnb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
