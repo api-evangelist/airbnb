@@ -179,6 +179,9 @@ artifacts:
   heartbeat/2026-11-13.yml:
     method: unknown
     evidence: no authorship recorded
+  heartbeat/2026-11-20.yml:
+    method: unknown
+    evidence: no authorship recorded
   integrations/_index.yml:
     method: generated
     evidence: carries an API Evangelist house phrase
@@ -347,7 +350,7 @@ artifacts:
   kin/checks-2026-10-23T222754.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
-  kin/checks-2026-11-06T143934.yml:
+  kin/checks-2026-11-13T214628.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-23T000603.yml:
@@ -419,6 +422,9 @@ artifacts:
   kin/score-2026-11-06T143934.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-11-13T214628.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   openapi/_original/airbnb-activities-api-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -457,6 +463,36 @@ artifacts:
   openapi/airbnb-schedules-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/airbnb-bookings-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-calendar-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-experience-messages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-experiences-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-listings-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-messages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-photos-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-reservations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-reviews-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/airbnb-schedules-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   plans/airbnb-plans-pricing.yml:
     method: generated
     evidence: declared in the artifact
@@ -483,9 +519,6 @@ artifacts:
     evidence: no authorship recorded
   security/airbnb-vulnerability-disclosure.yml:
     method: searched
-    evidence: declared in the artifact
-  sla/airbnb-sla.yml:
-    method: generated
     evidence: declared in the artifact
   vocabulary/airbnb-vocabulary.yaml:
     method: unknown
