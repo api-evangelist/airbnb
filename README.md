@@ -235,6 +235,21 @@ Postman and Open Collection request collections.
 - [Airbnb Activities Bookings Reservations API](https://apis.io/collections/airbnb/open-airbnb-reservations-api/)
 - [Airbnb Activities Bookings Schedules API](https://apis.io/collections/airbnb/open-airbnb-schedules-api/)
 
+#### Overlays (10)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Airbnb Bookings Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-bookings-api-phrasing-overlay/)
+- [Airbnb Calendar Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-calendar-api-phrasing-overlay/)
+- [Airbnb Experience Messages Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-experience-messages-api-phrasing-overlay/)
+- [Airbnb Experiences Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-experiences-api-phrasing-overlay/)
+- [Airbnb Listings Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-listings-api-phrasing-overlay/)
+- [Airbnb Messages Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-messages-api-phrasing-overlay/)
+- [Airbnb Photos Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-photos-api-phrasing-overlay/)
+- [Airbnb Reservations Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-reservations-api-phrasing-overlay/)
+- [Airbnb Reviews Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-reviews-api-phrasing-overlay/)
+- [Airbnb Schedules Api Phrasing Overlay](https://apis.io/overlays/airbnb/airbnb-schedules-api-phrasing-overlay/)
+
 #### Governance rules (3)
 
 Spectral rulesets for the provider's contracts.
@@ -287,18 +302,18 @@ Links to the company's own pages. This repository publishes no copy of their spe
 
 ## API Evangelist rating
 
-**Kin Score 45.8** — developing · rubric 0.25.0 · scored 2026-10-23
+**Kin Score 44.1** — developing · rubric 0.28.1 · scored 2026-11-21
 
 | Facet | Score |
 |---|---|
 | Discoverability | 60.7 |
 | Contract quality | 70.3 |
 | Contract governance | 27.3 |
-| Operational transparency | 36.8 |
-| Developer ergonomics | 26.2 |
-| Access clarity | 28.9 |
+| Operational transparency | 33.3 |
+| Developer ergonomics | 21.4 |
+| Access clarity | 27.7 |
 
-**Agent readiness 31.1** — agent-ready
+**Agent readiness 30.4** — agent-ready
 
 | Agent-readiness dimension | Result |
 |---|---|
@@ -323,6 +338,10 @@ Links to the company's own pages. This repository publishes no copy of their spe
 | Agentic Commerce | — |
 | Pagination Ratio | na |
 | Operation Distinctiveness | distinct |
+| MCP Tool Quality | na |
+| Onboarding Descriptor | — |
+| Dns Aid Index | na |
+| Markdown Negotiation | na |
 
 **Regulatory alignment 40.2** — Horizontal (data, software, accessibility, platform)
 
